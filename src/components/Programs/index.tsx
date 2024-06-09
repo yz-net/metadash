@@ -1,14 +1,41 @@
 "use client";
 
-import React, { useState } from "react";
-import "./main.scss";
+import { useEffect, useState } from "react";
 import { objectToArray } from "~/utils/common";
 import ItemSelector from "../Inputs/ItemSelector";
 import HoverText from "../Inputs/HoverText";
+
+import "./main.scss";
+import { ResponsiveTreeMap } from "@nivo/treemap";
 import TreeMap from "../Viz/TreeMap";
+
+const CustomNode = ({ node, onMouseEnter, onMouseLeave, onClick }: any) => {
+  return (
+    <g
+      className="group"
+      transform={`translate(${node.x},${node.y})`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onClick={onClick}
+    >
+      <rect
+        className="fill-[#8ec8cc] group-hover:fill-[#0d99aa]"
+        width={node.width}
+        height={node.height}
+      />
+    </g>
+  );
+};
 
 export default function Programs(props) {
   const [hoverText, setHoverText] = useState<string>(" ");
+  const [data, setData] = useState<
+    { id: string; label: string; count: number }[]
+  >([]);
+
+  useEffect(() => {
+    setData(objectToArray(props.programs));
+  }, [props.programs]);
 
   const label = () => {
     if (!props.selections || props.selections.length < 1) {
@@ -17,7 +44,7 @@ export default function Programs(props) {
     return props.selections[0].label;
   };
 
-  const handleMouseIn = (item) => {
+  const handleMouseEnter = (item) => {
     setHoverText(item.label);
   };
 
@@ -33,7 +60,7 @@ export default function Programs(props) {
     }
   };
 
-  const handleMouseOut = () => {
+  const handleMouseLeave = () => {
     setHoverText(" ");
   };
 
@@ -44,8 +71,8 @@ export default function Programs(props) {
       <TreeMap
         items={objectToArray(props.programs)}
         itemDict={props.programs}
-        mouseInCallback={handleMouseIn}
-        mouseOutCallback={handleMouseOut}
+        mouseInCallback={handleMouseEnter}
+        mouseOutCallback={handleMouseLeave}
         selections={props.selections}
         clickCallback={handleClick}
       />

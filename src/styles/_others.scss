@@ -34,3 +34,27 @@
     }
   }
 }
+
+.Programs {
+  svg {
+    height: 380px;
+  }
+  rect {
+    fill: $color-robinegg;
+  }
+
+  rect.highlighted,
+  rect:hover {
+    fill: $color-teal;
+  }
+
+  .ItemSelector {
+    background-color: $color-backgroundgray;
+    font-family: $font-sans;
+
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+  }
+}
