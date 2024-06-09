@@ -22,7 +22,7 @@ function getData(options) {
     gender: {
       men: { label: "men", count: 0 },
       women: { label: "women", count: 0 },
-      both: { label: "both", count: 0 },
+      multiple: { label: "multiple", count: 0 },
     },
     programs: {},
 
@@ -123,8 +123,8 @@ function getData(options) {
 
   // ret.gender.men = (ret.subjects[MEN_SUBJECT] || 0)
   // ret.gender.women = (ret.subjects[WOMEN_SUBJECT] || 0 )
-  // ret.gender.men.count -= ret.gender.both.count || 0 ;
-  // ret.gender.women.count -= ret.gender.both.count;
+  // ret.gender.men.count -= ret.gender.multiple.count || 0 ;
+  // ret.gender.women.count -= ret.gender.multiple.count;
 
   const returnValue = {
     resources: res,

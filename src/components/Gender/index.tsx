@@ -22,7 +22,7 @@ export default function Gender(props) {
     if (filter.multiple) {
       selections.push("multiple");
     }
-    props.updateSelections();
+    props.updateSelections(selections);
   }, [filter]);
 
   const genderToggle = (gender: "men" | "women" | "multiple") => {
@@ -47,7 +47,7 @@ export default function Gender(props) {
         <div onClick={() => genderToggle("men")} className={`men gender-bar`} />
         <div
           onClick={() => genderToggle("multiple")}
-          className={`both gender-bar`}
+          className={`multiple gender-bar`}
         />
 
         <div
@@ -64,7 +64,7 @@ export default function Gender(props) {
           <div className="subtext">{props.men.toLocaleString()}</div>
         </div>
         <div
-          className={"label-area both small-label "}
+          className={"label-area multiple small-label "}
           onClick={() => genderToggle("multiple")}
         >
           <div>Multiple</div>

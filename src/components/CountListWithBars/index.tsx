@@ -7,6 +7,11 @@ export default function CountListWithBars(props) {
     itemCount: 100,
     increment: 10,
   });
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    setItems(props.showAll ? props.allItems : props.items);
+  }, [props.showAll]);
 
   const poolRef = useRef<HTMLDivElement>(null);
 
@@ -53,11 +58,9 @@ export default function CountListWithBars(props) {
   );
   const width = (val: number) => `${(val * 100) / total}%`;
 
-  const items = props.showAll ? props.allItems : props.items;
-
   return (
     <div ref={poolRef} className="count-list">
-      {(items || [])
+      {items
         .sort((a, b) => (a.count < b.count ? 1 : -1))
         .slice(0, options.itemCount)
         // .filter(a => a.label && a.label.length > 0)

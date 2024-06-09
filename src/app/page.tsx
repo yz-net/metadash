@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BirthAndRecordingYear from "~/components/BirthAndRecordingYears";
 import BirthPlaces from "~/components/BirthPlaces";
 import Gender from "~/components/Gender";
@@ -36,12 +36,15 @@ export default function HomePage() {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [fullData, setFullData] = useState(data.getData());
 
+  useEffect(() => {
+    console.log("FILTERS", filters);
+    console.log("FULL DATA", fullData);
+    setFullData(data.getData(filters));
+  }, [filters]);
+
   const setNewFilters = (f) => {
     const newFilters = f || DEFAULT_FILTERS;
-    const { resources, subjects, summaryData } = data.getData(newFilters);
-
     setFilters(newFilters);
-    setFullData({ resources, subjects, summaryData });
   };
 
   const clearFilters = () => {
@@ -52,16 +55,6 @@ export default function HomePage() {
     return (val) => {
       filters[key] = val;
       setNewFilters(filters);
-
-      // --- MOVED TO setFilters --
-      // const { resources, subjects, summaryData } = data.getData(filters);
-
-      // this.setState({
-      //     filters: filters,
-      //     resources,
-      //     subjects,
-      //     summaryData
-      // });
     };
   };
 
@@ -82,9 +75,6 @@ export default function HomePage() {
         </section>
 
         <section className="module-area">
-          {/* <OverviewBillboard
-                        testimonyCount={resources.length}
-                    ></OverviewBillboard> */}
           <div className="text-menu">
             <div className="item" onClick={clearFilters}>
               Clear filters
@@ -96,7 +86,7 @@ export default function HomePage() {
             updateSelections={updateFilterFactory("gender")}
             men={fullData.summaryData.gender.men.count}
             women={fullData.summaryData.gender.women.count}
-            both={fullData.summaryData.gender.both.count}
+            multiple={fullData.summaryData.gender.multiple.count}
           />
 
           <Languages

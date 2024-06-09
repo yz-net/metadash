@@ -1,7 +1,8 @@
-import React from "react";
-
 export default function IntroProse(props) {
   const genderString = () => {
+    if (!props.filters?.gender) {
+      return "";
+    }
     if (props.filters.gender.length < 1) {
       return "men and women";
     }

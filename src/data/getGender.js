@@ -3,16 +3,16 @@ import * as staticStuff from "./static";
 function getGender(resource) {
   const men = resource.subject_refs.indexOf(staticStuff.MEN_SUBJECT) >= 0,
     women = resource.subject_refs.indexOf(staticStuff.WOMEN_SUBJECT) >= 0,
-    both = men && women;
+    multiple = men && women;
 
-  if (both) {
-    return "Both";
+  if (multiple) {
+    return "multiple";
   } else if (women) {
-    return "Women";
+    return "women";
   } else if (men) {
-    return "Men";
+    return "men";
   }
-  return "Unknown";
+  return "unknown";
 }
 
 export { getGender };
