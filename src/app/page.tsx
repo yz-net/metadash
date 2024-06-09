@@ -1,41 +1,210 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
+import BirthAndRecordingYear from "~/components/BirthAndRecordingYears";
+import BirthPlaces from "~/components/BirthPlaces";
+import Gender from "~/components/Gender";
+import Interviewers from "~/components/Interviewers";
+import IntroProse from "~/components/IntroProse";
+import Languages from "~/components/Languages";
+import Programs from "~/components/Programs";
+import Results from "~/components/Results";
 import SiteBanner from "~/components/SiteBanner";
+import SubjectHeadings from "~/components/SubjectHeadings";
+
+import * as data from "~/data";
+import { arrayToObject, objectToArray } from "~/utils/common";
+
+const BIRTH_MIN = 1890;
+const BIRTH_MAX = 1945;
+const RECORDING_MIN = 1970;
+const RECORDING_MAX = 2020;
+
+const DEFAULT_FILTERS = {
+  gender: ["men", "women", "multiple"],
+  birthYear: [],
+  birthCountry: [],
+  language: [],
+  yearRecorded: [],
+  subjects: [],
+  interviewers: [],
+  programs: [],
+  dateRanges: {},
+};
 
 export default function HomePage() {
+  const [filters, setFilters] = useState(DEFAULT_FILTERS);
+  const [fullData, setFullData] = useState(data.getData());
+
+  const setNewFilters = (f) => {
+    const newFilters = f || DEFAULT_FILTERS;
+    const { resources, subjects, summaryData } = data.getData(newFilters);
+
+    setFilters(newFilters);
+    setFullData({ resources, subjects, summaryData });
+  };
+
+  const clearFilters = () => {
+    setFilters(DEFAULT_FILTERS);
+  };
+
+  const updateFilterFactory = (key) => {
+    return (val) => {
+      filters[key] = val;
+      setNewFilters(filters);
+
+      // --- MOVED TO setFilters --
+      // const { resources, subjects, summaryData } = data.getData(filters);
+
+      // this.setState({
+      //     filters: filters,
+      //     resources,
+      //     subjects,
+      //     summaryData
+      // });
+    };
+  };
+
   return (
     <>
       <SiteBanner />
-      <main className="flex min-h-screen flex-col items-center justify-center text-white">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-          </h1>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-              href="https://create.t3.gg/en/usage/first-steps"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">First Steps →</h3>
-              <div className="text-lg">
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
-              </div>
-            </Link>
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
-              </div>
-            </Link>
+      <div className="MetaDash">
+        <section className="prose intro-prose-section">
+          <IntroProse
+            items={fullData.resources}
+            filters={filters}
+            summaryData={fullData.summaryData}
+            BIRTH_MIN={BIRTH_MIN}
+            BIRTH_MAX={BIRTH_MAX}
+            RECORDING_MIN={RECORDING_MIN}
+            RECORDING_MAX={RECORDING_MAX}
+          />
+        </section>
+
+        <section className="module-area">
+          {/* <OverviewBillboard
+                        testimonyCount={resources.length}
+                    ></OverviewBillboard> */}
+          <div className="text-menu">
+            <div className="item" onClick={clearFilters}>
+              Clear filters
+            </div>
+            <div className="item">Documentation</div>
           </div>
-        </div>
-      </main>
+
+          <Gender
+            updateSelections={updateFilterFactory("gender")}
+            men={fullData.summaryData.gender.men.count}
+            women={fullData.summaryData.gender.women.count}
+            both={fullData.summaryData.gender.both.count}
+          />
+
+          <Languages
+            updateSelections={updateFilterFactory("language")}
+            selections={filters.language}
+            items={objectToArray(fullData.summaryData.languages)}
+            itemDict={fullData.summaryData.languages}
+            allItems={objectToArray(fullData.summaryData.languages)}
+          />
+
+          <BirthAndRecordingYear
+            // height={200}
+            minYear={BIRTH_MIN}
+            maxYear={RECORDING_MAX}
+            BIRTH_MIN={BIRTH_MIN}
+            BIRTH_MAX={BIRTH_MAX}
+            RECORDING_MIN={RECORDING_MIN}
+            RECORDING_MAX={RECORDING_MAX}
+            updateSelections={updateFilterFactory("dateRanges")}
+            selections={filters.dateRanges}
+            subsetMode={fullData.resources.length > fullData.resources.length}
+            data={Object.keys(fullData.summaryData.birthYears)
+              .map((k) => fullData.summaryData.birthYears[k])
+              // TODO - the data needs to be cleaned up
+              // so we don't need to manually exclude stuff
+              .filter((yrs) => yrs.label >= BIRTH_MIN && yrs.label <= BIRTH_MAX)
+              .map((a) => {
+                return { ...a, barClass: "birth" };
+              })
+              .concat(
+                Object.keys(fullData.summaryData.recordingYears)
+                  .map((k) => fullData.summaryData.recordingYears[k])
+                  .filter(
+                    (yrs) =>
+                      yrs.label >= RECORDING_MIN && yrs.label <= RECORDING_MAX,
+                  )
+                  .map((a) => {
+                    return { ...a, barClass: "recording" };
+                  }),
+              )}
+          />
+
+          <BirthPlaces
+            updateSelections={updateFilterFactory("birthplaces")}
+            selections={filters.birthplaces}
+            birthPlaces={fullData.summaryData.birthPlaces}
+            allBirthPlaces={fullData.summaryData.birthPlaces}
+            placeholder="Search for a city..."
+          />
+
+          <Interviewers
+            interviewers={fullData.summaryData.interviewers}
+            allInterviewers={fullData.summaryData.interviewers}
+            updateSelections={updateFilterFactory("interviewers")}
+            selections={filters.interviewers}
+            selectionsDict={arrayToObject(filters.interviewers)} // TODO - improve efficiency
+            // allInterviewers={ data.interviewers.search() } // TODO - improve efficiency
+            filterItems={(t) => {
+              // 6-3-19 - just updated to return both an array and a dictionary
+              // so it doesn't have to be retouched later on. (dict+arr+interviewers)
+              const results = data.interviewers.search((t || "").split(" "));
+              let retDict = {};
+              let retArr = results
+                .filter((i) => i.id in fullData.summaryData.interviewers)
+                .map((i) => {
+                  const retItem = {
+                    ...i,
+                    count: fullData.summaryData.interviewers[i.id].count,
+                  };
+                  retDict[i.id] = retItem;
+                  return retItem;
+                });
+
+              return [retArr, retDict];
+              // return results
+              //     .filter(i => i.id in summaryData.interviewers)
+              //     .map(i => { return { ...i, count: summaryData.interviewers[i.id].count } })
+            }}
+          />
+
+          <Programs
+            updateSelections={updateFilterFactory("programs")}
+            selections={filters.programs}
+            allItems={fullData.summaryData.programs}
+            programs={fullData.summaryData.programs}
+            filterItems={data.programs.search}
+            placeholder="Begin searching programs..."
+          />
+        </section>
+
+        <section className="headings-area">
+          <SubjectHeadings
+            title="Subjects"
+            updateSelections={updateFilterFactory("subjects")}
+            selections={filters.subjects}
+            allItems={fullData.summaryData.subjects}
+            filterItems={data.subjects.search}
+            placeholder="Begin searching subjects..."
+          />
+        </section>
+
+        <section className="results-section">
+          <Results
+            programs={fullData.summaryData.programs}
+            results={fullData.resources}
+          />
+        </section>
+      </div>
     </>
   );
 }

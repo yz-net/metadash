@@ -1,0 +1,55 @@
+import Histogram from "../Viz/Histogram";
+import DoubleSlider from "../Inputs/DoubleSlider";
+
+export default function BirthAndRecordingYear(props) {
+  const updateRangeFactory = (key) => {
+    return (value) => {
+      var newDict = { ...props.selections };
+      newDict[key] = value;
+      props.updateSelections(newDict);
+    };
+  };
+
+  const itemProps = {
+    ...props,
+    margin: {
+      top: 0,
+      left: 30,
+      right: 10,
+      bottom: 20,
+    },
+  };
+  const modeClass = props.subsetMode ? "subset-mode" : "full-mode";
+
+  return (
+    <div className={"BirthYear module-box " + modeClass}>
+      <h3 className="title">Dates</h3>
+      <div className="Histogram">
+        <Histogram {...itemProps} />
+      </div>
+
+      <div className="slider-container">
+        <div className="half">
+          <DoubleSlider
+            label="Birth year"
+            updateSelections={updateRangeFactory("birth")}
+            selections={props.selections.birth}
+            min={props.BIRTH_MIN}
+            max={props.BIRTH_MAX}
+            margin={{ top: 2, bottom: 10, left: 20, right: 40 }}
+          />
+        </div>
+        <div className="half">
+          <DoubleSlider
+            label="Recording year"
+            selections={props.selections.recording}
+            updateSelections={updateRangeFactory("recording")}
+            min={props.RECORDING_MIN}
+            max={props.RECORDING_MAX}
+            margin={{ top: 2, bottom: 10, left: 20, right: 40 }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
