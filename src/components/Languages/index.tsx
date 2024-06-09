@@ -1,6 +1,8 @@
 import React from "react";
 import { arrayToObject } from "~/utils/common";
 import CountListWithBars from "../CountListWithBars";
+import Card from "../Card";
+
 import "./main.scss";
 
 export default function Languages(props) {
@@ -20,9 +22,8 @@ export default function Languages(props) {
   };
 
   return (
-    <div className="Languages module-box">
-      <h3 className="title">Languages</h3>
+    <Card title="Languages">
       <CountListWithBars {...listProps} />
-    </div>
+    </Card>
   );
 }

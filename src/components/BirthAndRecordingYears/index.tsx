@@ -1,5 +1,6 @@
 import Histogram from "../Viz/Histogram";
 import DoubleSlider from "../Inputs/DoubleSlider";
+import Card from "../Card";
 
 export default function BirthAndRecordingYear(props) {
   const updateRangeFactory = (key) => {
@@ -22,8 +23,7 @@ export default function BirthAndRecordingYear(props) {
   const modeClass = props.subsetMode ? "subset-mode" : "full-mode";
 
   return (
-    <div className={"BirthYear module-box " + modeClass}>
-      <h3 className="title">Dates</h3>
+    <Card className={modeClass} title="Dates">
       <div className="Histogram">
         <Histogram {...itemProps} />
       </div>
@@ -50,6 +50,6 @@ export default function BirthAndRecordingYear(props) {
           />
         </div>
       </div>
-    </div>
+    </Card>
   );
 }

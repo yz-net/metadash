@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import CountListWithBars from "../CountListWithBars";
 import TextInput from "../Inputs/TextInput";
+import Card from "../Card";
 
 export default function Interviewers(props) {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -54,8 +55,7 @@ export default function Interviewers(props) {
   };
 
   return (
-    <div className="Interviewers module-box">
-      <h3 className="title">Interviewers</h3>
+    <Card title="Interviewers">
       <div className="input-wrapper">
         <TextInput
           placeholder="Search by name"
@@ -64,6 +64,6 @@ export default function Interviewers(props) {
         />
       </div>
       <CountListWithBars {...listProps} />
-    </div>
+    </Card>
   );
 }

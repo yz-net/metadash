@@ -4,6 +4,7 @@ import { useState } from "react";
 import { normalizeString, objectToArray } from "~/utils/common";
 import Cluster from "../Viz/Cluster";
 import HoverText from "../Inputs/HoverText";
+import Card from "../Card";
 
 export default function BirthPlaces(props) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -156,9 +157,7 @@ export default function BirthPlaces(props) {
   };
 
   return (
-    <div className="BirthPlaces module-box">
-      <h3 className="title">Birth places</h3>
-
+    <Card title="Birth places">
       <Cluster
         items={cleanClusterData()}
         // items={cleanClusterData()}
@@ -190,6 +189,6 @@ export default function BirthPlaces(props) {
         hoverText={hoverText}
         label={label()}
       />
-    </div>
+    </Card>
   );
 }

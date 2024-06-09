@@ -4,28 +4,10 @@ import { useEffect, useState } from "react";
 import { objectToArray } from "~/utils/common";
 import ItemSelector from "../Inputs/ItemSelector";
 import HoverText from "../Inputs/HoverText";
-
-import "./main.scss";
-import { ResponsiveTreeMap } from "@nivo/treemap";
 import TreeMap from "../Viz/TreeMap";
 
-const CustomNode = ({ node, onMouseEnter, onMouseLeave, onClick }: any) => {
-  return (
-    <g
-      className="group"
-      transform={`translate(${node.x},${node.y})`}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onClick={onClick}
-    >
-      <rect
-        className="fill-[#8ec8cc] group-hover:fill-[#0d99aa]"
-        width={node.width}
-        height={node.height}
-      />
-    </g>
-  );
-};
+import "./main.scss";
+import Card from "../Card";
 
 export default function Programs(props) {
   const [hoverText, setHoverText] = useState<string>(" ");
@@ -65,9 +47,7 @@ export default function Programs(props) {
   };
 
   return (
-    <div className="Programs module-box">
-      <h3 className="title">Affiliate programs</h3>
-
+    <Card title="Affiliate programs">
       <TreeMap
         items={objectToArray(props.programs)}
         itemDict={props.programs}
@@ -91,6 +71,6 @@ export default function Programs(props) {
         selections={props.selections}
         placeholder={"All affiliate programs"}
       />
-    </div>
+    </Card>
   );
 }

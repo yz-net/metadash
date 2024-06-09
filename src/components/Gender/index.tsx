@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import "./main.scss";
+import Card from "../Card";
 
 export default function Gender(props) {
   const [filter, setFilter] = useState({
@@ -36,8 +37,7 @@ export default function Gender(props) {
   const total: number = props.men + props.women + props.multiple;
 
   return (
-    <div className="Gender module-box">
-      <h3 className="title">Gender</h3>
+    <Card title="Gender">
       <div className="label-container">
         <div className="big-label">{`${Math.round(props.men / total)}%`}</div>
         <div className="big-label">{`${Math.round(props.multiple / total)}%`}</div>
@@ -79,6 +79,6 @@ export default function Gender(props) {
           <div className="subtext">{props.women.toLocaleString()}</div>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
