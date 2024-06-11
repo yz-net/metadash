@@ -9,11 +9,11 @@ export default function Card(props: {
   return (
     <div
       className={twMerge(
-        "rounded-lg bg-white p-5 shadow-[1px_1px_6px_rgba(0,0,0,.16)]",
+        "shadow-yale rounded-lg bg-white p-5",
         props.className,
       )}
     >
-      <h3 className="font-yalenewroman mb-4 text-center text-2xl">
+      <h3 className="mb-4 text-center font-yalenewroman text-2xl">
         {props.title}
       </h3>
       {props.children}

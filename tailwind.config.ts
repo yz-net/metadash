@@ -10,6 +10,9 @@ export default {
         yalenewroman: ["yalenewroman"],
         proximanova: ["proximanova"],
       },
+      boxShadow: {
+        yale: "1px 1px 6px rgba(0,0,0,.16)",
+      },
     },
   },
   plugins: [],

@@ -11,9 +11,9 @@ import Programs from "~/components/Programs";
 import Results from "~/components/Results";
 import SiteBanner from "~/components/SiteBanner";
 import SubjectHeadings from "~/components/SubjectHeadings";
+import { arrayToObject, objectToArray } from "~/utils/common";
 
 import * as data from "~/data";
-import { arrayToObject, objectToArray } from "~/utils/common";
 
 const BIRTH_MIN = 1890;
 const BIRTH_MAX = 1945;
@@ -75,7 +75,7 @@ export default function HomePage() {
         </section>
 
         <section className="module-area">
-          <div className="font-proximanova flex justify-end pr-7">
+          <div className="flex justify-end pr-7 font-proximanova">
             <button
               className="pl-3 font-sans text-[#aaa] underline hover:text-[#ca6251]"
               onClick={clearFilters}
