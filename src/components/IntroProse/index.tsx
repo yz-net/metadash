@@ -79,7 +79,7 @@ export default function IntroProse(props) {
   };
 
   return (
-    <div className="font-yalenewroman mx-auto my-[30px] max-w-[1200px] text-center text-[24px] text-[#4a4a4a]">
+    <div className="font-yalenewroman mx-auto my-7 max-w-7xl text-center text-2xl text-[#4a4a4a]">
       This data dashboard visualizes &nbsp;
       <span className="text-[#ca6251]">
         {props.items?.length.toLocaleString() ?? 0} testimonies

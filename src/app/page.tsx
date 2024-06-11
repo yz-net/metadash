@@ -75,14 +75,14 @@ export default function HomePage() {
         </section>
 
         <section className="module-area">
-          <div className="font-proximanova flex justify-end pr-[30px]">
+          <div className="font-proximanova flex justify-end pr-7">
             <button
-              className="font-proximanova pl-[1em] text-[#aaa] underline hover:text-[#ca6251]"
+              className="pl-3 font-sans text-[#aaa] underline hover:text-[#ca6251]"
               onClick={clearFilters}
             >
               Clear filters
             </button>
-            <button className="font-proximanova pl-[1em] text-[#aaa] underline hover:text-[#ca6251]">
+            <button className="pl-3 font-sans text-[#aaa] underline hover:text-[#ca6251]">
               Documentation
             </button>
           </div>
