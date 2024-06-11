@@ -23,7 +23,7 @@ export default function IntroProse(props) {
 
     return (
       <span>
-        by <span className="stat">{term}</span>
+        by <span className="text-[#ca6251]">{term}</span>
       </span>
     );
   };
@@ -36,14 +36,14 @@ export default function IntroProse(props) {
     if (arr[0] === arr[1]) {
       return (
         <span>
-          in <span className="stat">{arr[0]}</span>
+          in <span className="text-[#ca6251]">{arr[0]}</span>
         </span>
       );
     }
 
     return (
       <span>
-        between <span className="stat">{arr.join(" and ")}</span>
+        between <span className="text-[#ca6251]">{arr.join(" and ")}</span>
       </span>
     );
   };
@@ -57,7 +57,7 @@ export default function IntroProse(props) {
     return (
       <span>
         across{" "}
-        <span className="stat">
+        <span className="text-[#ca6251]">
           {languageCount.toLocaleString()}{" "}
           {languageCount > 1 ? "languages" : "language"}
         </span>
@@ -70,7 +70,7 @@ export default function IntroProse(props) {
     return (
       <span>
         by{" "}
-        <span className="stat">
+        <span className="text-[#ca6251]">
           {affiliateCount.toLocaleString()}{" "}
           {affiliateCount > 1 ? "affilate programs" : "affiliate program"}
         </span>
@@ -79,9 +79,9 @@ export default function IntroProse(props) {
   };
 
   return (
-    <div className="IntroProse">
+    <div className="font-yalenewroman mx-auto my-[30px] max-w-[1200px] text-center text-[24px] text-[#4a4a4a]">
       This data dashboard visualizes &nbsp;
-      <span className="stat">
+      <span className="text-[#ca6251]">
         {props.items?.length.toLocaleString() ?? 0} testimonies
       </span>
       &nbsp;{genderString()}

@@ -75,20 +75,23 @@ export default function HomePage() {
         </section>
 
         <section className="module-area">
-          <div className="text-menu">
-            <div className="item" onClick={clearFilters}>
+          <div className="font-proximanova flex justify-end pr-[30px]">
+            <button
+              className="font-proximanova pl-[1em] text-[#aaa] underline hover:text-[#ca6251]"
+              onClick={clearFilters}
+            >
               Clear filters
-            </div>
-            <div className="item">Documentation</div>
+            </button>
+            <button className="font-proximanova pl-[1em] text-[#aaa] underline hover:text-[#ca6251]">
+              Documentation
+            </button>
           </div>
-
           <Gender
             updateSelections={updateFilterFactory("gender")}
             men={fullData.summaryData.gender.men.count}
             women={fullData.summaryData.gender.women.count}
             multiple={fullData.summaryData.gender.multiple.count}
           />
-
           <Languages
             updateSelections={updateFilterFactory("language")}
             selections={filters.language}
@@ -96,7 +99,6 @@ export default function HomePage() {
             itemDict={fullData.summaryData.languages}
             allItems={objectToArray(fullData.summaryData.languages)}
           />
-
           <BirthAndRecordingYear
             // height={200}
             minYear={BIRTH_MIN}
@@ -128,7 +130,6 @@ export default function HomePage() {
                   }),
               )}
           />
-
           <BirthPlaces
             updateSelections={updateFilterFactory("birthplaces")}
             selections={filters.birthplaces}
@@ -136,7 +137,6 @@ export default function HomePage() {
             allBirthPlaces={fullData.summaryData.birthPlaces}
             placeholder="Search for a city..."
           />
-
           <Interviewers
             interviewers={fullData.summaryData.interviewers}
             allInterviewers={fullData.summaryData.interviewers}
@@ -166,7 +166,6 @@ export default function HomePage() {
               //     .map(i => { return { ...i, count: summaryData.interviewers[i.id].count } })
             }}
           />
-
           <Programs
             updateSelections={updateFilterFactory("programs")}
             selections={filters.programs}
