@@ -37,8 +37,6 @@ export default function HomePage() {
   const [fullData, setFullData] = useState(data.getData());
 
   useEffect(() => {
-    console.log("FILTERS", filters);
-    console.log("FULL DATA", fullData);
     setFullData(data.getData(filters));
   }, [filters]);
 
@@ -53,8 +51,9 @@ export default function HomePage() {
 
   const updateFilterFactory = (key) => {
     return (val) => {
-      filters[key] = val;
-      setNewFilters(filters);
+      const newFilters = { ...filters };
+      newFilters[key] = val;
+      setNewFilters(newFilters);
     };
   };
 

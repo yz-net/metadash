@@ -4,6 +4,7 @@ import { MutableRefObject, useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 
 import Card from "../Card";
+import { twMerge } from "tailwind-merge";
 
 export default function Gender(props: any /* TODO */) {
   const [filter, setFilter] = useState({
@@ -27,9 +28,12 @@ export default function Gender(props: any /* TODO */) {
     if (filter.multiple) {
       selections.push("multiple");
     }
-    animateBars();
     props.updateSelections(selections);
   }, [filter]);
+
+  useEffect(() => {
+    animateBars();
+  }, [props.men, props.multiple, props.women]);
 
   const animateBars = () => {
     const vals = {
@@ -59,7 +63,7 @@ export default function Gender(props: any /* TODO */) {
     setFilter({
       men: gender === "men" ? !filter.men : filter.men,
       women: gender === "women" ? !filter.women : filter.women,
-      multiple: gender === "multiple" ? filter.multiple : filter.multiple,
+      multiple: gender === "multiple" ? !filter.multiple : filter.multiple,
     });
   };
 
@@ -68,9 +72,21 @@ export default function Gender(props: any /* TODO */) {
   return (
     <Card title="Gender">
       <div className="flex justify-between">
-        <label className="color-[#222] font-yalenewroman text-2xl">{`${((props.men * 100) / total).toFixed(0)}%`}</label>
-        <label className="color-[#222] font-yalenewroman text-2xl">{`${((props.multiple * 100) / total).toFixed(0)}%`}</label>
-        <label className="color-[#222] font-yalenewroman text-2xl">{`${((props.women * 100) / total).toFixed(0)}%`}</label>
+        <button
+          className="font-yalenewroman text-2xl text-[#222] hover:text-[#333]"
+          type="button"
+          onClick={() => genderToggle("men")}
+        >{`${((props.men * 100) / total).toFixed(0)}%`}</button>
+        <button
+          className="font-yalenewroman text-2xl text-[#222] hover:text-[#333]"
+          type="button"
+          onClick={() => genderToggle("multiple")}
+        >{`${((props.multiple * 100) / total).toFixed(0)}%`}</button>
+        <button
+          className="font-yalenewroman text-2xl text-[#222] hover:text-[#333]"
+          type="button"
+          onClick={() => genderToggle("women")}
+        >{`${((props.women * 100) / total).toFixed(0)}%`}</button>
       </div>
       <div className="flex w-full justify-between bg-[#d3d3d3]">
         <button
@@ -94,31 +110,71 @@ export default function Gender(props: any /* TODO */) {
       </div>
       <div className="mt-3 flex justify-between">
         <button
-          className="flex flex-col items-start justify-center font-sans"
+          className="group flex flex-col items-start justify-center font-sans"
           type="button"
           onClick={() => genderToggle("men")}
         >
-          <div className="font-bold">Men</div>
-          <div className="text-[#6e6e6e]">{props.men.toLocaleString()}</div>
+          <div
+            className={twMerge(
+              "font-bold group-hover:text-[#8ec8cc]",
+              filter.men ? "" : "text-gray-400",
+            )}
+          >
+            Men
+          </div>
+          <div
+            className={twMerge(
+              "text-[#6e6e6e] group-hover:text-[#8ec8cc]",
+              filter.men ? "" : "text-gray-400",
+            )}
+          >
+            {props.men.toLocaleString()}
+          </div>
         </button>
         <button
-          className="flex flex-col items-center justify-center font-sans"
+          className="group flex flex-col items-center justify-center font-sans"
           type="button"
           onClick={() => genderToggle("multiple")}
         >
-          <div className="font-bold">Multiple</div>
-          <div className="text-[#6e6e6e]">
-            {props.multiple?.toLocaleString()}
+          <div
+            className={twMerge(
+              "font-bold group-hover:text-[#8ec8cc]",
+              filter.multiple ? "" : "text-gray-400",
+            )}
+          >
+            Multiple
+          </div>
+          <div
+            className={twMerge(
+              "text-[#6e6e6e] group-hover:text-[#8ec8cc]",
+              filter.multiple ? "" : "text-gray-400",
+            )}
+          >
+            {props.multiple.toLocaleString()}
           </div>
         </button>
 
         <button
-          className="flex flex-col items-end justify-center font-sans"
+          className="group flex flex-col items-end justify-center font-sans hover:text-[#8ec8cc]"
           type="button"
           onClick={() => genderToggle("women")}
         >
-          <div className="font-bold">Women</div>
-          <div className="text-[#6e6e6e]">{props.women.toLocaleString()}</div>
+          <div
+            className={twMerge(
+              "font-bold group-hover:text-[#8ec8cc]",
+              filter.women ? "" : "text-gray-400",
+            )}
+          >
+            Women
+          </div>
+          <div
+            className={twMerge(
+              "text-[#6e6e6e] group-hover:text-[#8ec8cc]",
+              filter.women ? "" : "text-gray-400",
+            )}
+          >
+            {props.women.toLocaleString()}
+          </div>
         </button>
       </div>
     </Card>
