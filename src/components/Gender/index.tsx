@@ -60,10 +60,16 @@ export default function Gender(props: any /* TODO */) {
   };
 
   const genderToggle = (gender: "men" | "women" | "multiple") => {
-    setFilter({
-      men: gender === "men" ? !filter.men : filter.men,
-      women: gender === "women" ? !filter.women : filter.women,
-      multiple: gender === "multiple" ? !filter.multiple : filter.multiple,
+    setFilter((prev) => {
+      let newFilter = {
+        men: gender === "men" ? !filter.men : filter.men,
+        women: gender === "women" ? !filter.women : filter.women,
+        multiple: gender === "multiple" ? !filter.multiple : filter.multiple,
+      };
+      if (!newFilter.men && !newFilter.women && !newFilter.multiple) {
+        newFilter = prev;
+      }
+      return newFilter;
     });
   };
 

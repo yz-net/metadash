@@ -46,8 +46,11 @@ export default function CountListWithBars(props) {
       return;
     }
     return (
-      <div className="pct-bar-container">
-        <div style={{ width: width }} className="pct-bar"></div>
+      <div className="h-3 flex-[4_4] bg-[#d9e9f2]">
+        <div
+          style={{ width: width }}
+          className="bg-[#0d99aa] transition-colors"
+        ></div>
       </div>
     );
   };
@@ -59,31 +62,34 @@ export default function CountListWithBars(props) {
   const width = (val: number) => `${(val * 100) / total}%`;
 
   return (
-    <div ref={poolRef} className="count-list">
+    <div
+      ref={poolRef}
+      className="max-h-full overflow-auto font-sans text-xs font-semibold text-[#6e6e6e] "
+    >
       {items
         .sort((a, b) => (a.count < b.count ? 1 : -1))
         .slice(0, options.itemCount)
-        // .filter(a => a.label && a.label.length > 0)
         .map((item, i) => {
-          // skip the filter loop
           if (!(item.label && item.label.length > 0)) {
             return null;
           }
 
-          let itemCount, barWidth, className;
+          let itemCount,
+            barWidth,
+            className = " items-center cursor-pointer flex leading-6 mb-0";
 
           if (item.id in props.itemDict) {
-            className = "list-item";
+            className += "";
             itemCount = props.itemDict[item.id].count.toLocaleString();
             barWidth = width(props.itemDict[item.id].count);
           } else {
-            className = "list-item disabled";
+            className += "";
             barWidth = 0;
             itemCount = "--";
           }
 
           if (item.id in props.selections) {
-            className = "list-item selected";
+            className += " text-[#222]";
           }
 
           return (
@@ -92,10 +98,10 @@ export default function CountListWithBars(props) {
               key={i}
               className={className}
             >
-              <div className="x-circle-icon"></div>
-              <div className="list-item-name">{item.label}</div>
+              <div className="pl-3"></div>
+              <div className="flex-[4_4] px-3 text-right">{item.label}</div>
               {renderBar(barWidth)}
-              <div className="list-item-value">{itemCount}</div>
+              <div className="flex-[4_4] px-3 text-left">{itemCount}</div>
             </div>
           );
         })}
