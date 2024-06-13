@@ -81,9 +81,6 @@ export default function HomePage() {
             >
               Clear filters
             </button>
-            <button className="pl-3 font-sans text-[#aaa] underline hover:text-[#ca6251]">
-              Documentation
-            </button>
           </div>
           <Gender
             updateSelections={updateFilterFactory("gender")}

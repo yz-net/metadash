@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function CountListWithBars(props) {
   const [options, setOptions] = useState({
@@ -11,7 +12,7 @@ export default function CountListWithBars(props) {
 
   useEffect(() => {
     setItems(props.showAll ? props.allItems : props.items);
-  }, [props.showAll]);
+  }, [props.showAll, props.items]);
 
   const poolRef = useRef<HTMLDivElement>(null);
 
@@ -41,25 +42,12 @@ export default function CountListWithBars(props) {
     }
   };
 
-  const renderBar = (width: number) => {
-    if (!props.showBars) {
-      return;
-    }
-    return (
-      <div className="h-3 flex-[4_4] bg-[#d9e9f2]">
-        <div
-          style={{ width: width }}
-          className="bg-[#0d99aa] transition-colors"
-        ></div>
-      </div>
-    );
-  };
-
   const total = props.items.reduce(
     (subtotal, nextItem) => subtotal + nextItem.count,
     0,
   );
-  const width = (val: number) => `${(val * 100) / total}%`;
+
+  console.log("ITEMS", items);
 
   return (
     <div
@@ -76,20 +64,19 @@ export default function CountListWithBars(props) {
 
           let itemCount,
             barWidth,
-            className = " items-center cursor-pointer flex leading-6 mb-0";
+            selected = false,
+            className = "group items-center cursor-pointer flex leading-6 mb-0";
 
           if (item.id in props.itemDict) {
-            className += "";
             itemCount = props.itemDict[item.id].count.toLocaleString();
-            barWidth = width(props.itemDict[item.id].count);
+            barWidth = (props.itemDict[item.id].count * 100) / total;
           } else {
-            className += "";
             barWidth = 0;
             itemCount = "--";
           }
 
           if (item.id in props.selections) {
-            className += " text-[#222]";
+            (selected = true), (className += " text-[#222]");
           }
 
           return (
@@ -98,10 +85,28 @@ export default function CountListWithBars(props) {
               key={i}
               className={className}
             >
-              <div className="pl-3"></div>
-              <div className="flex-[4_4] px-3 text-right">{item.label}</div>
-              {renderBar(barWidth)}
-              <div className="flex-[4_4] px-3 text-left">{itemCount}</div>
+              <div className="pl-3">
+                <img
+                  className={selected ? "visible" : "invisible"}
+                  src="/graphics/x-circle-icon.svg"
+                />
+              </div>
+              <div className="flex-[4_4] px-3 text-right group-hover:text-black">
+                {item.label}
+              </div>
+              {props.showBars && (
+                <div className="relative h-3 flex-[4_4] bg-[#d9e9f2]">
+                  <motion.div
+                    initial={{ width: "0%" }}
+                    animate={{ width: `${barWidth}%` }}
+                    exit={{ width: "0%" }}
+                    className="z-10 h-full bg-[#0d99aa] transition-[colors,width] group-hover:!w-full group-hover:bg-[#ca6251]"
+                  />
+                </div>
+              )}
+              <div className="flex-[4_4] px-3 text-left group-hover:text-black">
+                {itemCount}
+              </div>
             </div>
           );
         })}

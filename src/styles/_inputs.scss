@@ -20,7 +20,7 @@
     .button.dropdown-icon.x {
       width: 32px;
       padding-right: 6px;
-      background: url(graphics/x-field.svg) no-repeat; // scroll 1em 1em;
+      // background: url(graphics/x-field.svg) no-repeat; // scroll 1em 1em;
       background-origin: content-box;
       background-position: center right;
       background-size: 1em;
@@ -64,7 +64,7 @@
     // padding-left: 16px;
     // padding-right: 16px;
     padding: 0px 8px;
-    background: url(graphics/search-icon.svg) no-repeat scroll 7px 7px;
+    // background: url(graphics/search-icon.svg) no-repeat scroll 7px 7px;
     background-origin: content-box;
     background-position: center right;
     background-size: 21px;
@@ -84,7 +84,7 @@
   // }
 
   select.dropdown-icon.arrow {
-    background: url(graphics/dropdown-arrow.svg) no-repeat scroll 7px 7px;
+    // background: url(graphics/dropdown-arrow.svg) no-repeat scroll 7px 7px;
     background-origin: content-box;
     background-position: center right;
     background-size: 1em;

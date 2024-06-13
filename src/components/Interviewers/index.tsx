@@ -23,7 +23,7 @@ export default function Interviewers(props) {
     // if you click an item that's already selected, unselect it.
     // otherwise, select it
     const selections = props.selectionsDict; //arrayToObject(props.selections);
-    const selectionsWithoutCurrentItem = props.selections.filter(
+    const selectionsWithoutCurrentItem = props.selections?.filter(
       (i) => i.id !== item.id,
     );
 
@@ -43,15 +43,12 @@ export default function Interviewers(props) {
   const listProps = {
     showBars: props.showBars,
     updateSelections: setSearchTerm,
-    items, //: items,
+    items,
     allItems: props.allInterviewers,
     showAll: false,
-    itemDict, //: arrayToObject(items),
+    itemDict,
     handleItemClick: handleItemClick,
-    selections: props.selectionsDict, //arrayToObject(props.selections)
-    //allowMultipleSelections: true,
-    // items: state.filteredItems
-    // items: objectToArray(props.interviewers)
+    selections: props.selectionsDict,
   };
 
   return (
@@ -59,7 +56,7 @@ export default function Interviewers(props) {
       <div className="input-wrapper">
         <TextInput
           placeholder="Search by name"
-          onChange={setSearchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
           value={searchTerm}
         />
       </div>
