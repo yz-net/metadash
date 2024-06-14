@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-export default function TextInput(props) {
+export default function TextInput(props: any /* TODO */) {
   return (
     <div className={twMerge(`relative block h-9 w-full`, props.className)}>
       <input

@@ -47,8 +47,6 @@ export default function CountListWithBars(props) {
     0,
   );
 
-  console.log("ITEMS", items);
-
   return (
     <div
       ref={poolRef}

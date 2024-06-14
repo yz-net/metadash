@@ -54,25 +54,12 @@ export default function BirthPlaces(props) {
       )
       .map((item) => {
         let ret = { ...item };
-        // console.log("item",item, item.id in props.birthPlaces)
         if (!(item.id in props.birthPlaces)) {
-          // console.log("removing", item);
           ret.count = 0;
         }
 
-        // const element = ret;
-
-        // if (addedCountries.indexOf(country) < 0) {
-        //     addedCountries.push(country);
-        //     const label = `${country}|root`,
-        //         newItem = { label, id: label };
-        //     countryItems.push(newItem)
-        //  }
-
         return ret;
       });
-
-    // clusterData = clusterData.concat(countryItems);
 
     // add an item for each country
     clusterData.forEach((element) => {
@@ -88,7 +75,6 @@ export default function BirthPlaces(props) {
 
     clusterData.push({ label: "country|", id: "country|" });
 
-    // setState({ cleanClusterData: clusterData });
     return clusterData;
   };
 
@@ -103,8 +89,8 @@ export default function BirthPlaces(props) {
       all
         .filter(
           (x) =>
-            normalizeString(x.label).indexOf(
-              normalizeString(value.replace(":", "|")),
+            normalizeString(x.label ?? "").indexOf(
+              normalizeString(value.replace(":", "|") ?? ""),
             ) >= 0,
         )
         // filter out roots

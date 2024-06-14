@@ -11,7 +11,7 @@ import Programs from "~/components/Programs";
 import Results from "~/components/Results";
 import SiteBanner from "~/components/SiteBanner";
 import SubjectHeadings from "~/components/SubjectHeadings";
-import { arrayToObject, objectToArray } from "~/utils/common";
+import { objectToArray } from "~/utils/common";
 
 import * as data from "~/data";
 
@@ -32,9 +32,13 @@ const DEFAULT_FILTERS = {
   dateRanges: {},
 };
 
+const defaultFullData = data.getData();
+
 export default function HomePage() {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
-  const [fullData, setFullData] = useState(data.getData());
+  const [fullData, setFullData] = useState(defaultFullData);
+
+  console.log("FILTERS", filters);
 
   useEffect(() => {
     setFullData(data.getData(filters));
@@ -135,15 +139,14 @@ export default function HomePage() {
           />
           <Interviewers
             interviewers={fullData.summaryData.interviewers}
-            allInterviewers={fullData.summaryData.interviewers}
+            allInterviewers={defaultFullData.summaryData.interviewers}
             updateSelections={updateFilterFactory("interviewers")}
             selections={filters.interviewers}
-            selectionsDict={arrayToObject(filters.interviewers)} // TODO - improve efficiency
-            // allInterviewers={ data.interviewers.search() } // TODO - improve efficiency
-            filterItems={(t) => {
+            selectionsDict={objectToArray(filters.interviewers)}
+            filterItems={(t: string) => {
               // 6-3-19 - just updated to return both an array and a dictionary
               // so it doesn't have to be retouched later on. (dict+arr+interviewers)
-              const results = data.interviewers.search((t || "").split(" "));
+              const results = data.interviewers.search((t ?? "").split(" "));
               let retDict = {};
               let retArr = results
                 .filter((i) => i.id in fullData.summaryData.interviewers)
@@ -157,9 +160,6 @@ export default function HomePage() {
                 });
 
               return [retArr, retDict];
-              // return results
-              //     .filter(i => i.id in summaryData.interviewers)
-              //     .map(i => { return { ...i, count: summaryData.interviewers[i.id].count } })
             }}
           />
           <Programs

@@ -1,5 +1,5 @@
 export function normalizeString(term: string) {
-  return (term || "").toLowerCase().trim();
+  return (term ?? "").toString().trim().toLowerCase();
 }
 
 // replace the keys in a dictionary with something else
