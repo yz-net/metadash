@@ -24,7 +24,7 @@ export default function BirthAndRecordingYear(props) {
 
   return (
     <Card className={modeClass} title="Dates">
-      <div className="Histogram">
+      <div className="mx-7">
         <Histogram {...itemProps} />
       </div>
 

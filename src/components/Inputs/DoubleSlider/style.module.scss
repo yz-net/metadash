@@ -1,0 +1,57 @@
+.DoubleSlider {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  &--label {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+  }
+
+  &--wrapper {
+    flex: 1;
+  }
+
+  .Viz svg {
+    height: 40px;
+  }
+
+  rect .handle {
+    cursor: pointer;
+  }
+
+  rect.handle.active {
+    fill: gray;
+  }
+
+  rect.track {
+    fill: gray;
+  }
+
+  .label-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .DoubleSlider {
+    display: unset;
+
+    &--label {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    &--wrapper {
+      width: 100%;
+    }
+  }
+}

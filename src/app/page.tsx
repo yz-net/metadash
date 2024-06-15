@@ -100,7 +100,6 @@ export default function HomePage() {
             allItems={objectToArray(fullData.summaryData.languages)}
           />
           <BirthAndRecordingYear
-            // height={200}
             minYear={BIRTH_MIN}
             maxYear={RECORDING_MAX}
             BIRTH_MIN={BIRTH_MIN}
@@ -116,7 +115,7 @@ export default function HomePage() {
               // so we don't need to manually exclude stuff
               .filter((yrs) => yrs.label >= BIRTH_MIN && yrs.label <= BIRTH_MAX)
               .map((a) => {
-                return { ...a, barClass: "birth" };
+                return { ...a, barClass: "birth fill-[#ca6251]" };
               })
               .concat(
                 Object.keys(fullData.summaryData.recordingYears)
@@ -126,7 +125,7 @@ export default function HomePage() {
                       yrs.label >= RECORDING_MIN && yrs.label <= RECORDING_MAX,
                   )
                   .map((a) => {
-                    return { ...a, barClass: "recording" };
+                    return { ...a, barClass: "recording fill-[#ca6251]" };
                   }),
               )}
           />

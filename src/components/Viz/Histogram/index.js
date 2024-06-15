@@ -1,5 +1,3 @@
-// import React from 'react';
-import "./main.scss";
 import D3Component from "../D3Component";
 import * as d3 from "d3";
 
@@ -9,7 +7,6 @@ export default class extends D3Component {
 
     this.initializeChart = this.initializeChart.bind(this);
     this.updateChart = this.updateChart.bind(this);
-    // this.setRange = this.setRange.bind(this);
   }
 
   initializeChart() {
@@ -137,7 +134,5 @@ export default class extends D3Component {
       );
 
     d3.select(window).on("resize.histogram", this.redrawChart.bind(this));
-
-    // d3.select(window).on("resize", this.redrawChart)
   }
 }
