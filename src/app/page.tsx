@@ -38,8 +38,6 @@ export default function HomePage() {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [fullData, setFullData] = useState(defaultFullData);
 
-  console.log("FILTERS", filters);
-
   useEffect(() => {
     setFullData(data.getData(filters));
   }, [filters]);
