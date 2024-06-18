@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 // TODO https://codesandbox.io/p/sandbox/multi-range-slider-react-ts-b9l0g?file=%2Fsrc%2Findex.tsx
+// (see components/DoubleSliderV2)
 
 export default function DoubleSlider(props) {
   const [values, setValues] = useState([props.min, props.max]);
