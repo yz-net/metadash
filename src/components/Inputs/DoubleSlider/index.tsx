@@ -4,7 +4,10 @@ import { twMerge } from "tailwind-merge";
 // TODO https://codesandbox.io/p/sandbox/multi-range-slider-react-ts-b9l0g?file=%2Fsrc%2Findex.tsx
 // (see components/DoubleSliderV2)
 
-export default function DoubleSlider(props) {
+// https://mui.com/material-ui/react-slider/
+// -> if max slider is slided towards min and undercuts min, switch (min <-> max)
+
+export default function DoubleSlider(props: any) {
   const [values, setValues] = useState([props.min, props.max]);
   const range = useRef<HTMLDivElement>(null);
 
