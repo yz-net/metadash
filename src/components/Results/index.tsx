@@ -12,13 +12,13 @@ export default function Results(props: any) {
 
   useEffect(() => {
     const trackScrolling = () => {
-      const scrollBottom = window.pageYOffset + window.innerHeight;
+      const scrollBottom = window.scrollY + window.innerHeight;
       const distanceFromBottom =
         window.document.body.offsetHeight - scrollBottom;
       if (props.results.length > options.limit && distanceFromBottom < 100) {
         setOptions((prev) => ({
-          limit: options.limit + options.increment,
-          increment: prev.increment,
+          ...prev,
+          limit: prev.limit + prev.increment,
         }));
       }
     };

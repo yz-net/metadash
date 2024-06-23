@@ -19,7 +19,6 @@ export default function DoubleSlider(props: any) {
   }, [props.selections]);
 
   useEffect(() => {
-    console.log("OAWKDKOAWD", values);
     // props.updateSelections(values);
   }, [values]);
 
