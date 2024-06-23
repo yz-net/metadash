@@ -99,7 +99,7 @@ export default function Results(props: any) {
                     }
                   </div>
                   <div className="hidden flex-[2-1] lg:block">
-                    {result.programs.map((ref, i) => (
+                    {result.programs.map((ref: any, i: number) => (
                       <li className="m-0 list-none p-0 text-[#6e6e6e]" key={i}>
                         {props.programs[ref].label}
                       </li>
