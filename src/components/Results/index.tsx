@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { getRecordingYear } from "~/utils/data";
 // import {ResultList} from "@bit/jakekara.metadash.fortunoff-app"
 
@@ -9,8 +9,6 @@ export default function Results(props: any) {
     limit: 1,
     increment: 1,
   });
-
-  const resultsRef = useRef(null);
 
   useEffect(() => {
     const trackScrolling = () => {
@@ -32,7 +30,9 @@ export default function Results(props: any) {
     <div className="box-border max-w-full px-20 font-sans">
       <div className="mx-auto mb-8 max-w-5xl text-center font-yalenewroman text-2xl text-[#4a4a4a]">
         There are{" "}
-        <span className="stat">{props.results?.length.toLocaleString()}</span>{" "}
+        <span className="text-[#ca6251]">
+          {props.results?.length.toLocaleString()}
+        </span>{" "}
         testimonies with matching criteria.
       </div>
       <div className="mb-4 flex pl-5 font-semibold text-[#aaa]">
@@ -42,7 +42,6 @@ export default function Results(props: any) {
         <div className="hidden flex-1 2xl:block">Recording year</div>
         <div className="flex-1">&nbsp;</div>
       </div>
-      <div ref={resultsRef} className="results-container"></div>
 
       <div>
         {props.results
@@ -50,7 +49,7 @@ export default function Results(props: any) {
           .map((result: any, index: number) => (
             <div
               key={index}
-              className="mb-4 rounded-lg border-l-[10px] border-[#8ec8cc] bg-white"
+              className="group mb-4 rounded-lg border-l-[10px] border-[#8ec8cc] bg-white shadow-none hover:border-[#ca6251] hover:shadow-yale"
             >
               <a
                 target="_blank"
@@ -112,7 +111,7 @@ export default function Results(props: any) {
                     </li>
                   </div>
                   <div className="flex-1">
-                    <div className="mx-auto flex h-8 w-20 items-center justify-center rounded-lg bg-[#8ec8cc] text-white">
+                    <div className="mx-auto flex h-8 w-20 items-center justify-center rounded-lg bg-[#8ec8cc] text-white group-hover:bg-[#ca6251]">
                       View
                     </div>
                   </div>
