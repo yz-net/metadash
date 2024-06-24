@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { getRecordingYear } from "~/utils/data";
-// import {ResultList} from "@bit/jakekara.metadash.fortunoff-app"
 
 export default function Results(props: any) {
   const [options, setOptions] = useState({
@@ -35,14 +34,17 @@ export default function Results(props: any) {
         </span>{" "}
         testimonies with matching criteria.
       </div>
+
+      {/* Result list header */}
       <div className="mb-4 flex pl-5 font-semibold text-[#aaa]">
         <div className="flex-[2_1]">Testimony title</div>
         <div className="flex-1">Birth year / place</div>
-        <div className="hidden flex-[2_1] lg:block">Affiliate</div>
+        <div className="hidden flex-[2_1] xl:block">Affiliate</div>
         <div className="hidden flex-1 2xl:block">Recording year</div>
         <div className="flex-1">&nbsp;</div>
       </div>
 
+      {/* Result list */}
       <div>
         {props.results
           ?.slice(0, options.limit)
@@ -60,7 +62,7 @@ export default function Results(props: any) {
                 <div
                   className={`flex h-16 items-center justify-around py-px font-sans text-sm font-semibold ${result.birth_years.length > 1 ? "multiple" : ""}`}
                 >
-                  <div className="flex-[2_1] pl-5 text-xl font-semibold text-[#6e6e6e]">
+                  <div className="flex-[2_1] pl-5 text-[20px] font-semibold text-[#6e6e6e]">
                     {result.title}
                   </div>
                   <div className="flex-1">
@@ -98,7 +100,7 @@ export default function Results(props: any) {
                         .slice(-2) // don't show more than two items
                     }
                   </div>
-                  <div className="hidden flex-[2-1] lg:block">
+                  <div className="hidden flex-[2_1] xl:block">
                     {result.programs.map((ref: any, i: number) => (
                       <li className="m-0 list-none p-0 text-[#6e6e6e]" key={i}>
                         {props.programs[ref].label}

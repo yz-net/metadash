@@ -2,7 +2,12 @@ import { twMerge } from "tailwind-merge";
 
 export default function TextInput(props: any /* TODO */) {
   return (
-    <div className={twMerge(`relative block h-9 w-full`, props.className)}>
+    <div
+      className={twMerge(
+        `relative flex h-9 w-full flex-[2_2] items-center p-0`,
+        props.className,
+      )}
+    >
       <input
         className="absolute inset-0 border border-[#d3d3d3] bg-[#f5f5f5] pl-2 pr-7 text-[#222]"
         onChange={(e) => props.onChange(e)}

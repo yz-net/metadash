@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import TagPoolItem from "./TagPoolItem";
 import "./main.scss";
 
-export default function TagPool(props) {
+export default function TagPool(props: any) {
   const [options, setOptions] = useState({
     itemCount: 100,
     increment: 50,
@@ -40,17 +39,25 @@ export default function TagPool(props) {
       }));
     }
   };
+
   return (
-    <div ref={poolRef} className="TagPool">
-      {(props.items.slice(0, options.itemCount) || []).map((item, i) => {
-        return (
-          <TagPoolItem
-            callback={props.callback || function () {}}
-            key={i}
-            item={item}
-          ></TagPoolItem>
-        );
-      })}
+    <div
+      ref={poolRef}
+      className="mx-20 my-px flex h-[160px] max-h-full flex-wrap justify-center overflow-hidden overflow-y-scroll bg-white px-0 py-8"
+    >
+      {(props.items.slice(0, options.itemCount) || []).map(
+        (item: any, index: number) => (
+          <button
+            data-value={item.value}
+            className="m-0 border-none px-2 py-1 font-sans text-sm hover:bg-[#eff7fa] hover:text-[#0d99aa]"
+            type="button"
+            onClick={() => props.onChange(item)}
+            key={index}
+          >
+            {item.label}
+          </button>
+        ),
+      )}
     </div>
   );
 }

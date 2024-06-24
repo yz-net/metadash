@@ -180,7 +180,7 @@ export default function HomePage() {
           />
         </section>
 
-        <section className="results-section">
+        <section className="mt-8">
           <Results
             programs={fullData.summaryData.programs}
             results={fullData.resources}

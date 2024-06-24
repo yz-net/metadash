@@ -36,19 +36,19 @@ export default function TagFilter(props) {
     updateSelections(newSelections, searchTerm);
   };
 
-  const dropSelection = (item) => {
+  const dropSelection = (item: any) => {
     dropSelectionByID(item.id);
   };
 
   const items = props
     .filterItems(searchTerm.split(" "))
-    .filter((i) => i.id in props.allItems);
+    .filter((item: any) => item.id in props.allItems);
 
   return (
-    <div className="TagFilter">
-      <div className="top-area">
-        <div className="type-area">
-          <div className="title-area">{props.title}</div>
+    <div className="flex max-h-full flex-col">
+      <div className="flex h-20 bg-[#f0eee6] px-20 py-0 shadow-yale">
+        <div className="flex flex-1 items-center pr-5 text-2xl">
+          <div className="pr-1.5 text-2xl">{props.title}</div>
           <TextInput
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder={props.placeholder}
@@ -57,7 +57,6 @@ export default function TagFilter(props) {
         </div>
         <SelectionPool onChange={dropSelection} items={props.selections} />
       </div>
-
       <TagPool onChange={addSelection} items={items || []} />
     </div>
   );
