@@ -4,17 +4,16 @@ import { useState } from "react";
 import TextInput from "../TextInput";
 import SelectionPool from "../SelectionPool";
 import TagPool from "./TagPool";
-import "./main.scss";
 
-export default function TagFilter(props) {
+export default function TagFilter(props: any) {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  const updateSelections = (newSelections) => {
+  const updateSelections = (newSelections: any) => {
     props.updateSelections(newSelections);
     setSearchTerm("");
   };
 
-  const addSelection = (selectionItem) => {
+  const addSelection = (selectionItem: any) => {
     // don't add a duplicate
     var newSelections = [...props.selections];
     if (newSelections.filter((a) => a.id === selectionItem.id).length > 0) {
@@ -23,17 +22,17 @@ export default function TagFilter(props) {
 
     newSelections = [...newSelections, selectionItem];
 
-    updateSelections(newSelections, searchTerm);
+    updateSelections(newSelections /* , searchTerm */);
   };
 
-  const dropSelectionByID = (dropID) => {
+  const dropSelectionByID = (dropID: any) => {
     var newSelections = [...props.selections];
     newSelections = newSelections.filter((a) => {
       const ret = String(a.id) !== String(dropID);
       return ret;
     });
 
-    updateSelections(newSelections, searchTerm);
+    updateSelections(newSelections /* , searchTerm */);
   };
 
   const dropSelection = (item: any) => {
@@ -48,12 +47,13 @@ export default function TagFilter(props) {
     <div className="flex max-h-full flex-col">
       <div className="flex h-20 bg-[#f0eee6] px-20 py-0 shadow-yale">
         <div className="flex flex-1 items-center pr-5 text-2xl">
-          <div className="pr-1.5 text-2xl">{props.title}</div>
+          <div className="pr-1.5 font-yalenewroman text-2xl">{props.title}</div>
           <TextInput
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e: any) => setSearchTerm(e.target.value)}
             placeholder={props.placeholder}
             value={searchTerm}
-          ></TextInput>
+            className="text-lg"
+          />
         </div>
         <SelectionPool onChange={dropSelection} items={props.selections} />
       </div>

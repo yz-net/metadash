@@ -1,9 +1,7 @@
-import "./main.scss";
-
-export default function ItemSelector(props) {
-  const handleSelection = (item) => {
+export default function ItemSelector(props: any) {
+  const handleSelection = (item: any) => {
     props.updateSelections(
-      props.items.filter((i) => i.id === item.target.value),
+      props.items.filter((i: any) => i.id === item.target.value),
     );
   };
 
@@ -35,13 +33,13 @@ export default function ItemSelector(props) {
           {props.placeholder || "All items"}
         </option>
 
-        {props.items.map((item, i) => {
+        {props.items.map((item: any, index: number) => {
           const optionProps = {
             // selected: selected.id === item.id,
             value: item.id,
           };
           return (
-            <option key={i} {...optionProps}>
+            <option key={index} {...optionProps}>
               {item.label}
             </option>
           );

@@ -10,10 +10,10 @@ import Languages from "~/components/Languages";
 import Programs from "~/components/Programs";
 import Results from "~/components/Results";
 import SiteBanner from "~/components/SiteBanner";
-import SubjectHeadings from "~/components/SubjectHeadings";
 import { objectToArray } from "~/utils/common";
 
 import * as data from "~/data";
+import TagFilter from "~/components/Inputs/TagFilter";
 
 const BIRTH_MIN = 1890;
 const BIRTH_MAX = 1945;
@@ -42,7 +42,7 @@ export default function HomePage() {
     setFullData(data.getData(filters));
   }, [filters]);
 
-  const setNewFilters = (f) => {
+  const setNewFilters = (f: any) => {
     const newFilters = f || DEFAULT_FILTERS;
     setFilters(newFilters);
   };
@@ -51,8 +51,10 @@ export default function HomePage() {
     setFilters(DEFAULT_FILTERS);
   };
 
-  const updateFilterFactory = (key) => {
-    return (val) => {
+  const updateFilterFactory = (
+    key: any /* TODO type filter, key = keyof type */,
+  ) => {
+    return (val: any) => {
       const newFilters = { ...filters };
       newFilters[key] = val;
       setNewFilters(newFilters);
@@ -170,7 +172,7 @@ export default function HomePage() {
         </section>
 
         <section className="headings-area">
-          <SubjectHeadings
+          <TagFilter
             title="Subjects"
             updateSelections={updateFilterFactory("subjects")}
             selections={filters.subjects}

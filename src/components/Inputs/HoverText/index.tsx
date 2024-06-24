@@ -1,6 +1,4 @@
-import "./main.scss";
-
-export default function HoverText(props) {
+export default function HoverText(props: any) {
   let ret = null;
 
   if (!props.selections || props.selections.length < 1) {
