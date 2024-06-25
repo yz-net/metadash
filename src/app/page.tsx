@@ -77,8 +77,10 @@ export default function HomePage() {
           />
         </section>
 
-        <section className="module-area">
-          <div className="flex justify-end pr-7 font-proximanova">
+        <section
+          className="mx-20 grid grid-cols-1 gap-4 md:grid-cols-5" /* TODO - lg, xl, 2xl? */
+        >
+          <div className="col-span-1 flex justify-end pr-7 font-proximanova md:col-span-5">
             <button
               className="pl-3 font-sans text-[#aaa] underline hover:text-[#ca6251]"
               onClick={clearFilters}
@@ -87,19 +89,15 @@ export default function HomePage() {
             </button>
           </div>
           <Gender
+            className="md:col-span-2"
             updateSelections={updateFilterFactory("gender")}
             men={fullData.summaryData.gender.men.count}
             women={fullData.summaryData.gender.women.count}
             multiple={fullData.summaryData.gender.multiple.count}
           />
-          <Languages
-            updateSelections={updateFilterFactory("language")}
-            selections={filters.language}
-            items={objectToArray(fullData.summaryData.languages)}
-            itemDict={fullData.summaryData.languages}
-            allItems={objectToArray(fullData.summaryData.languages)}
-          />
+
           <BirthAndRecordingYear
+            className="md:col-span-3"
             minYear={BIRTH_MIN}
             maxYear={RECORDING_MAX}
             BIRTH_MIN={BIRTH_MIN}
@@ -129,14 +127,37 @@ export default function HomePage() {
                   }),
               )}
           />
+
           <BirthPlaces
+            className="md:col-span-3"
             updateSelections={updateFilterFactory("birthplaces")}
             selections={filters.birthplaces}
             birthPlaces={fullData.summaryData.birthPlaces}
             allBirthPlaces={fullData.summaryData.birthPlaces}
             placeholder="Search for a city..."
           />
+
+          <Programs
+            className="md:col-span-2"
+            updateSelections={updateFilterFactory("programs")}
+            selections={filters.programs}
+            allItems={fullData.summaryData.programs}
+            programs={fullData.summaryData.programs}
+            filterItems={data.programs.search}
+            placeholder="Begin searching programs..."
+          />
+
+          <Languages
+            className="md:col-span-2"
+            updateSelections={updateFilterFactory("language")}
+            selections={filters.language}
+            items={objectToArray(fullData.summaryData.languages)}
+            itemDict={fullData.summaryData.languages}
+            allItems={objectToArray(fullData.summaryData.languages)}
+          />
+
           <Interviewers
+            className="md:col-span-3"
             interviewers={fullData.summaryData.interviewers}
             allInterviewers={defaultFullData.summaryData.interviewers}
             updateSelections={updateFilterFactory("interviewers")}
@@ -160,14 +181,6 @@ export default function HomePage() {
 
               return [retArr, retDict];
             }}
-          />
-          <Programs
-            updateSelections={updateFilterFactory("programs")}
-            selections={filters.programs}
-            allItems={fullData.summaryData.programs}
-            programs={fullData.summaryData.programs}
-            filterItems={data.programs.search}
-            placeholder="Begin searching programs..."
           />
         </section>
 

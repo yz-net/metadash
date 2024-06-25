@@ -5,10 +5,10 @@ import Card from "../Card";
 
 import "./main.scss";
 
-export default function Languages(props) {
+export default function Languages(props: any) {
   const listProps = {
     ...props,
-    handleItemClick: (item) => {
+    handleItemClick: (item: any) => {
       // switch to item, or clear selections if you click on the selected item
       if (props.selections.length === 0 || item.id !== props.selections[0].id) {
         props.updateSelections([item]);
@@ -22,7 +22,7 @@ export default function Languages(props) {
   };
 
   return (
-    <Card title="Languages">
+    <Card className={props.className} title="Languages">
       <CountListWithBars {...listProps} />
     </Card>
   );

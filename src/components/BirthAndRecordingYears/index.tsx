@@ -1,10 +1,11 @@
+import { twMerge } from "tailwind-merge";
 import Histogram from "../Viz/Histogram";
 import DoubleSlider from "../Inputs/DoubleSlider";
 import Card from "../Card";
 
-export default function BirthAndRecordingYear(props) {
-  const updateRangeFactory = (key) => {
-    return (value) => {
+export default function BirthAndRecordingYear(props: any) {
+  const updateRangeFactory = (key: any) => {
+    return (value: any) => {
       var newDict = { ...props.selections };
       newDict[key] = value;
       props.updateSelections(newDict);
@@ -23,7 +24,7 @@ export default function BirthAndRecordingYear(props) {
   const modeClass = props.subsetMode ? "subset-mode" : "full-mode";
 
   return (
-    <Card className={modeClass} title="Dates">
+    <Card className={twMerge(props.className, modeClass)} title="Dates">
       <div className="mx-7">
         <Histogram {...itemProps} />
       </div>

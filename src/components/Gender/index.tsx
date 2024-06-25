@@ -76,7 +76,7 @@ export default function Gender(props: any /* TODO */) {
   const total: number = props.men + props.women + props.multiple;
 
   return (
-    <Card title="Gender">
+    <Card className={props.className} title="Gender">
       <div className="flex justify-between">
         <button
           className="font-yalenewroman text-2xl text-[#222] hover:text-[#333]"

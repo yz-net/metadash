@@ -41,7 +41,7 @@ export default function Interviewers(props: any /* TODO */) {
   };
 
   return (
-    <Card title="Interviewers">
+    <Card className={props.className} title="Interviewers">
       <div className="input-wrapper">
         <TextInput
           placeholder="Search by name"

@@ -6,12 +6,12 @@ import Cluster from "../Viz/Cluster";
 import HoverText from "../Inputs/HoverText";
 import Card from "../Card";
 
-export default function BirthPlaces(props) {
+export default function BirthPlaces(props: any) {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [hoverText, setHoverText] = useState(" ");
 
-  const cleanPlaceName = (item) => {
+  const cleanPlaceName = (item: any) => {
     if (!item) {
       return "";
     }
@@ -78,12 +78,11 @@ export default function BirthPlaces(props) {
     return clusterData;
   };
 
-  const getSuggestionValue = (suggestion) => {
-    //        return suggestion.label;
+  const getSuggestionValue = (suggestion: any) => {
     return cleanPlaceName(suggestion);
   };
 
-  const getSuggestions = (value) => {
+  const getSuggestions = (value: any) => {
     const all = cleanClusterData();
     return (
       all
@@ -105,7 +104,7 @@ export default function BirthPlaces(props) {
     setSearchTerm(newValue);
   };
 
-  const onSuggestionsFetchRequested = ({ value }) => {
+  const onSuggestionsFetchRequested = ({ value }: any) => {
     setSuggestions(value);
   };
 
@@ -114,7 +113,7 @@ export default function BirthPlaces(props) {
     setSuggestions([]);
   };
 
-  const renderSuggestion = (suggestion) => {
+  const renderSuggestion = (suggestion: any) => {
     return (
       <div className="suggestion">
         {cleanPlaceName(suggestion)}
@@ -143,7 +142,7 @@ export default function BirthPlaces(props) {
   };
 
   return (
-    <Card title="Birth places">
+    <Card className={props.className} title="Birth places">
       <Cluster
         items={cleanClusterData()}
         // items={cleanClusterData()}

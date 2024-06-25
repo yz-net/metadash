@@ -5,11 +5,11 @@ import { objectToArray } from "~/utils/common";
 import ItemSelector from "../Inputs/ItemSelector";
 import HoverText from "../Inputs/HoverText";
 import TreeMap from "../Viz/TreeMap";
-
-import "./main.scss";
 import Card from "../Card";
 
-export default function Programs(props) {
+import "./main.scss";
+
+export default function Programs(props: any) {
   const [hoverText, setHoverText] = useState<string>(" ");
   const [data, setData] = useState<
     { id: string; label: string; count: number }[]
@@ -26,11 +26,11 @@ export default function Programs(props) {
     return props.selections[0].label;
   };
 
-  const handleMouseEnter = (item) => {
+  const handleMouseEnter = (item: any) => {
     setHoverText(item.label);
   };
 
-  const handleClick = (item) => {
+  const handleClick = (item: any) => {
     if (
       props.selections &&
       props.selections.length > 0 &&
@@ -47,7 +47,7 @@ export default function Programs(props) {
   };
 
   return (
-    <Card title="Affiliate programs">
+    <Card className={props.className} title="Affiliate programs">
       <TreeMap
         items={objectToArray(props.programs)}
         itemDict={props.programs}
