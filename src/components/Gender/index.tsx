@@ -133,6 +133,7 @@ export default function Gender(props: any /* TODO */) {
               "text-[#6e6e6e] group-hover:text-[#8ec8cc]",
               filter.men ? "" : "text-gray-400",
             )}
+            suppressHydrationWarning
           >
             {props.men.toLocaleString()}
           </div>
@@ -155,6 +156,7 @@ export default function Gender(props: any /* TODO */) {
               "text-[#6e6e6e] group-hover:text-[#8ec8cc]",
               filter.multiple ? "" : "text-gray-400",
             )}
+            suppressHydrationWarning
           >
             {props.multiple.toLocaleString()}
           </div>
@@ -178,6 +180,7 @@ export default function Gender(props: any /* TODO */) {
               "text-[#6e6e6e] group-hover:text-[#8ec8cc]",
               filter.women ? "" : "text-gray-400",
             )}
+            suppressHydrationWarning
           >
             {props.women.toLocaleString()}
           </div>

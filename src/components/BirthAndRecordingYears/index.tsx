@@ -1,15 +1,27 @@
+"use client";
+
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
+import RangeSlider from "react-range-slider-input";
+
 import Histogram from "../Viz/Histogram";
-import DoubleSlider from "../Inputs/DoubleSlider";
 import Card from "../Card";
 
+import "react-range-slider-input/dist/style.css";
+import "./style.scss";
+
 export default function BirthAndRecordingYear(props: any) {
-  const updateRangeFactory = (key: any) => {
-    return (value: any) => {
-      var newDict = { ...props.selections };
-      newDict[key] = value;
-      props.updateSelections(newDict);
-    };
+  const [birthYear, setBirthYear] = useState<[number, number]>([
+    props.BIRTH_MIN,
+    props.BIRTH_MAX,
+  ]);
+  const [recordingYear, setRecordingYear] = useState<[number, number]>([
+    props.RECORDING_MIN,
+    props.RECORDING_MAX,
+  ]);
+
+  const updateRangeFactory = () => {
+    props.updateSelections({ birth: birthYear, recording: recordingYear });
   };
 
   const itemProps = {
@@ -29,26 +41,44 @@ export default function BirthAndRecordingYear(props: any) {
         <Histogram {...itemProps} />
       </div>
 
-      <div className="slider-container">
-        <div className="half">
-          <DoubleSlider
-            label="Birth year"
-            updateSelections={updateRangeFactory("birth")}
-            selections={props.selections.birth}
-            min={props.BIRTH_MIN}
-            max={props.BIRTH_MAX}
-            margin={{ top: 2, bottom: 10, left: 20, right: 40 }}
-          />
+      <div className="flex justify-around">
+        <div className="box-border flex w-1/2 justify-center text-center">
+          <div className="flex w-full flex-wrap">
+            <div className="flex w-full flex-1 items-center justify-end">
+              Birth year
+            </div>
+            <div className="flex-1">
+              <RangeSlider
+                className="range-slider"
+                min={props.BIRTH_MIN}
+                max={props.BIRTH_MAX}
+                value={birthYear}
+                onInput={setBirthYear}
+                onRangeDragEnd={updateRangeFactory}
+                onThumbDragEnd={updateRangeFactory}
+              />
+              {birthYear[0]} {birthYear[1]}
+            </div>
+          </div>
         </div>
-        <div className="half">
-          <DoubleSlider
-            label="Recording year"
-            selections={props.selections.recording}
-            updateSelections={updateRangeFactory("recording")}
-            min={props.RECORDING_MIN}
-            max={props.RECORDING_MAX}
-            margin={{ top: 2, bottom: 10, left: 20, right: 40 }}
-          />
+        <div className="box-border flex w-1/2 justify-center text-center">
+          <div className="flex w-full flex-wrap">
+            <div className="flex w-full flex-1 items-center justify-end">
+              Recording year
+            </div>
+            <div className="flex-1">
+              <RangeSlider
+                className="range-slider"
+                min={props.RECORDING_MIN}
+                max={props.RECORDING_MAX}
+                value={recordingYear}
+                onInput={setRecordingYear}
+                onRangeDragEnd={updateRangeFactory}
+                onThumbDragEnd={updateRangeFactory}
+              />
+              {recordingYear[0]} {recordingYear[1]}
+            </div>
+          </div>
         </div>
       </div>
     </Card>

@@ -29,8 +29,8 @@ export default function Results(props: any) {
     <div className="box-border max-w-full px-20 font-sans">
       <div className="mx-auto mb-8 max-w-5xl text-center font-yalenewroman text-2xl text-[#4a4a4a]">
         There are{" "}
-        <span className="text-[#ca6251]">
-          {props.results?.length.toLocaleString()}
+        <span className="text-[#ca6251]" suppressHydrationWarning>
+          {(props.results?.length ?? 0).toLocaleString()}
         </span>{" "}
         testimonies with matching criteria.
       </div>

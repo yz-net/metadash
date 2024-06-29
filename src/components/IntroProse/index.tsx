@@ -79,10 +79,10 @@ export default function IntroProse(props) {
   };
 
   return (
-    <div className="font-yalenewroman mx-auto my-7 max-w-7xl text-center text-2xl text-[#4a4a4a]">
+    <div className="mx-auto my-7 max-w-7xl text-center font-yalenewroman text-2xl text-[#4a4a4a]">
       This data dashboard visualizes &nbsp;
-      <span className="text-[#ca6251]">
-        {props.items?.length.toLocaleString() ?? 0} testimonies
+      <span className="text-[#ca6251]" suppressHydrationWarning>
+        {(props.items?.length ?? 0).toLocaleString()} testimonies
       </span>
       &nbsp;{genderString()}
       &nbsp;born{" "}
