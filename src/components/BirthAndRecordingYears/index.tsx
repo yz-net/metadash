@@ -9,7 +9,7 @@ import Histogram from "../Viz/Histogram";
 import Card from "../Card";
 
 import "react-range-slider-input/dist/style.css";
-import "./style.scss";
+import "./styles.scss";
 
 export default function BirthAndRecordingYear(props: any) {
   const [birthYear, setBirthYear] = useState<[number, number]>([

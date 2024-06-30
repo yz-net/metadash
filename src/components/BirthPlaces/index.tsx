@@ -29,7 +29,6 @@ export default function BirthPlaces(props: any) {
     } else if (country) {
       return country;
     }
-    // return item.label.split("|")[0].split(",")[0] + ", " + item.country
   };
   const label = () => {
     if (!props.selections || props.selections.length < 1) {
@@ -37,21 +36,16 @@ export default function BirthPlaces(props: any) {
     }
 
     return cleanPlaceName(props.selections[0]);
-    //        return props.selections[0].label.split("|")[0].split(",")[0] + ", " + props.selections[0].country
   };
 
-  // the data needs to be reformatted a little bit
-  // in order to work with a cluster pack layout.
-  // we want to create a hierarchy of countries and cities
   const cleanClusterData = () => {
-    // if (state.cleanClusterData) { return state.cleanClusterData }
-    let addedCountries = [];
+    let addedCountries: any[] = [];
 
     let clusterData = objectToArray(props.allBirthPlaces)
       .filter(
-        // only keep places with a city and country, in theory
         (place) =>
-          place.label.split("|").filter((x) => x && x.length > 0).length === 2,
+          place.label.split("|").filter((x: any) => x && x.length > 0)
+            .length === 2,
       )
       .map((item) => {
         let ret = { ...item };
@@ -62,7 +56,6 @@ export default function BirthPlaces(props: any) {
         return ret;
       });
 
-    // add an item for each country
     clusterData.forEach((element) => {
       const country = element.label.split("|")[1];
       if (addedCountries.indexOf(country) >= 0) {
@@ -79,40 +72,17 @@ export default function BirthPlaces(props: any) {
     return clusterData;
   };
 
-  const getSuggestionValue = (suggestion: any) => {
-    return cleanPlaceName(suggestion);
-  };
-
-  const getSuggestions = (value: any) => {
-    const all = cleanClusterData();
-    return (
-      all
-        .filter(
-          (x) =>
-            normalizeString(x.label ?? "").indexOf(
-              normalizeString(value.replace(":", "|") ?? ""),
-            ) >= 0,
-        )
-        // filter out roots
-        .filter((x) => x.label.indexOf("|root") < 0)
-        .filter((x) => x.label.indexOf("root|") < 0)
-    );
-    // return [{label: value + " and a hot plate!"}]
-  };
-
   const dropSelection = () => {
     props.updateSelections([]);
   };
 
-  const onMouseOver = (d) => {
+  const onMouseOver = (d: any) => {
     setHoverText(cleanPlaceName(d));
   };
 
   const onMouseOut = () => {
     setHoverText(" ");
   };
-
-  console.log("AOWDKAOWD", selection);
 
   return (
     <Card className={props.className} title="Birth places">
@@ -136,7 +106,7 @@ export default function BirthPlaces(props: any) {
       <AutoSuggest
         placeholder="Type a place name"
         suggestions={cleanClusterData()}
-        onSelect={(s) => setSelection(s)}
+        onSelect={(s: any) => setSelection(s)}
         clearOnSelect
       />
     </Card>
