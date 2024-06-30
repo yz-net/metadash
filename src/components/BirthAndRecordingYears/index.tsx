@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import RangeSlider from "react-range-slider-input";
 
@@ -19,6 +19,75 @@ export default function BirthAndRecordingYear(props: any) {
     props.RECORDING_MIN,
     props.RECORDING_MAX,
   ]);
+
+  const [birthHover, setBirthHover] = useState<[boolean, boolean]>([
+    false,
+    false,
+  ]);
+  const [recordingHover, setRecordingHover] = useState<[boolean, boolean]>([
+    false,
+    false,
+  ]);
+
+  useEffect(() => {
+    const birthThumbs = document
+      .getElementsByClassName("range-slider-birth")[0]
+      ?.getElementsByClassName("range-slider__thumb");
+    if (!birthThumbs) {
+      return;
+    }
+
+    const recordingThumbs = document
+      .getElementsByClassName("range-slider-recording")[0]
+      ?.getElementsByClassName("range-slider__thumb");
+    if (!recordingThumbs) {
+      return;
+    }
+
+    const onMouseOverBirth = (event: any) => {
+      setBirthHover((prev) => [
+        event.target.hasAttribute("data-lower") ? true : prev[0],
+        event.target.hasAttribute("data-upper") ? true : prev[1],
+      ]);
+    };
+    const onMouseOutBirth = (event: any) => {
+      setBirthHover((prev) => [
+        event.target.hasAttribute("data-lower") ? false : prev[0],
+        event.target.hasAttribute("data-upper") ? false : prev[1],
+      ]);
+    };
+    for (const thumb of birthThumbs) {
+      thumb.addEventListener("mouseover", onMouseOverBirth);
+      thumb.addEventListener("mouseout", onMouseOutBirth);
+    }
+
+    const onMouseOverRecording = (event: any) => {
+      setRecordingHover((prev) => [
+        event.target.hasAttribute("data-lower") ? true : prev[0],
+        event.target.hasAttribute("data-upper") ? true : prev[1],
+      ]);
+    };
+    const onMouseOutRecording = (event: any) => {
+      setRecordingHover((prev) => [
+        event.target.hasAttribute("data-lower") ? false : prev[0],
+        event.target.hasAttribute("data-upper") ? false : prev[1],
+      ]);
+    };
+    for (const thumb of recordingThumbs) {
+      thumb.addEventListener("mouseover", onMouseOverRecording);
+      thumb.addEventListener("mouseout", onMouseOutRecording);
+    }
+    return () => {
+      for (const thumb of birthThumbs) {
+        thumb.removeEventListener("mouseover", onMouseOverBirth);
+        thumb.removeEventListener("mouseout", onMouseOutBirth);
+      }
+      for (const thumb of recordingThumbs) {
+        thumb.removeEventListener("mouseover", onMouseOverRecording);
+        thumb.removeEventListener("mouseout", onMouseOutRecording);
+      }
+    };
+  }, []);
 
   const updateRangeFactory = () => {
     props.updateSelections({ birth: birthYear, recording: recordingYear });
@@ -41,42 +110,73 @@ export default function BirthAndRecordingYear(props: any) {
         <Histogram {...itemProps} />
       </div>
 
-      <div className="flex justify-around">
-        <div className="box-border flex w-1/2 justify-center text-center">
-          <div className="flex w-full flex-wrap">
-            <div className="flex w-full flex-1 items-center justify-end">
-              Birth year
-            </div>
-            <div className="flex-1">
-              <RangeSlider
-                className="range-slider"
-                min={props.BIRTH_MIN}
-                max={props.BIRTH_MAX}
-                value={birthYear}
-                onInput={setBirthYear}
-                onRangeDragEnd={updateRangeFactory}
-                onThumbDragEnd={updateRangeFactory}
-              />
-              {birthYear[0]} {birthYear[1]}
+      <div className="flex gap-3 px-3 pt-3">
+        <div className="flex w-1/2 items-center gap-5">
+          <span className="flex-1 pb-2 text-right text-xs font-semibold">
+            Birth year
+          </span>
+          <div className="flex-1">
+            <RangeSlider
+              className="range-slider-birth"
+              min={props.BIRTH_MIN}
+              max={props.BIRTH_MAX}
+              value={birthYear}
+              onInput={setBirthYear}
+              onRangeDragEnd={updateRangeFactory}
+              onThumbDragEnd={updateRangeFactory}
+            />
+            <div className="flex justify-between pt-2">
+              <span
+                className={twMerge(
+                  "text-xs",
+                  birthHover[0] ? "text-[#8ec8cc]" : "",
+                )}
+              >
+                {birthYear[0]}
+              </span>
+              <span
+                className={twMerge(
+                  "text-xs",
+                  birthHover[1] ? "text-[#8ec8cc]" : "",
+                )}
+              >
+                {birthYear[1]}
+              </span>
             </div>
           </div>
         </div>
-        <div className="box-border flex w-1/2 justify-center text-center">
-          <div className="flex w-full flex-wrap">
-            <div className="flex w-full flex-1 items-center justify-end">
-              Recording year
-            </div>
-            <div className="flex-1">
-              <RangeSlider
-                className="range-slider"
-                min={props.RECORDING_MIN}
-                max={props.RECORDING_MAX}
-                value={recordingYear}
-                onInput={setRecordingYear}
-                onRangeDragEnd={updateRangeFactory}
-                onThumbDragEnd={updateRangeFactory}
-              />
-              {recordingYear[0]} {recordingYear[1]}
+        <div className="flex w-1/2 items-center gap-5">
+          <span className="flex-1 pb-2 text-right text-xs font-semibold">
+            Recording year
+          </span>
+          <div className="flex-1">
+            <RangeSlider
+              className="range-slider-recording"
+              min={props.RECORDING_MIN}
+              max={props.RECORDING_MAX}
+              value={recordingYear}
+              onInput={setRecordingYear}
+              onRangeDragEnd={updateRangeFactory}
+              onThumbDragEnd={updateRangeFactory}
+            />
+            <div className="flex justify-between pt-2">
+              <span
+                className={twMerge(
+                  "text-xs",
+                  recordingHover[0] ? "text-[#8ec8cc]" : "",
+                )}
+              >
+                {recordingYear[0]}
+              </span>
+
+              <span
+                className={twMerge(
+                  "text-xs",
+                  recordingHover[1] ? "text-[#8ec8cc]" : "",
+                )}
+              >
+                {recordingYear[1]}
+              </span>
             </div>
           </div>
         </div>
