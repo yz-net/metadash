@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
+// @ts-ignore
 import RangeSlider from "react-range-slider-input";
 
 import Histogram from "../Viz/Histogram";
