@@ -1,3 +1,6 @@
+import { FiX } from "react-icons/fi";
+import { twMerge } from "tailwind-merge";
+
 export default function ItemSelector(props: any) {
   const handleSelection = (item: any) => {
     props.updateSelections(
@@ -13,9 +16,7 @@ export default function ItemSelector(props: any) {
     props.selections && props.selections.length === 1
       ? props.selections[0]
       : { id: "ALL" };
-  // const clearButtonText = selected.id === "ALL" ? "" : "╳"
   const subClass = selected.id === "ALL" ? "arrow" : "x";
-  // const active = selected.id !== "ALL"
   let buttonClass = "clear-button";
   buttonClass = "dropdown-icon " + subClass;
 
@@ -23,9 +24,9 @@ export default function ItemSelector(props: any) {
     buttonClass += " enabled";
   }
   return (
-    <div className="ItemSelector">
+    <div className="flex h-9 flex-1 items-stretch border border-[#d3d3d3] bg-[#f5f5f5] font-yalenewroman text-[#222]">
       <select
-        className={subClass + " dropdown-icon"}
+        className={subClass + " h-full w-full bg-transparent px-2"}
         defaultValue={selected.ID}
         onChange={handleSelection}
       >
@@ -35,7 +36,6 @@ export default function ItemSelector(props: any) {
 
         {props.items.map((item: any, index: number) => {
           const optionProps = {
-            // selected: selected.id === item.id,
             value: item.id,
           };
           return (
@@ -46,7 +46,16 @@ export default function ItemSelector(props: any) {
         })}
       </select>
 
-      <div className={"button " + buttonClass} onClick={clearSelection}></div>
+      <button
+        className={twMerge(
+          "h-full w-8",
+          selected.id === "ALL" ? "hidden" : "block",
+        )}
+        onClick={clearSelection}
+        type="button"
+      >
+        <FiX className="stroke-[#222]" />
+      </button>
     </div>
   );
 }
