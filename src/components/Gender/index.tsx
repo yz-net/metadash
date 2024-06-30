@@ -82,17 +82,17 @@ export default function Gender(props: any /* TODO */) {
           className="font-yalenewroman text-2xl text-[#222] hover:text-[#333]"
           type="button"
           onClick={() => genderToggle("men")}
-        >{`${((props.men * 100) / total).toFixed(0)}%`}</button>
+        >{`${((props.men * 100) / total || 0).toFixed(0)}%`}</button>
         <button
           className="font-yalenewroman text-2xl text-[#222] hover:text-[#333]"
           type="button"
           onClick={() => genderToggle("multiple")}
-        >{`${((props.multiple * 100) / total).toFixed(0)}%`}</button>
+        >{`${((props.multiple * 100) / total || 0).toFixed(0)}%`}</button>
         <button
           className="font-yalenewroman text-2xl text-[#222] hover:text-[#333]"
           type="button"
           onClick={() => genderToggle("women")}
-        >{`${((props.women * 100) / total).toFixed(0)}%`}</button>
+        >{`${((props.women * 100) / total || 0).toFixed(0)}%`}</button>
       </div>
       <div className="flex w-full justify-between bg-[#d3d3d3]">
         <button
