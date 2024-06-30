@@ -1,5 +1,10 @@
-import D3Component from "../D3Component";
+//@ts-nocheck
+
 import * as d3 from "d3";
+
+import D3Component from "../D3Component";
+
+import "./styles.scss";
 
 export default class extends D3Component {
   constructor(props) {

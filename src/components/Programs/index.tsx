@@ -49,6 +49,7 @@ export default function Programs(props: any) {
   return (
     <Card className={props.className} title="Affiliate programs">
       <TreeMap
+        height={380}
         items={objectToArray(props.programs)}
         itemDict={props.programs}
         mouseInCallback={handleMouseEnter}

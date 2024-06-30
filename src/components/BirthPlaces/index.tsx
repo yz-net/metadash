@@ -117,6 +117,7 @@ export default function BirthPlaces(props: any) {
   return (
     <Card className={props.className} title="Birth places">
       <Cluster
+        height={400}
         items={cleanClusterData()}
         itemDict={props.birthPlaces}
         selections={props.selections}
