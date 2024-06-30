@@ -1,0 +1,13 @@
+svg {
+  height: 400px;
+  circle.country {
+    fill: white;
+  }
+  circle.city {
+    fill: #f48734;
+    cursor: pointer;
+  }
+  circle.city:hover {
+    fill: #0d99aa;
+  }
+}

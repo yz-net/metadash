@@ -1,15 +1,16 @@
 "use client";
 
 import { useState } from "react";
+
 import { normalizeString, objectToArray } from "~/utils/common";
 import Cluster from "../Viz/Cluster";
 import HoverText from "../Inputs/HoverText";
 import Card from "../Card";
+import AutoSuggest from "../AutoSuggest";
 
 export default function BirthPlaces(props: any) {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
   const [hoverText, setHoverText] = useState(" ");
+  const [selection, setSelection] = useState<any>();
 
   const cleanPlaceName = (item: any) => {
     if (!item) {
@@ -99,54 +100,24 @@ export default function BirthPlaces(props: any) {
     // return [{label: value + " and a hot plate!"}]
   };
 
-  // @ts-ignore
-  const onChange = (event, { newValue }) => {
-    setSearchTerm(newValue);
-  };
-
-  const onSuggestionsFetchRequested = ({ value }: any) => {
-    setSuggestions(value);
-  };
-
-  const onSuggestionsClearRequested = () => {
-    setSearchTerm("");
-    setSuggestions([]);
-  };
-
-  const renderSuggestion = (suggestion: any) => {
-    return (
-      <div className="suggestion">
-        {cleanPlaceName(suggestion)}
-        {/* {suggestion.label.split("|")[0].split(",").join(", ")} */}
-      </div>
-    );
-  };
-
-  // @ts-ignore
-  const onSuggestionSelected = (e, { suggestion }) => {
-    props.updateSelections([suggestion]);
-  };
-
   const dropSelection = () => {
     props.updateSelections([]);
   };
 
   const onMouseOver = (d) => {
     setHoverText(cleanPlaceName(d));
-
-    // setState({ hoverText: d.label.split("|")[0].split(",")[0] + ", " + d.country })
   };
 
   const onMouseOut = () => {
     setHoverText(" ");
   };
 
+  console.log("AOWDKAOWD", selection);
+
   return (
     <Card className={props.className} title="Birth places">
       <Cluster
         items={cleanClusterData()}
-        // items={cleanClusterData()}
-        // allItems={props.allBirthPlaces}
         itemDict={props.birthPlaces}
         selections={props.selections}
         onMouseOver={onMouseOver}
@@ -154,25 +125,18 @@ export default function BirthPlaces(props: any) {
         updateSelections={props.updateSelections}
       />
 
-      {/* TODO custom autosuggest component <Autosuggest
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        onSuggestionSelected={onSuggestionSelected}
-        renderSuggestion={renderSuggestion}
-        inputProps={{
-          placeholder: "Type a place name",
-          value: searchTerm,
-          onChange: onChange,
-        }}
-      /> */}
-
       <HoverText
         dropCallback={dropSelection}
         selections={props.selections}
         hoverText={hoverText}
         label={label()}
+      />
+
+      <AutoSuggest
+        placeholder="Type a place name"
+        suggestions={cleanClusterData()}
+        onSelect={(s) => setSelection(s)}
+        clearOnSelect
       />
     </Card>
   );
