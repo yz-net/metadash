@@ -1,23 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { twMerge } from "tailwind-merge";
+
 import { objectToArray } from "~/utils/common";
 import ItemSelector from "../Inputs/ItemSelector";
 import HoverText from "../Inputs/HoverText";
 import TreeMap from "../Viz/TreeMap";
 import Card from "../Card";
 
-import "./main.scss";
-
 export default function Programs(props: any) {
   const [hoverText, setHoverText] = useState<string>(" ");
-  const [data, setData] = useState<
-    { id: string; label: string; count: number }[]
-  >([]);
-
-  useEffect(() => {
-    setData(objectToArray(props.programs));
-  }, [props.programs]);
 
   const label = () => {
     if (!props.selections || props.selections.length < 1) {
@@ -47,7 +40,10 @@ export default function Programs(props: any) {
   };
 
   return (
-    <Card className={props.className} title="Affiliate programs">
+    <Card
+      className={twMerge("flex flex-col", props.className)}
+      title="Affiliate programs"
+    >
       <TreeMap
         height={380}
         items={objectToArray(props.programs)}
@@ -65,13 +61,14 @@ export default function Programs(props: any) {
         }}
         label={label()}
       />
-
-      <ItemSelector
-        updateSelections={props.updateSelections}
-        items={objectToArray(props.programs)}
-        selections={props.selections}
-        placeholder={"All affiliate programs"}
-      />
+      <div className="flex flex-1 items-end">
+        <ItemSelector
+          updateSelections={props.updateSelections}
+          items={objectToArray(props.programs)}
+          selections={props.selections}
+          placeholder="All affiliate programs"
+        />
+      </div>
     </Card>
   );
 }

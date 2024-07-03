@@ -48,8 +48,8 @@ export default function ItemSelector(props: any) {
 
       <button
         className={twMerge(
-          "h-full w-8",
-          selected.id === "ALL" ? "hidden" : "block",
+          "h-9 w-9 flex-shrink-0 items-center justify-center border-l",
+          selected.id === "ALL" ? "hidden" : "flex",
         )}
         onClick={clearSelection}
         type="button"
