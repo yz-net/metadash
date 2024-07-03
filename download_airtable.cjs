@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 require("dotenv").config();
 const path = require("path");
 

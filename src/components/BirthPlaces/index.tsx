@@ -7,6 +7,7 @@ import Cluster from "../Viz/Cluster";
 import HoverText from "../HoverText";
 import Card from "../Card";
 import AutoSuggest from "../AutoSuggest";
+import { twMerge } from "tailwind-merge";
 
 export default function BirthPlaces(props: any) {
   const [hoverText, setHoverText] = useState(" ");
@@ -85,7 +86,10 @@ export default function BirthPlaces(props: any) {
   };
 
   return (
-    <Card className={props.className} title="Birth places">
+    <Card
+      className={twMerge("flex flex-col", props.className)}
+      title="Birth places"
+    >
       <Cluster
         height={400}
         items={cleanClusterData()}
@@ -103,12 +107,14 @@ export default function BirthPlaces(props: any) {
         label={label()}
       />
 
-      <AutoSuggest
-        placeholder="Type a place name"
-        suggestions={cleanClusterData()}
-        onSelect={(s: any) => setSelection(s)}
-        clearOnSelect
-      />
+      <div className="flex w-full flex-1 items-end">
+        <AutoSuggest
+          placeholder="Type a place name"
+          suggestions={cleanClusterData()}
+          onSelect={(s: any) => setSelection(s)}
+          clearOnSelect
+        />
+      </div>
     </Card>
   );
 }

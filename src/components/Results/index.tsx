@@ -68,23 +68,23 @@ export default function Results(props: any) {
                   <div className="flex-1">
                     {
                       result.birth_years
-                        .filter((yr) => yr)
-                        .map((yr) => (
+                        .filter((yr: any) => yr)
+                        .map((yr: any) => (
                           <li
                             className="m-0 list-none p-0 text-[#6e6e6e]"
                             key={`year-${index}`}
                           >
-                            {yr}
+                            {Number(yr).toFixed(0)}
                           </li>
                         ))
                         .concat(
                           result.birth_place_cities
                             .filter(
-                              (_, i) =>
+                              (_: any, i: number) =>
                                 result.birth_place_cities[i] ||
                                 result.birth_place_countries[i],
                             )
-                            .map((city, i) => (
+                            .map((city: any, i: number) => (
                               <li
                                 className="m-0 list-none p-0 text-[#6e6e6e]"
                                 key={`city-birthplace-${i}`}

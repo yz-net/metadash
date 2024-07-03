@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import TextInput from "../TextInput";
 
@@ -47,7 +47,7 @@ export default function AutoSuggest(props: any /* TODO */) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <div ref={inputRef} onClick={() => setShowSuggestions((prev) => !prev)}>
         <TextInput
           placeholder={props.placeholder ?? "Placeholder"}

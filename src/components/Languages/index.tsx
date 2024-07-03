@@ -3,8 +3,6 @@ import { arrayToObject } from "~/utils/common";
 import CountListWithBars from "../CountListWithBars";
 import Card from "../Card";
 
-import "./main.scss";
-
 export default function Languages(props: any) {
   const listProps = {
     ...props,

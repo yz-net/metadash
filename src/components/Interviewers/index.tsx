@@ -42,7 +42,7 @@ export default function Interviewers(props: any /* TODO */) {
 
   return (
     <Card className={props.className} title="Interviewers">
-      <div className="input-wrapper">
+      <div className="input-wrapper mb-3">
         <TextInput
           placeholder="Search by name"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -60,6 +60,7 @@ export default function Interviewers(props: any /* TODO */) {
         itemDict={itemDict}
         handleItemClick={handleItemClick}
         selections={selectionsArray}
+        itemCountClassName="text-right pr-5 text-nowrap"
       />
     </Card>
   );

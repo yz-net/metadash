@@ -79,36 +79,36 @@ export default function Gender(props: any /* TODO */) {
     <Card className={props.className} title="Gender">
       <div className="flex justify-between">
         <button
-          className="font-yalenewroman text-2xl text-[#222] hover:text-[#333]"
+          className="font-yalenewroman text-2xl leading-tight text-[#222] hover:text-[#333]"
           type="button"
           onClick={() => genderToggle("men")}
         >{`${((props.men * 100) / total || 0).toFixed(0)}%`}</button>
         <button
-          className="font-yalenewroman text-2xl text-[#222] hover:text-[#333]"
+          className="font-yalenewroman text-2xl leading-tight text-[#222] hover:text-[#333]"
           type="button"
           onClick={() => genderToggle("multiple")}
         >{`${((props.multiple * 100) / total || 0).toFixed(0)}%`}</button>
         <button
-          className="font-yalenewroman text-2xl text-[#222] hover:text-[#333]"
+          className="font-yalenewroman text-2xl leading-tight text-[#222] hover:text-[#333]"
           type="button"
           onClick={() => genderToggle("women")}
         >{`${((props.women * 100) / total || 0).toFixed(0)}%`}</button>
       </div>
       <div className="flex w-full justify-between bg-[#d3d3d3]">
         <button
-          className="h-5 border-r border-r-white bg-[#0d99aa]"
+          className="h-[18px] border-r border-r-white bg-[#0d99aa]"
           ref={menRef}
           type="button"
           onClick={() => genderToggle("men")}
         />
         <button
-          className="h-5 border-r border-r-white bg-[#f9be00]"
+          className="h-[18px] border-r border-r-white bg-[#f9be00]"
           ref={multipleRef}
           type="button"
           onClick={() => genderToggle("multiple")}
         />
         <button
-          className="h-5 border-r border-r-white bg-[#ca6251]"
+          className="h-[18px] border-r border-r-white bg-[#ca6251]"
           ref={womenRef}
           type="button"
           onClick={() => genderToggle("women")}
@@ -122,7 +122,7 @@ export default function Gender(props: any /* TODO */) {
         >
           <div
             className={twMerge(
-              "font-bold group-hover:text-[#8ec8cc]",
+              "text-sm font-bold group-hover:text-[#8ec8cc]",
               filter.men ? "" : "text-gray-400",
             )}
           >
@@ -130,7 +130,7 @@ export default function Gender(props: any /* TODO */) {
           </div>
           <div
             className={twMerge(
-              "text-[#6e6e6e] group-hover:text-[#8ec8cc]",
+              "text-sm leading-none text-[#6e6e6e] group-hover:text-[#8ec8cc]",
               filter.men ? "" : "text-gray-400",
             )}
             suppressHydrationWarning
@@ -145,7 +145,7 @@ export default function Gender(props: any /* TODO */) {
         >
           <div
             className={twMerge(
-              "font-bold group-hover:text-[#8ec8cc]",
+              "text-sm font-bold group-hover:text-[#8ec8cc]",
               filter.multiple ? "" : "text-gray-400",
             )}
           >
@@ -153,7 +153,7 @@ export default function Gender(props: any /* TODO */) {
           </div>
           <div
             className={twMerge(
-              "text-[#6e6e6e] group-hover:text-[#8ec8cc]",
+              "text-sm leading-none text-[#6e6e6e] group-hover:text-[#8ec8cc]",
               filter.multiple ? "" : "text-gray-400",
             )}
             suppressHydrationWarning
@@ -161,7 +161,6 @@ export default function Gender(props: any /* TODO */) {
             {props.multiple.toLocaleString()}
           </div>
         </button>
-
         <button
           className="group flex flex-col items-end justify-center font-sans hover:text-[#8ec8cc]"
           type="button"
@@ -169,7 +168,7 @@ export default function Gender(props: any /* TODO */) {
         >
           <div
             className={twMerge(
-              "font-bold group-hover:text-[#8ec8cc]",
+              "text-sm font-bold group-hover:text-[#8ec8cc]",
               filter.women ? "" : "text-gray-400",
             )}
           >
@@ -177,7 +176,7 @@ export default function Gender(props: any /* TODO */) {
           </div>
           <div
             className={twMerge(
-              "text-[#6e6e6e] group-hover:text-[#8ec8cc]",
+              "text-sm leading-none text-[#6e6e6e] group-hover:text-[#8ec8cc]",
               filter.women ? "" : "text-gray-400",
             )}
             suppressHydrationWarning
