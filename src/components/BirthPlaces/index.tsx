@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { normalizeString, objectToArray } from "~/utils/common";
 import Cluster from "../Viz/Cluster";
-import HoverText from "../Inputs/HoverText";
+import HoverText from "../HoverText";
 import Card from "../Card";
 import AutoSuggest from "../AutoSuggest";
 

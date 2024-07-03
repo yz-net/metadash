@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import TextInput from "../Inputs/TextInput";
+import TextInput from "../TextInput";
 
 export default function AutoSuggest(props: any /* TODO */) {
   const [value, setValue] = useState<string>("");

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import CountListWithBars from "../CountListWithBars";
-import TextInput from "../Inputs/TextInput";
+import TextInput from "../TextInput";
 import Card from "../Card";
 import { objectToArray } from "~/utils/common";
 

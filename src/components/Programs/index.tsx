@@ -4,8 +4,8 @@ import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { objectToArray } from "~/utils/common";
-import ItemSelector from "../Inputs/ItemSelector";
-import HoverText from "../Inputs/HoverText";
+import ItemSelector from "../ItemSelector";
+import HoverText from "../HoverText";
 import TreeMap from "../Viz/TreeMap";
 import Card from "../Card";
 
