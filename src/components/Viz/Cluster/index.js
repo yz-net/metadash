@@ -61,7 +61,7 @@ export default class extends D3Component {
       .id((d) => d.label.split("|")[0])
       .parentId((d) => d.label.split("|")[1])(items);
 
-    var packLayout = d3.pack().padding(0.725).size([width, height]);
+    let packLayout = d3.pack().padding(0.725).size([width, height]);
 
     root.sum((d) => Number(d.count ? d.count : 0));
 

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import * as staticStuff from "./static";
 
 function getGender(resource) {

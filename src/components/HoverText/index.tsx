@@ -13,7 +13,7 @@ export default function HoverText(props: any) {
       </div>
     );
   } else {
-    let htext =
+    const htext =
       props.hoverText?.trim().length > 0 ? props.hoverText : props.label || " ";
     ret = (
       <button

@@ -17,7 +17,7 @@ export default function BirthPlaces(props: any) {
     if (!item) {
       return "";
     }
-    let city = item.label.split("|")[0].split(",")[0],
+    const city = item.label.split("|")[0].split(",")[0],
       country = item.country;
 
     if (city === country) {
@@ -40,16 +40,16 @@ export default function BirthPlaces(props: any) {
   };
 
   const cleanClusterData = () => {
-    let addedCountries: any[] = [];
+    const addedCountries: any[] = [];
 
-    let clusterData = objectToArray(props.allBirthPlaces)
+    const clusterData = objectToArray(props.allBirthPlaces)
       .filter(
         (place) =>
           place.label.split("|").filter((x: any) => x && x.length > 0)
             .length === 2,
       )
       .map((item) => {
-        let ret = { ...item };
+        const ret = { ...item };
         if (!(item.id in props.birthPlaces)) {
           ret.count = 0;
         }

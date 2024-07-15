@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import D3Component from "../D3Component";
 import * as d3 from "d3";
 

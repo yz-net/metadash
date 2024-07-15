@@ -33,7 +33,7 @@ export default class extends D3Component {
     svg.attr("height", height);
     const h = d3.hierarchy({ children: this.props.items });
 
-    var treemap = d3.treemap().size([width, height]).padding(2);
+    let treemap = d3.treemap().size([width, height]).padding(2);
 
     treemap(
       h

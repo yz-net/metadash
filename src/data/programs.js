@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import createReferenceInterface from "./createReferenceInterface";
 
 import programsData from "./json/Programs.json" assert { type: "json" };

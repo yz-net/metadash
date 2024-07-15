@@ -15,7 +15,7 @@ export default function TagFilter(props: any) {
 
   const addSelection = (selectionItem: any) => {
     // don't add a duplicate
-    var newSelections = [...props.selections];
+    let newSelections = [...props.selections];
     if (newSelections.filter((a) => a.id === selectionItem.id).length > 0) {
       return;
     }
@@ -26,7 +26,7 @@ export default function TagFilter(props: any) {
   };
 
   const dropSelectionByID = (dropID: any) => {
-    var newSelections = [...props.selections];
+    let newSelections = [...props.selections];
     newSelections = newSelections.filter((a) => {
       const ret = String(a.id) !== String(dropID);
       return ret;

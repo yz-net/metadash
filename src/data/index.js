@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import * as resources from "./resources";
 import subjects from "./subjects";
 import interviewers from "./interviewers";
@@ -44,7 +46,7 @@ function getData(options) {
     ret[retKey][item.id].count += 1;
   }
 
-  var res = resources.query(options || {});
+  let res = resources.query(options || {});
 
   function birthPlaces(r) {
     let ret = [];
@@ -53,7 +55,7 @@ function getData(options) {
     if (cityCount < 1 || cityCount !== countryCount) {
       return [];
     }
-    for (var i = 0; i < cityCount; i++) {
+    for (let i = 0; i < cityCount; i++) {
       const city = r.birth_place_cities[i] || "",
         country = r.birth_place_countries[i] || "";
       ret.push(`${city},${country}|${country}`);

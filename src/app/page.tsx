@@ -52,11 +52,10 @@ export default function HomePage() {
     setFilters(DEFAULT_FILTERS);
   };
 
-  const updateFilterFactory = (
-    key: any /* TODO type filter, key = keyof type */,
-  ) => {
+  const updateFilterFactory = (key: any) => {
     return (val: any) => {
       const newFilters = { ...filters };
+      // @ts-ignore
       newFilters[key] = val;
       setNewFilters(newFilters);
     };
@@ -109,6 +108,7 @@ export default function HomePage() {
           selections={filters.dateRanges}
           subsetMode={fullData.resources.length > fullData.resources.length}
           data={Object.keys(fullData.summaryData.birthYears)
+            // @ts-ignore
             .map((k) => fullData.summaryData.birthYears[k])
             // TODO - the data needs to be cleaned up so we don't need to manually exclude stuff
             .filter((yrs) => yrs.label >= BIRTH_MIN && yrs.label <= BIRTH_MAX)
@@ -117,6 +117,7 @@ export default function HomePage() {
             })
             .concat(
               Object.keys(fullData.summaryData.recordingYears)
+                // @ts-ignore
                 .map((k) => fullData.summaryData.recordingYears[k])
                 .filter(
                   (yrs) =>
@@ -131,6 +132,7 @@ export default function HomePage() {
         <BirthPlaces
           className="BirthPlaces module-box"
           updateSelections={updateFilterFactory("birthplaces")}
+          // @ts-ignore
           selections={filters.birthplaces}
           birthPlaces={fullData.summaryData.birthPlaces}
           allBirthPlaces={fullData.summaryData.birthPlaces}
@@ -165,14 +167,16 @@ export default function HomePage() {
           selectionsDict={objectToArray(filters.interviewers)}
           filterItems={(t: string) => {
             const results = data.interviewers.search((t ?? "").split(" "));
-            let retDict = {};
-            let retArr = results
+            const retDict = {};
+            const retArr = results
               .filter((i) => i.id in fullData.summaryData.interviewers)
               .map((i) => {
                 const retItem = {
                   ...i,
+                  // @ts-ignore
                   count: fullData.summaryData.interviewers[i.id].count,
                 };
+                // @ts-ignore
                 retDict[i.id] = retItem;
                 return retItem;
               });

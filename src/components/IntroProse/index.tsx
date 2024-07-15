@@ -1,4 +1,4 @@
-export default function IntroProse(props) {
+export default function IntroProse(props: any) {
   const genderString = () => {
     if (!props.filters?.gender) {
       return "";

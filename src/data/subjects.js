@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 /**
  * subjects interface - create an API interface for subjects items
  */

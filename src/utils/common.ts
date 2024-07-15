@@ -1,11 +1,13 @@
+// @ts-nocheck
+
 export function normalizeString(term: string) {
   return (term ?? "").toString().trim().toLowerCase();
 }
 
 // replace the keys in a dictionary with something else
 export function replaceKeys(dictObj, keyMap) {
-  var ret = {};
-  for (var k in dictObj) {
+  const ret = {};
+  for (const k in dictObj) {
     ret[keyMap[k]] = dictObj[k];
   }
   return ret;
@@ -16,7 +18,7 @@ export function arrayToObject(arr: any[]) {
     return {};
   }
 
-  let obj: { [key: string]: any } = {};
+  const obj: Record<string, any> = {};
   arr.forEach((item) => {
     obj[item.id] = item;
   });

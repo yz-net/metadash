@@ -10,7 +10,7 @@
  * @param {*} maxItems
  */
 export default function (obj, maxItems, valueField) {
-  var keys = Object.keys(obj);
+  let keys = Object.keys(obj);
 
   keys = keys.sort(function (key1, key2) {
     return obj[key1][valueField] < obj[key2][valueField] ? 1 : -1;
@@ -18,7 +18,7 @@ export default function (obj, maxItems, valueField) {
 
   return keys
     .map((v, i, arr) => {
-      var k = arr[i];
+      const k = arr[i];
       return { ...obj[k] };
     })
     .slice(0, maxItems || 5);

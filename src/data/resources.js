@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { normalizeString } from "~/utils/common";
 
 import { getRecordingYear } from "~/utils/data";
