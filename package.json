@@ -1,5 +1,5 @@
 {
-  "name": "t3-template",
+  "name": "nextjs_metadash",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,11 +8,9 @@
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
-    "prebuild": "node download_airtable.cjs"
+    "prebuild": "node .src/data/download_airtable.cjs"
   },
   "dependencies": {
-    "@nivo/core": "^0.87.0",
-    "@nivo/treemap": "^0.87.0",
     "@t3-oss/env-nextjs": "^0.10.1",
     "d3": "^7.9.0",
     "framer-motion": "^11.2.10",
