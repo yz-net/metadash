@@ -3,7 +3,6 @@
  * for Docker builds.
  */
 await import("./src/env.js");
-import path from "path";
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -11,9 +10,6 @@ const config = {
     unoptimized: true,
   },
   output: "export",
-  sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
-  },
 };
 
 export default config;
