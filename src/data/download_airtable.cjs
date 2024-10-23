@@ -99,7 +99,7 @@ async function downloadAllTables() {
         record.birth_place_cities = record.birth_place_cities || [null];
         record.birth_place_countries = record.birth_place_countries || [null];
         record.birth_years = record.birth_years
-          ? record.birth_years.map((year) => (+year).toFixed(1))
+          ? record.birth_years.map((year) => (+year).toFixed(0))
           : [];
         record.subject_refs = record.subject_refs || [];
         record.programs = record.programs || [];
