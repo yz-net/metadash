@@ -18,8 +18,7 @@ const base = Airtable.base("appR5gUvSEznOM3Qn");
 
 async function downloadTable(tableName) {
   const records = await base(tableName).select().all();
-  let jsonRecords = records.map((record) => record.fields);
-  // jsonRecords = Promise.all(jsonRecords.map(record => {
+  const jsonRecords = records.map((record) => record.fields);
   return { tableName, records, jsonRecords };
 }
 
@@ -113,9 +112,9 @@ async function downloadAllTables() {
     /****************************************
      * WE WRITE THE RECORDS TO A JSON FILE. *
      ****************************************/
-    fs.ensureDirSync(path.resolve(__dirname, `./src/Data/json/from_airtable`));
+    fs.ensureDirSync(path.resolve(__dirname, `./json`));
     fs.writeFileSync(
-      path.resolve(__dirname, `./src/Data/json/${tableName}.json`),
+      path.resolve(__dirname, `./json/${tableName}.json`),
       JSON.stringify(table.jsonRecords, null, 2),
     );
   }
