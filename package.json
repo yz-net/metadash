@@ -7,7 +7,6 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start",
     "prebuild": "node ./src/data/download_airtable.cjs"
   },
   "dependencies": {
