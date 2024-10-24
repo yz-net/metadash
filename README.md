@@ -1,29 +1,31 @@
-# Create T3 App
+# Fortunoff Metadash
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This dashboard visualizes metadata from more than 4,000 testimonies in the
+Fortunoff Video Archive for Holocaust Testimonies in order to generate summary
+statistics about the entire collection and discover videos based on biographical
+information about the subjects interviewed, as well as about the interviews
+themselves -- who conducted the interview, and which affiliate program produced
+it.
 
-## What's next? How do I make an app with this?
+Most of this data was based on the FVAHT's database of record, ArchiveSpace, but
+the birth place and birth year information was manually entered in two phases,
+the latter of which was conducted in early 2019.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+This project is free and open source, published under the GNU Public License,
+and it can be re-used for any purpose. While it was developed closely around the
+data, in order to speed development, the code base could be adapted for a
+different data set or even generalized down the road.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+All of the data will be made available, and a link will be placed here at that
+time. This is meant to encourage further analysis and exploration of the archive
+with other tools.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+# Developer notes
 
-## Learn More
+This project is serverless, so all of the data is loaded into the browser. The
+data API is sequestered in the src/Data module, so that at some point it could
+be replaced with a server.
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+# 2024 rebuild 
+The project was rebuilt on [Next.js](https://nextjs.org) with typescript and
+[Tailwind CSS](https://tailwindcss.com), based on [T3](https://create.t3.gg/)
