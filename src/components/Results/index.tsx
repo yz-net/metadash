@@ -26,7 +26,7 @@ export default function Results(props: any) {
   }, []);
 
   return (
-    <div className="box-border max-w-full px-20 font-sans">
+    <div className="box-border max-w-full px-3 font-sans lg:px-20">
       <div className="mx-auto mb-8 max-w-5xl text-center font-yalenewroman text-2xl text-[#4a4a4a]">
         There are{" "}
         <span className="text-[#ca6251]" suppressHydrationWarning>
@@ -38,7 +38,7 @@ export default function Results(props: any) {
       {/* Result list header */}
       <div className="mb-4 flex pl-5 font-semibold text-[#aaa]">
         <div className="flex-[2_1]">Testimony title</div>
-        <div className="flex-1">Birth year / place</div>
+        <div className="hidden flex-1 md:block">Birth year / place</div>
         <div className="hidden flex-[2_1] xl:block">Affiliate</div>
         <div className="hidden flex-1 2xl:block">Recording year</div>
         <div className="flex-1">&nbsp;</div>
@@ -65,7 +65,7 @@ export default function Results(props: any) {
                   <div className="flex-[2_1] pl-5 text-[20px] font-semibold text-[#6e6e6e]">
                     {result.title}
                   </div>
-                  <div className="flex-1">
+                  <div className="hidden flex-1 md:block">
                     {
                       result.birth_years
                         .filter((yr: any) => yr)

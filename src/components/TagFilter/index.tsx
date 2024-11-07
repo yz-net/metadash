@@ -45,8 +45,8 @@ export default function TagFilter(props: any) {
 
   return (
     <div className="flex max-h-full flex-col">
-      <div className="flex h-20 bg-[#f0eee6] px-20 py-0 shadow-yale">
-        <div className="flex flex-1 items-center pr-5 text-2xl">
+      <div className="flex flex-col bg-[#f0eee6] py-3 shadow-yale lg:h-20 lg:flex-row lg:py-0 lg:py-0">
+        <div className="flex flex-1 items-center px-3 pr-5 text-2xl lg:px-8">
           <div className="pr-1.5 font-yalenewroman text-2xl">{props.title}</div>
           <TextInput
             onChange={(e: any) => setSearchTerm(e.target.value)}

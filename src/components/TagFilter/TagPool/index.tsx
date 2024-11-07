@@ -43,7 +43,7 @@ export default function TagPool(props: any) {
   return (
     <div
       ref={poolRef}
-      className="mx-20 my-px flex h-[160px] max-h-full flex-wrap justify-center overflow-hidden overflow-y-scroll bg-white px-0 py-8"
+      className="my-px flex h-[160px] max-h-full flex-wrap justify-center overflow-hidden overflow-y-scroll bg-white px-0 py-8 md:mx-3 lg:mx-20"
     >
       {(props.items.slice(0, options.itemCount) || []).map(
         (item: any, index: number) => (
