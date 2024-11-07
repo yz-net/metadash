@@ -8,10 +8,12 @@ export default function Languages(props: any) {
     ...props,
     handleItemClick: (item: any) => {
       // switch to item, or clear selections if you click on the selected item
-      if (props.selections.length === 0 || item.id !== props.selections[0].id) {
-        props.updateSelections([item]);
+      if (props.selections.some((s: any) => s.id === item.id)) {
+        props.updateSelections([
+          ...props.selections.filter((s: any) => s.id !== item.id),
+        ]);
       } else {
-        props.updateSelections([]);
+        props.updateSelections([...props.selections, item]);
       }
     },
     showAll: true,

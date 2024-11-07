@@ -14,7 +14,7 @@ import SiteBanner from "~/components/SiteBanner";
 import TagFilter from "~/components/TagFilter";
 import { objectToArray } from "~/utils/common";
 
-import * as data from "~/data";
+import * as dataSource from "~/data";
 
 const BIRTH_MIN = 1890;
 const BIRTH_MAX = 1945;
@@ -33,14 +33,14 @@ const DEFAULT_FILTERS = {
   dateRanges: {},
 };
 
-const defaultFullData = data.getData();
+const fullData = dataSource.getData();
 
 export default function HomePage() {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
-  const [fullData, setFullData] = useState(defaultFullData);
+  const [data, setData] = useState(fullData);
 
   useEffect(() => {
-    setFullData(data.getData(filters));
+    setData(dataSource.getData(filters));
   }, [filters]);
 
   const setNewFilters = (f: any) => {
@@ -68,9 +68,9 @@ export default function HomePage() {
       {/* Intro prose */}
       <section>
         <IntroProse
-          items={fullData.resources}
+          items={data.resources}
           filters={filters}
-          summaryData={fullData.summaryData}
+          summaryData={data.summaryData}
           BIRTH_MIN={BIRTH_MIN}
           BIRTH_MAX={BIRTH_MAX}
           RECORDING_MIN={RECORDING_MIN}
@@ -91,9 +91,9 @@ export default function HomePage() {
         <Gender
           className="Gender module-box"
           updateSelections={updateFilterFactory("gender")}
-          men={fullData.summaryData.gender.men.count}
-          women={fullData.summaryData.gender.women.count}
-          multiple={fullData.summaryData.gender.multiple.count}
+          men={data.summaryData.gender.men.count}
+          women={data.summaryData.gender.women.count}
+          multiple={data.summaryData.gender.multiple.count}
         />
 
         <BirthAndRecordingYear
@@ -106,10 +106,10 @@ export default function HomePage() {
           RECORDING_MAX={RECORDING_MAX}
           updateSelections={updateFilterFactory("dateRanges")}
           selections={filters.dateRanges}
-          subsetMode={fullData.resources.length > fullData.resources.length}
-          data={Object.keys(fullData.summaryData.birthYears)
+          subsetMode={fullData.resources.length > data.resources.length}
+          data={Object.keys(data.summaryData.birthYears)
             // @ts-ignore
-            .map((k) => fullData.summaryData.birthYears[k])
+            .map((k) => data.summaryData.birthYears[k])
             // TODO - the data needs to be cleaned up so we don't need to manually exclude stuff
             .filter((yrs) => yrs.label >= BIRTH_MIN && yrs.label <= BIRTH_MAX)
             .map((a) => {
@@ -121,9 +121,9 @@ export default function HomePage() {
               };
             })
             .concat(
-              Object.keys(fullData.summaryData.recordingYears)
+              Object.keys(data.summaryData.recordingYears)
                 // @ts-ignore
-                .map((k) => fullData.summaryData.recordingYears[k])
+                .map((k) => data.summaryData.recordingYears[k])
                 .filter(
                   (yrs) =>
                     yrs.label >= RECORDING_MIN && yrs.label <= RECORDING_MAX,
@@ -144,7 +144,7 @@ export default function HomePage() {
           updateSelections={updateFilterFactory("birthplaces")}
           // @ts-ignore
           selections={filters.birthplaces}
-          birthPlaces={fullData.summaryData.birthPlaces}
+          birthPlaces={data.summaryData.birthPlaces}
           allBirthPlaces={fullData.summaryData.birthPlaces}
           placeholder="Search for a city..."
         />
@@ -154,8 +154,8 @@ export default function HomePage() {
           updateSelections={updateFilterFactory("programs")}
           selections={filters.programs}
           allItems={fullData.summaryData.programs}
-          programs={fullData.summaryData.programs}
-          filterItems={data.programs.search}
+          programs={data.summaryData.programs}
+          filterItems={dataSource.programs.search}
           placeholder="Begin searching programs..."
         />
 
@@ -163,28 +163,30 @@ export default function HomePage() {
           className="Languages module-box"
           updateSelections={updateFilterFactory("language")}
           selections={filters.language}
-          items={objectToArray(fullData.summaryData.languages)}
-          itemDict={fullData.summaryData.languages}
+          items={objectToArray(data.summaryData.languages)}
+          itemDict={data.summaryData.languages}
           allItems={objectToArray(fullData.summaryData.languages)}
         />
 
         <Interviewers
           className="Interviewers module-box"
-          interviewers={fullData.summaryData.interviewers}
-          allInterviewers={defaultFullData.summaryData.interviewers}
+          interviewers={data.summaryData.interviewers}
+          allInterviewers={fullData.summaryData.interviewers}
           updateSelections={updateFilterFactory("interviewers")}
           selections={filters.interviewers}
           selectionsDict={objectToArray(filters.interviewers)}
           filterItems={(t: string) => {
-            const results = data.interviewers.search((t ?? "").split(" "));
+            const results = dataSource.interviewers.search(
+              (t ?? "").split(" "),
+            );
             const retDict = {};
             const retArr = results
-              .filter((i) => i.id in fullData.summaryData.interviewers)
+              .filter((i) => i.id in data.summaryData.interviewers)
               .map((i) => {
                 const retItem = {
                   ...i,
                   // @ts-ignore
-                  count: fullData.summaryData.interviewers[i.id].count,
+                  count: data.summaryData.interviewers[i.id].count,
                 };
                 // @ts-ignore
                 retDict[i.id] = retItem;
@@ -202,8 +204,8 @@ export default function HomePage() {
           title="Subjects"
           updateSelections={updateFilterFactory("subjects")}
           selections={filters.subjects}
-          allItems={fullData.summaryData.subjects}
-          filterItems={data.subjects.search}
+          allItems={data.summaryData.subjects}
+          filterItems={dataSource.subjects.search}
           placeholder="Begin searching subjects..."
         />
       </section>
@@ -211,8 +213,8 @@ export default function HomePage() {
       {/* Results */}
       <section className="mt-8">
         <Results
-          programs={fullData.summaryData.programs}
-          results={fullData.resources}
+          programs={data.summaryData.programs}
+          results={data.resources}
         />
       </section>
     </>

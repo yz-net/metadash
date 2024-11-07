@@ -79,16 +79,14 @@ let filterBirthPlacesFactory = (options) => {
     for (let j = 0; j < (r.birth_place_cities || []).length; j++) {
       let city = (r.birth_place_cities || [])[j],
         country = (r.birth_place_countries || [])[j];
-      //if (!city || !country ){ return false}
       if (normalizeString(country) !== normalizeString(place.country))
         return false;
 
       if (place.city) {
-        //console.log("There's a city to filter", place)
         // if there's a city, limit by that as well
         if (normalizeString(city) !== normalizeString(place.city.split(",")[0]))
           return false;
-      } //else { console.log("there's no city required", city, country, place.city, place.country, place) }
+      }
 
       return true;
     }
@@ -104,24 +102,13 @@ filters.getResources = (options) => {
     return all;
   }
 
-  // function validRecordingYear(r){
-  //     const yr = getRecordingYear(r);
-  //     if (!options.filters){ return true}
-  //     if (!options.filters.dateRanges){ return true}
-  //     if (!options.filters.dateRanges.recording){ return true}
-  //     if (yr < options.filters.dateRanges[0]){ return false}
-  //     if (yr > options.filters.dateRanges[1]){ return false}
-  //     return true;
-
-  // }
-
   return (r) => {
     // filter by selected subject
     if (!filters.resourceContainsAllSubjects(options.subjects || [])(r)) {
       return false;
     }
 
-    // TODO - filter by gender
+    // filter by gender
     if (
       (options.gender || []).length > 0 &&
       (options.gender || []).length < 3
@@ -131,7 +118,7 @@ filters.getResources = (options) => {
       }
     }
 
-    // TODO - filter by year of recording
+    // filter by year of recording
     if (options.dateRanges && options.dateRanges.recording) {
       const recordingYear = getRecordingYear(r);
       if (
@@ -141,11 +128,9 @@ filters.getResources = (options) => {
       ) {
         return false;
       }
-    } else {
-      // console.log("Skipping recording year filter")
     }
 
-    // TODO - filter by year of birth
+    // filter by year of birth
     if (options.dateRanges && options.dateRanges.birth) {
       const birthYears = r.birth_years || [];
       if (
@@ -173,50 +158,28 @@ filters.getResources = (options) => {
       ) {
         return false;
       }
-    } else {
-      // console.log("Skipping birth year filter")
     }
 
     if (!filterBirthPlaces(r)) {
       return false;
     }
-    // if ((options.birthplaces || []).length > 0) {
 
-    //     let place = options.birthplaces[0];
-
-    //     for (let j = 0; j < (r.birth_place_cities || []).length; j++) {
-
-    //         if ((r.birth_place_cities || []).length !== (r.birth_place_countries || []).length) { return false }
-    //         let city = r.birth_place_cities[j],
-    //             country = r.birth_place_countries[j];
-    //         if (normalizeString(country) !== normalizeString(place.country)) return false;
-    //         if (place.city){
-    //             // if there's a city, limit by that as well
-    //             if (normalizeString(city) !== normalizeString(place.city.split(",")[0])) return false;
-    //         }
-    //         console.log("match", place, city, country)
-
-    //     }
-    // }
-
-    // TODO - filter by affiliate program
-    // if (!filters.resourceContainsAllPrograms(options.programs || [])(r)) { return false }
+    // filter by affiliate program
     if (!filters.resourceContainsOnlyPrograms(options.programs || [])(r)) {
       return false;
     }
 
-    // TODO - filter by interviewer
+    // filter by interviewer
     if (
       !filters.resourceContainsAllInterviewers(options.interviewers || [])(r)
     ) {
       return false;
     }
 
-    // TODO - in future, support multiple languages
+    // filter by languages
     if (
-      options.language &&
-      options.language.length === 1 &&
-      r.language !== options.language[0].id
+      options.language?.length > 0 &&
+      !options.language.some((o) => o.id === r.language)
     ) {
       return false;
     }
