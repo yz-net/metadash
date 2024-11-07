@@ -113,7 +113,12 @@ export default function HomePage() {
             // TODO - the data needs to be cleaned up so we don't need to manually exclude stuff
             .filter((yrs) => yrs.label >= BIRTH_MIN && yrs.label <= BIRTH_MAX)
             .map((a) => {
-              return { ...a, barClass: "birth fill-[#ca6251]" };
+              return {
+                id: Number(a.id),
+                label: Number(a.label),
+                count: Number(a.count),
+                barClass: "pointer-events-none fill-[#ca6251]",
+              };
             })
             .concat(
               Object.keys(fullData.summaryData.recordingYears)
@@ -124,7 +129,12 @@ export default function HomePage() {
                     yrs.label >= RECORDING_MIN && yrs.label <= RECORDING_MAX,
                 )
                 .map((a) => {
-                  return { ...a, barClass: "recording fill-[#ca6251]" };
+                  return {
+                    id: Number(a.id),
+                    label: Number(a.label),
+                    count: Number(a.count),
+                    barClass: "pointer-events-none fill-[#ca6251]",
+                  };
                 }),
             )}
         />

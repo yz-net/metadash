@@ -23,29 +23,17 @@ export default class extends D3Component {
   }
 
   updateChart(data) {
-    data = data || this.props.data;
+    data = data ?? this.props.data;
     const svg = d3.select(this.svg);
 
-    // get width and height
     const width = svg.node().getBoundingClientRect().width,
-      height = this.props.height || svg.node().getBoundingClientRect().height;
+      height = this.props.height ?? svg.node().getBoundingClientRect().height;
 
-    // svg.attr("height", height + "px")
-    // .attr("width", width + "px");
-
-    // const yearRange = d3.extent(this.props.data.map(x => x.label))
     const yearRange = [this.props.minYear, this.props.maxYear];
-    const countRange = [0, d3.max(data.map((x) => x.count)) || 1];
+    const countRange = [0, d3.max(data.map((x) => x.count)) ?? 1];
 
-    // const margin = this.props.margin || {
-    //     bottom: 30,
-    //     top: 20,
-    //     left: 20,
-    //     right: 20
-    // }
     const margin = this.state.margin;
 
-    // add axes
     const xScale = d3
       .scaleBand()
       .domain(d3.range(...yearRange))
@@ -106,8 +94,8 @@ export default class extends D3Component {
             .call((enter) =>
               enter
                 .transition(null)
-                .attr("y", (d) => yScale(d.count || 0))
-                .attr("height", (d) => yScale(0) - yScale(d.count || 0))
+                .attr("y", (d) => yScale(d.count ?? 0))
+                .attr("height", (d) => yScale(0) - yScale(d.count ?? 0))
                 .attr("width", xScale.bandwidth),
             ),
         (update) =>
@@ -119,8 +107,8 @@ export default class extends D3Component {
             .call((update) =>
               update
                 .transition(t(1000))
-                .attr("y", (d) => yScale(d.count || 0))
-                .attr("height", (d) => yScale(0) - yScale(d.count || 0)),
+                .attr("y", (d) => yScale(d.count ?? 0))
+                .attr("height", (d) => yScale(0) - yScale(d.count ?? 0)),
             ),
         (exit) =>
           exit

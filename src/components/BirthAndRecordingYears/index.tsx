@@ -130,7 +130,7 @@ export default function BirthAndRecordingYear(props: any) {
               <span
                 className={twMerge(
                   "text-xs",
-                  birthHover[0] ? "text-[#8ec8cc]" : "",
+                  birthHover[0] ? "text-[#ca6251]" : "",
                 )}
               >
                 {birthYear[0]}
@@ -138,7 +138,7 @@ export default function BirthAndRecordingYear(props: any) {
               <span
                 className={twMerge(
                   "text-xs",
-                  birthHover[1] ? "text-[#8ec8cc]" : "",
+                  birthHover[1] ? "text-[#ca6251]" : "",
                 )}
               >
                 {birthYear[1]}
@@ -164,7 +164,7 @@ export default function BirthAndRecordingYear(props: any) {
               <span
                 className={twMerge(
                   "text-xs",
-                  recordingHover[0] ? "text-[#8ec8cc]" : "",
+                  recordingHover[0] ? "text-[#ca6251]" : "",
                 )}
               >
                 {recordingYear[0]}
@@ -173,7 +173,7 @@ export default function BirthAndRecordingYear(props: any) {
               <span
                 className={twMerge(
                   "text-xs",
-                  recordingHover[1] ? "text-[#8ec8cc]" : "",
+                  recordingHover[1] ? "text-[#ca6251]" : "",
                 )}
               >
                 {recordingYear[1]}
