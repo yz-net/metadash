@@ -59,7 +59,7 @@ export default function AutoSuggest(props: any /* TODO */) {
       </div>
       {showSuggestions && (
         <ul
-          className="absolute left-0 right-0 z-10 max-h-96 overflow-y-auto border-x border-b border-[#d3d3d3] bg-[#f5f5f5]"
+          className="absolute left-0 right-0 z-30 max-h-96 overflow-y-auto border-x border-b border-[#d3d3d3] bg-[#f5f5f5]"
           ref={suggestionRef}
         >
           {suggestions.map((s, i) => (
