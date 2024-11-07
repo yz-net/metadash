@@ -43,13 +43,13 @@ export default function TagPool(props: any) {
   return (
     <div
       ref={poolRef}
-      className="my-px flex h-[160px] max-h-full flex-wrap justify-center overflow-hidden overflow-y-scroll bg-white px-0 py-8 md:mx-3 lg:mx-20"
+      className="flex h-[160px] max-h-full flex-wrap justify-center overflow-hidden overflow-y-scroll bg-white px-0 py-3 lg:mx-20 lg:py-8"
     >
       {(props.items.slice(0, options.itemCount) || []).map(
         (item: any, index: number) => (
           <button
             data-value={item.value}
-            className="m-0 border-none px-2 py-1 font-sans text-sm hover:bg-[#eff7fa] hover:text-[#0d99aa]"
+            className="m-0 border-none px-2 py-1 font-sans text-sm text-[#4a4a4a] hover:bg-[#eff7fa] hover:text-[#0d99aa]"
             type="button"
             onClick={() => props.onChange(item)}
             key={index}
