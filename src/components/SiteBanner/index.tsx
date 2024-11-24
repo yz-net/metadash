@@ -3,8 +3,8 @@ import styles from "./styles.module.scss";
 const YaleLogoSVG = () => (
   <svg
     width="41px"
-    height="19px"
-    viewBox="0 0 41 19"
+    height="24px"
+    viewBox="0 0 41 24"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -28,8 +28,8 @@ const YaleLogoSVG = () => (
 const FortunoffTitleSVG = () => (
   <svg
     width="238px"
-    height="40px"
-    viewBox="0 0 238 40"
+    height="45px"
+    viewBox="0 0 238 45"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
