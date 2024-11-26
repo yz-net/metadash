@@ -1,17 +1,56 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
-import { normalizeString, objectToArray } from "~/utils/common";
+import { objectToArray } from "~/utils/common";
 import Cluster from "../Viz/Cluster";
 import HoverText from "../HoverText";
 import Card from "../Card";
-import AutoSuggest from "../AutoSuggest";
-import { twMerge } from "tailwind-merge";
+import TextInput from "../TextInput";
 
 export default function BirthPlaces(props: any) {
-  const [hoverText, setHoverText] = useState(" ");
-  const [selection, setSelection] = useState<any>();
+  const [hoverText, setHoverText] = useState("");
+  const [suggestionValue, setSuggestionValue] = useState<string>("");
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+
+  const autoSuggestRef = useRef<HTMLDivElement>(null);
+  const suggestionRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    const newShowSuggestions = suggestionValue.length > 0;
+    setShowSuggestions(newShowSuggestions);
+
+    if (!newShowSuggestions) {
+      return;
+    }
+
+    let newSuggestions = cleanClusterData().map((d) => ({
+      ...d,
+      label: cleanPlaceName(d),
+    }));
+    newSuggestions.pop(); // remove structural entry required for d3 (see cleanClusterData() -> an item is pushed at the end)
+    newSuggestions = newSuggestions.filter((s: any) =>
+      s.label.toLowerCase().includes(suggestionValue.toLowerCase()),
+    );
+    setSuggestions(newSuggestions);
+  }, [suggestionValue]);
+
+  useEffect(() => {
+    const handleClick = (e: PointerEvent) => {
+      if (
+        autoSuggestRef.current &&
+        !autoSuggestRef.current.contains(e.target as Node) &&
+        suggestionRef.current &&
+        !suggestionRef.current.contains(e.target as Node)
+      ) {
+        setShowSuggestions(false);
+      }
+    };
+    window.addEventListener("pointerdown", handleClick);
+    return () => window.removeEventListener("pointerdown", handleClick);
+  }, []);
 
   const cleanPlaceName = (item: any) => {
     if (!item) {
@@ -30,13 +69,6 @@ export default function BirthPlaces(props: any) {
     } else if (country) {
       return country;
     }
-  };
-  const label = () => {
-    if (!props.selections || props.selections.length < 1) {
-      return "";
-    }
-
-    return cleanPlaceName(props.selections[0]);
   };
 
   const cleanClusterData = () => {
@@ -104,16 +136,49 @@ export default function BirthPlaces(props: any) {
         dropCallback={dropSelection}
         selections={props.selections}
         hoverText={hoverText}
-        label={label()}
+        label={
+          !props.selections || props.selections.length < 1
+            ? ""
+            : cleanPlaceName(props.selections[0])
+        }
       />
 
-      <div className="flex w-full flex-1 items-end">
-        <AutoSuggest
-          placeholder="Type a place name"
-          suggestions={cleanClusterData()}
-          onSelect={(s: any) => setSelection(s)}
-          clearOnSelect
-        />
+      {/* auto suggest */}
+      <div className="relative w-full">
+        <div
+          ref={autoSuggestRef}
+          onClick={() => setShowSuggestions((prev) => !prev)}
+        >
+          <TextInput
+            placeholder={"Type a place name"}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setSuggestionValue(e.target.value)
+            }
+            value={suggestionValue}
+          />
+        </div>
+        {showSuggestions && (
+          <ul
+            className="absolute left-0 right-0 z-30 max-h-96 overflow-y-auto border-x border-b border-[#d3d3d3] bg-[#f5f5f5]"
+            ref={suggestionRef}
+          >
+            {suggestions.map((s, i) => (
+              <li key={`suggestion-${i}`} className="group list-none">
+                <button
+                  className="h-full w-full px-4 py-2 text-left font-yalenewroman text-[#444] group-hover:bg-[#fefefe]"
+                  type="button"
+                  onClick={() => {
+                    props.updateSelections([s]);
+                    setShowSuggestions(false);
+                    setSuggestionValue("");
+                  }}
+                >
+                  {s.label ?? "-"}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </Card>
   );

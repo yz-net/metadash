@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import TextInput from "../TextInput";
 
 export default function AutoSuggest(props: any /* TODO */) {
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>(props.value ?? "");
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [suggestions, setSuggestions] = useState<any[]>(
     props.suggestions ?? [],
@@ -39,12 +39,16 @@ export default function AutoSuggest(props: any /* TODO */) {
   }, []);
 
   const handleSelect = (suggestion: any) => {
-    props.onSelect(suggestion);
+    if (suggestion) {
+      props.onSelect([suggestion]);
+    }
     setShowSuggestions(false);
     if (props.clearOnSelect) {
       setValue("");
     }
   };
+
+  console.log("SUGGESTIONS", suggestions);
 
   return (
     <div className="relative w-full">
@@ -69,7 +73,7 @@ export default function AutoSuggest(props: any /* TODO */) {
                 type="button"
                 onClick={() => handleSelect(s)}
               >
-                {s.id ?? "-"}
+                {s.label ?? "-"}
               </button>
             </li>
           ))}
