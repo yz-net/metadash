@@ -16,7 +16,7 @@ export default function TextInput(props: any /* TODO */) {
         type="text"
       />
       <div className="pointer-events-none absolute right-0 flex h-full items-center justify-center px-2">
-        <img src="/graphics/search-icon.svg" />
+        <img src="graphics/search-icon.svg" />
       </div>
     </div>
   );
