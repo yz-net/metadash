@@ -11,6 +11,10 @@ const config = {
     path: "/",
   },
   output: "export",
+  sassOptions: {
+    implementation: "sass-embedded",
+    api: "modern-compiler",
+  },
 };
 
 export default config;
