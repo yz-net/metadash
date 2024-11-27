@@ -8,6 +8,7 @@ await import("./src/env.js");
 const config = {
   images: {
     unoptimized: true,
+    path: "/",
   },
   output: "export",
 };
