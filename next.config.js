@@ -14,6 +14,7 @@ const config = {
   sassOptions: {
     implementation: "sass-embedded",
     api: "modern-compiler",
+    silenceDeprecations: ["legacy-js-api"], // TODO: Remove this when https://github.com/vercel/next.js/issues/71638 is fixed
   },
 };
 
