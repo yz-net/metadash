@@ -26,11 +26,11 @@
   grid-template-areas:
     // -- 1x20px
 
-    "textmenu   textmenu    textmenu    textmenu textmenu"
+    "textmenu   textmenu    textmenu     textmenu  textmenu"
     // -- 1x180px
-    "gender     birthyear   birthyear   birthyear interviewers"
+    "gender     birthyear   birthyear    birthyear interviewers"
     // -- 1x90px
-    "languages  birthyear   birthyear   birthyear interviewers"
+    "languages  birthyear   birthyear    birthyear interviewers"
     // --- 6x90px
     "languages  birthplaces birthplaces  programs  programs"
     "languages  birthplaces birthplaces  programs  programs"
@@ -76,11 +76,11 @@
     grid-template-rows: 1em 270px repeat(5, 180px);
     grid-template-columns: repeat(6, fr);
     grid-template-areas:
-      "textmenu     textmenu     textmenu textmenu     textmenu     textmenu"
-      "gender    birthyear    birthyear  birthyear    birthyear    birthyear"
-      "birthplaces  birthplaces  birthplaces  programs  programs  programs"
-      "birthplaces  birthplaces  birthplaces  programs  programs  programs"
-      "birthplaces  birthplaces  birthplaces  programs  programs  programs"
+      "textmenu     textmenu     textmenu     textmenu     textmenu     textmenu"
+      "gender       birthyear    birthyear    birthyear    birthyear    birthyear"
+      "birthplaces  birthplaces  birthplaces  programs     programs     programs"
+      "birthplaces  birthplaces  birthplaces  programs     programs     programs"
+      "birthplaces  birthplaces  birthplaces  programs     programs     programs"
       "languages    languages    interviewers interviewers interviewers interviewers"
       "languages    languages    interviewers interviewers interviewers interviewers";
   }
