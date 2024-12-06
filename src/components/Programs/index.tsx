@@ -61,7 +61,8 @@ export default function Programs(props: any) {
         }}
         label={label()}
       />
-      <div className="flex flex-1 items-end">
+
+      <div>
         <ItemSelector
           updateSelections={props.updateSelections}
           items={objectToArray(props.programs)}

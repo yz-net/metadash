@@ -119,11 +119,11 @@ export default function BirthPlaces(props: any) {
 
   return (
     <Card
-      className={twMerge("flex flex-col !overflow-visible", props.className)}
+      className={twMerge("flex flex-col", props.className)}
       title="Birth places"
     >
       <Cluster
-        height={400}
+        height={380}
         items={cleanClusterData()}
         itemDict={props.birthPlaces}
         selections={props.selections}
