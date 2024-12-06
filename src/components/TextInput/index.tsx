@@ -21,7 +21,7 @@ export default function TextInput({
   ...restProps
 }: TextInputProps) {
   return (
-    <div className="space-y-1 font-yalenewroman">
+    <div className="flex-1 space-y-1 font-yalenewroman">
       <div
         className={twMerge(
           "relative flex h-9 w-full items-center",
