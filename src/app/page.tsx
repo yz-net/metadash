@@ -140,7 +140,7 @@ export default function HomePage() {
         />
 
         <BirthPlaces
-          className="BirthPlaces module-box"
+          className="BirthPlaces"
           updateSelections={updateFilterFactory("birthplaces")}
           // @ts-ignore
           selections={filters.birthplaces}
