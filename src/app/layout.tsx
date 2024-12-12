@@ -1,11 +1,11 @@
-import "~/styles/globals.scss";
+import '~/styles/globals.scss';
 
-import { GeistSans } from "geist/font/sans";
+import { GeistSans } from 'geist/font/sans';
 
 export const metadata = {
-  title: "Metadash - Fortunoff Video Archive for Holocaust Testimonies",
-  description: "Metadash - Fortunoff Video Archive for Holocaust Testimonies",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  title: 'Metadash - Fortunoff Video Archive for Holocaust Testimonies',
+  description: 'Metadash - Fortunoff Video Archive for Holocaust Testimonies',
+  icons: [{ rel: 'icon', url: '/favicon.ico' }],
 };
 
 export default function RootLayout({

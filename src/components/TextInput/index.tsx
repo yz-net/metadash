@@ -1,5 +1,5 @@
-import { twMerge } from "tailwind-merge";
-import SearchIcon from "~/assets/search-icon.svg";
+import { twMerge } from 'tailwind-merge';
+import SearchIcon from '~/assets/search-icon.svg';
 
 interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value?: string;
@@ -11,7 +11,7 @@ interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export default function TextInput({
-  value = "",
+  value = '',
   onChange,
   placeholder,
   className,
@@ -24,16 +24,16 @@ export default function TextInput({
     <div className="flex-1 space-y-1 font-yalenewroman">
       <div
         className={twMerge(
-          "relative flex h-9 w-full items-center",
-          disabled && "opacity-50",
-          error && "accent-accent-warm-red",
+          'relative flex h-9 w-full items-center',
+          disabled && 'opacity-50',
+          error && 'accent-accent-warm-red',
           className,
         )}
       >
         <input
           className={twMerge(
-            "bg-background-secondary h-9 w-full border border-gray-300 bg-surface-secondary pl-2 pr-7 text-base leading-9 text-primary placeholder:text-primary-subtle",
-            error && "border-red-500 focus:border-red-500 focus:ring-red-500",
+            'bg-background-secondary h-9 w-full border border-gray-300 bg-surface-secondary pl-2 pr-7 text-base leading-9 text-primary placeholder:text-primary-subtle',
+            error && 'border-red-500 focus:border-red-500 focus:ring-red-500',
           )}
           onChange={onChange}
           value={value}

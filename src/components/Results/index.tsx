@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { getRecordingYear } from "~/utils/data";
+import { useEffect, useState } from 'react';
+import { getRecordingYear } from '~/utils/data';
 
 export default function Results(props: any) {
   const [options, setOptions] = useState({
@@ -21,17 +21,17 @@ export default function Results(props: any) {
         }));
       }
     };
-    document.addEventListener("scroll", trackScrolling);
-    return () => document.removeEventListener("scroll", trackScrolling);
+    document.addEventListener('scroll', trackScrolling);
+    return () => document.removeEventListener('scroll', trackScrolling);
   }, []);
 
   return (
     <div className="box-border max-w-full px-3 font-sans lg:px-20">
       <div className="mx-auto mb-8 max-w-5xl text-center font-yalenewroman text-2xl text-[#4a4a4a]">
-        There are{" "}
+        There are{' '}
         <span className="text-[#ca6251]" suppressHydrationWarning>
           {(props.results?.length ?? 0).toLocaleString()}
-        </span>{" "}
+        </span>{' '}
         testimonies with matching criteria.
       </div>
 
@@ -60,7 +60,7 @@ export default function Results(props: any) {
                 key={index}
               >
                 <div
-                  className={`flex h-16 items-center justify-around py-px font-sans text-sm font-semibold ${result.birth_years.length > 1 ? "multiple" : ""}`}
+                  className={`flex h-16 items-center justify-around py-px font-sans text-sm font-semibold ${result.birth_years.length > 1 ? 'multiple' : ''}`}
                 >
                   <div className="flex-[2_1] pl-5 text-[20px] font-semibold text-[#6e6e6e]">
                     {result.title}
@@ -91,8 +91,8 @@ export default function Results(props: any) {
                               >
                                 {city}
                                 {city && result.birth_place_countries[i]
-                                  ? ", "
-                                  : ""}
+                                  ? ', '
+                                  : ''}
                                 {result.birth_place_countries[i]}
                               </li>
                             )),

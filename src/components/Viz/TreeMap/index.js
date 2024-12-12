@@ -1,10 +1,10 @@
 //@ts-nocheck
 
-import * as d3 from "d3";
+import * as d3 from 'd3';
 
-import D3Component from "../D3Component";
+import D3Component from '../D3Component';
 
-import "./styles.scss";
+import './styles.scss';
 
 export default class extends D3Component {
   constructor(props) {
@@ -15,13 +15,13 @@ export default class extends D3Component {
   }
 
   initializeChart() {
-    const svg = d3.select(this.svg).html("");
-    svg.selectAll("*").remove();
+    const svg = d3.select(this.svg).html('');
+    svg.selectAll('*').remove();
 
     const height =
       this.props.height || svg.node().getBoundingClientRect().height;
 
-    svg.attr("height", height);
+    svg.attr('height', height);
   }
 
   updateChart() {
@@ -30,7 +30,7 @@ export default class extends D3Component {
     const width = svg.node().getBoundingClientRect().width,
       height = this.props.height || svg.node().getBoundingClientRect().height;
 
-    svg.attr("height", height);
+    svg.attr('height', height);
     const h = d3.hierarchy({ children: this.props.items });
 
     let treemap = d3.treemap().size([width, height]).padding(2);
@@ -58,44 +58,44 @@ export default class extends D3Component {
     const t = svg.transition().duration(500).ease(d3.easeQuad);
 
     svg
-      .selectAll("rect")
+      .selectAll('rect')
       .data(h.leaves())
       .join(
         (enter) =>
           enter
-            .append("rect")
-            .classed("program", true)
-            .classed("highlighted", isHighlighted)
-            .attr("id", function (d) {
+            .append('rect')
+            .classed('program', true)
+            .classed('highlighted', isHighlighted)
+            .attr('id', function (d) {
               return d.id;
             })
             .call((enter) =>
               enter
-                .attr("x", (d) => d.x0)
-                .attr("y", (d) => d.y0)
-                .attr("width", function (d) {
+                .attr('x', (d) => d.x0)
+                .attr('y', (d) => d.y0)
+                .attr('width', function (d) {
                   return d.x1 - d.x0;
                 })
-                .attr("height", function (d) {
+                .attr('height', function (d) {
                   return d.y1 - d.y0;
                 }),
             ),
         (update) =>
           update
-            .classed("highlighted", isHighlighted)
-            .attr("id", function (d) {
+            .classed('highlighted', isHighlighted)
+            .attr('id', function (d) {
               return d.id;
             })
 
             .call((update) =>
               update
                 .transition(t)
-                .attr("x", (d) => d.x0)
-                .attr("y", (d) => d.y0)
-                .attr("width", function (d) {
+                .attr('x', (d) => d.x0)
+                .attr('y', (d) => d.y0)
+                .attr('width', function (d) {
                   return d.x1 - d.x0;
                 })
-                .attr("height", function (d) {
+                .attr('height', function (d) {
                   return d.y1 - d.y0;
                 }),
             ),
@@ -103,11 +103,11 @@ export default class extends D3Component {
       );
 
     svg
-      .selectAll("rect")
-      .on("mouseover", (event, item) => this.props.mouseInCallback(item.data))
-      .on("mouseout", (event, item) => this.props.mouseOutCallback(item.data))
-      .on("click", (event, item) => this.props.clickCallback(item.data));
+      .selectAll('rect')
+      .on('mouseover', (event, item) => this.props.mouseInCallback(item.data))
+      .on('mouseout', (event, item) => this.props.mouseOutCallback(item.data))
+      .on('click', (event, item) => this.props.clickCallback(item.data));
 
-    d3.select(window).on("resize.treemap", this.redrawChart.bind(this));
+    d3.select(window).on('resize.treemap', this.redrawChart.bind(this));
   }
 }

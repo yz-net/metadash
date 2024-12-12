@@ -1,9 +1,9 @@
 // @ts-nocheck
 
-import { normalizeString } from "~/utils/common";
+import { normalizeString } from '~/utils/common';
 
-import { getRecordingYear } from "~/utils/data";
-import { getGender } from "./getGender";
+import { getRecordingYear } from '~/utils/data';
+import { getGender } from './getGender';
 
 /**
  * all - return an array containing all records.
@@ -11,7 +11,7 @@ import { getGender } from "./getGender";
  *       without any parameters
  *
  */
-import __all from "./json/Index.json" assert { type: "json" };
+import __all from './json/Index.json' assert { type: 'json' };
 
 export const all = () => __all;
 
@@ -28,15 +28,15 @@ filters.resourceContainsAllItems = (itemField, itemFilters) => {
 };
 
 filters.resourceContainsAllSubjects = (subjects) => {
-  return filters.resourceContainsAllItems("subject_refs", subjects);
+  return filters.resourceContainsAllItems('subject_refs', subjects);
 };
 
 filters.resourceContainsAllInterviewers = (interviewers) => {
-  return filters.resourceContainsAllItems("interviewers", interviewers);
+  return filters.resourceContainsAllItems('interviewers', interviewers);
 };
 
 filters.resourceContainsAllPrograms = (programs) => {
-  return filters.resourceContainsAllItems("programs", programs);
+  return filters.resourceContainsAllItems('programs', programs);
 };
 
 filters.resourceContainsOnlyPrograms = (programs) => {
@@ -84,7 +84,7 @@ let filterBirthPlacesFactory = (options) => {
 
       if (place.city) {
         // if there's a city, limit by that as well
-        if (normalizeString(city) !== normalizeString(place.city.split(",")[0]))
+        if (normalizeString(city) !== normalizeString(place.city.split(',')[0]))
           return false;
       }
 

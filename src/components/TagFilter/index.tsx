@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import TextInput from "../TextInput";
-import SelectionPool from "../SelectionPool";
-import TagPool from "./TagPool";
+import { useState } from 'react';
+import TextInput from '../TextInput';
+import SelectionPool from '../SelectionPool';
+import TagPool from './TagPool';
 
 export default function TagFilter(props: any) {
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   const updateSelections = (newSelections: any) => {
     props.updateSelections(newSelections);
-    setSearchTerm("");
+    setSearchTerm('');
   };
 
   const addSelection = (selectionItem: any) => {
@@ -40,7 +40,7 @@ export default function TagFilter(props: any) {
   };
 
   const items = props
-    .filterItems(searchTerm.split(" "))
+    .filterItems(searchTerm.split(' '))
     .filter((item: any) => item.id in props.allItems);
 
   return (

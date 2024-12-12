@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { twMerge } from "tailwind-merge";
+import { useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-import { objectToArray } from "~/utils/common";
-import ItemSelector from "../ItemSelector";
-import HoverText from "../HoverText";
-import TreeMap from "../Viz/TreeMap";
-import Card from "../Card";
+import { objectToArray } from '~/utils/common';
+import ItemSelector from '../ItemSelector';
+import HoverText from '../HoverText';
+import TreeMap from '../Viz/TreeMap';
+import Card from '../Card';
 
 export default function Programs(props: any) {
-  const [hoverText, setHoverText] = useState<string>(" ");
+  const [hoverText, setHoverText] = useState<string>(' ');
 
   const label = () => {
     if (!props.selections || props.selections.length < 1) {
-      return "";
+      return '';
     }
     return props.selections[0].label;
   };
@@ -36,12 +36,12 @@ export default function Programs(props: any) {
   };
 
   const handleMouseLeave = () => {
-    setHoverText(" ");
+    setHoverText(' ');
   };
 
   return (
     <Card
-      className={twMerge("flex flex-col", props.className)}
+      className={twMerge('flex flex-col', props.className)}
       title="Affiliate programs"
     >
       <TreeMap

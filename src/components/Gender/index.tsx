@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { MutableRefObject, useEffect, useRef, useState } from "react";
-import * as d3 from "d3";
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import * as d3 from 'd3';
 
-import Card from "../Card";
-import { twMerge } from "tailwind-merge";
+import Card from '../Card';
+import { twMerge } from 'tailwind-merge';
 
 export default function Gender(props: any /* TODO */) {
   const [filter, setFilter] = useState({
@@ -20,13 +20,13 @@ export default function Gender(props: any /* TODO */) {
   useEffect(() => {
     const selections = [];
     if (filter.men) {
-      selections.push("men");
+      selections.push('men');
     }
     if (filter.women) {
-      selections.push("women");
+      selections.push('women');
     }
     if (filter.multiple) {
-      selections.push("multiple");
+      selections.push('multiple');
     }
     props.updateSelections(selections);
   }, [filter]);
@@ -44,27 +44,27 @@ export default function Gender(props: any /* TODO */) {
       total = vals.men + vals.women + vals.multiple;
 
     const animate = (
-      key: "men" | "women" | "multiple",
+      key: 'men' | 'women' | 'multiple',
       ref: MutableRefObject<null>,
     ) => {
       d3.select(ref?.current)
         .transition()
         .duration(1000)
         .ease(d3.easeSinOut)
-        .style("width", () => (vals[key] * 100) / total + "%");
+        .style('width', () => (vals[key] * 100) / total + '%');
     };
 
-    animate("multiple", multipleRef);
-    animate("men", menRef);
-    animate("women", womenRef);
+    animate('multiple', multipleRef);
+    animate('men', menRef);
+    animate('women', womenRef);
   };
 
-  const genderToggle = (gender: "men" | "women" | "multiple") => {
+  const genderToggle = (gender: 'men' | 'women' | 'multiple') => {
     setFilter((prev) => {
       let newFilter = {
-        men: gender === "men" ? !filter.men : filter.men,
-        women: gender === "women" ? !filter.women : filter.women,
-        multiple: gender === "multiple" ? !filter.multiple : filter.multiple,
+        men: gender === 'men' ? !filter.men : filter.men,
+        women: gender === 'women' ? !filter.women : filter.women,
+        multiple: gender === 'multiple' ? !filter.multiple : filter.multiple,
       };
       if (!newFilter.men && !newFilter.women && !newFilter.multiple) {
         newFilter = prev;
@@ -81,17 +81,17 @@ export default function Gender(props: any /* TODO */) {
         <button
           className="font-yalenewroman text-2xl leading-tight text-[#222] hover:text-[#333]"
           type="button"
-          onClick={() => genderToggle("men")}
+          onClick={() => genderToggle('men')}
         >{`${((props.men * 100) / total || 0).toFixed(0)}%`}</button>
         <button
           className="font-yalenewroman text-2xl leading-tight text-[#222] hover:text-[#333]"
           type="button"
-          onClick={() => genderToggle("multiple")}
+          onClick={() => genderToggle('multiple')}
         >{`${((props.multiple * 100) / total || 0).toFixed(0)}%`}</button>
         <button
           className="font-yalenewroman text-2xl leading-tight text-[#222] hover:text-[#333]"
           type="button"
-          onClick={() => genderToggle("women")}
+          onClick={() => genderToggle('women')}
         >{`${((props.women * 100) / total || 0).toFixed(0)}%`}</button>
       </div>
       <div className="flex w-full justify-between bg-[#d3d3d3]">
@@ -99,39 +99,39 @@ export default function Gender(props: any /* TODO */) {
           className="h-[18px] border-r border-r-white bg-[#0d99aa]"
           ref={menRef}
           type="button"
-          onClick={() => genderToggle("men")}
+          onClick={() => genderToggle('men')}
         />
         <button
           className="h-[18px] border-r border-r-white bg-[#f9be00]"
           ref={multipleRef}
           type="button"
-          onClick={() => genderToggle("multiple")}
+          onClick={() => genderToggle('multiple')}
         />
         <button
           className="h-[18px] border-r border-r-white bg-[#ca6251]"
           ref={womenRef}
           type="button"
-          onClick={() => genderToggle("women")}
+          onClick={() => genderToggle('women')}
         />
       </div>
       <div className="mt-3 flex justify-between">
         <button
           className="group flex flex-col items-start justify-center font-sans"
           type="button"
-          onClick={() => genderToggle("men")}
+          onClick={() => genderToggle('men')}
         >
           <div
             className={twMerge(
-              "text-sm font-bold group-hover:text-[#8ec8cc]",
-              filter.men ? "" : "text-gray-400",
+              'text-sm font-bold group-hover:text-[#8ec8cc]',
+              filter.men ? '' : 'text-gray-400',
             )}
           >
             Men
           </div>
           <div
             className={twMerge(
-              "text-sm leading-none text-[#6e6e6e] group-hover:text-[#8ec8cc]",
-              filter.men ? "" : "text-gray-400",
+              'text-sm leading-none text-[#6e6e6e] group-hover:text-[#8ec8cc]',
+              filter.men ? '' : 'text-gray-400',
             )}
             suppressHydrationWarning
           >
@@ -141,20 +141,20 @@ export default function Gender(props: any /* TODO */) {
         <button
           className="group flex flex-col items-center justify-center font-sans"
           type="button"
-          onClick={() => genderToggle("multiple")}
+          onClick={() => genderToggle('multiple')}
         >
           <div
             className={twMerge(
-              "text-sm font-bold group-hover:text-[#8ec8cc]",
-              filter.multiple ? "" : "text-gray-400",
+              'text-sm font-bold group-hover:text-[#8ec8cc]',
+              filter.multiple ? '' : 'text-gray-400',
             )}
           >
             Multiple
           </div>
           <div
             className={twMerge(
-              "text-sm leading-none text-[#6e6e6e] group-hover:text-[#8ec8cc]",
-              filter.multiple ? "" : "text-gray-400",
+              'text-sm leading-none text-[#6e6e6e] group-hover:text-[#8ec8cc]',
+              filter.multiple ? '' : 'text-gray-400',
             )}
             suppressHydrationWarning
           >
@@ -164,20 +164,20 @@ export default function Gender(props: any /* TODO */) {
         <button
           className="group flex flex-col items-end justify-center font-sans hover:text-[#8ec8cc]"
           type="button"
-          onClick={() => genderToggle("women")}
+          onClick={() => genderToggle('women')}
         >
           <div
             className={twMerge(
-              "text-sm font-bold group-hover:text-[#8ec8cc]",
-              filter.women ? "" : "text-gray-400",
+              'text-sm font-bold group-hover:text-[#8ec8cc]',
+              filter.women ? '' : 'text-gray-400',
             )}
           >
             Women
           </div>
           <div
             className={twMerge(
-              "text-sm leading-none text-[#6e6e6e] group-hover:text-[#8ec8cc]",
-              filter.women ? "" : "text-gray-400",
+              'text-sm leading-none text-[#6e6e6e] group-hover:text-[#8ec8cc]',
+              filter.women ? '' : 'text-gray-400',
             )}
             suppressHydrationWarning
           >

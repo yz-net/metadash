@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
-import TextInput from "../TextInput";
+import TextInput from '../TextInput';
 
 export default function AutoSuggest(props: any /* TODO */) {
-  const [value, setValue] = useState<string>(props.value ?? "");
+  const [value, setValue] = useState<string>(props.value ?? '');
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [suggestions, setSuggestions] = useState<any[]>(
     props.suggestions ?? [],
@@ -34,8 +34,8 @@ export default function AutoSuggest(props: any /* TODO */) {
         setShowSuggestions(false);
       }
     };
-    window.addEventListener("pointerdown", handleClick);
-    return () => window.removeEventListener("pointerdown", handleClick);
+    window.addEventListener('pointerdown', handleClick);
+    return () => window.removeEventListener('pointerdown', handleClick);
   }, []);
 
   const handleSelect = (suggestion: any) => {
@@ -44,17 +44,17 @@ export default function AutoSuggest(props: any /* TODO */) {
     }
     setShowSuggestions(false);
     if (props.clearOnSelect) {
-      setValue("");
+      setValue('');
     }
   };
 
-  console.log("SUGGESTIONS", suggestions);
+  console.log('SUGGESTIONS', suggestions);
 
   return (
     <div className="relative w-full">
       <div ref={inputRef} onClick={() => setShowSuggestions((prev) => !prev)}>
         <TextInput
-          placeholder={props.placeholder ?? "Placeholder"}
+          placeholder={props.placeholder ?? 'Placeholder'}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setValue(e.target.value)
           }
@@ -73,7 +73,7 @@ export default function AutoSuggest(props: any /* TODO */) {
                 type="button"
                 onClick={() => handleSelect(s)}
               >
-                {s.label ?? "-"}
+                {s.label ?? '-'}
               </button>
             </li>
           ))}

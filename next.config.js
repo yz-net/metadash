@@ -2,24 +2,24 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-await import("./src/env.js");
+await import('./src/env.js');
 
 /** @type {import("next").NextConfig} */
 const config = {
   images: {
     unoptimized: true,
-    path: "/",
+    path: '/',
   },
-  output: "export",
+  output: 'export',
   sassOptions: {
-    implementation: "sass-embedded",
-    api: "modern-compiler",
-    silenceDeprecations: ["legacy-js-api"], // TODO: Remove this when https://github.com/vercel/next.js/issues/71638 is fixed
+    implementation: 'sass-embedded',
+    api: 'modern-compiler',
+    silenceDeprecations: ['legacy-js-api'], // TODO: Remove this when https://github.com/vercel/next.js/issues/71638 is fixed
   },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.(".svg"),
+      rule.test?.test?.('.svg'),
     );
 
     config.module.rules.push(
@@ -34,7 +34,7 @@ const config = {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
         resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
-        use: ["@svgr/webpack"],
+        use: ['@svgr/webpack'],
       },
     );
 

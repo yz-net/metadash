@@ -3,9 +3,9 @@
 /**
  * subjects interface - create an API interface for subjects items
  */
-import createReferenceInterface from "./createReferenceInterface";
+import createReferenceInterface from './createReferenceInterface';
 
-import subjectsData from "./json/Subjects.json" assert { type: "json" };
+import subjectsData from './json/Subjects.json' assert { type: 'json' };
 
 const data = subjectsData.map((a) => {
   const ret = {
@@ -15,4 +15,4 @@ const data = subjectsData.map((a) => {
   return ret;
 });
 
-export default createReferenceInterface(data, "subject_refs");
+export default createReferenceInterface(data, 'subject_refs');

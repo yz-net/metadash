@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import CountListWithBars from "../CountListWithBars";
-import TextInput from "../TextInput";
-import Card from "../Card";
-import { objectToArray } from "~/utils/common";
+import CountListWithBars from '../CountListWithBars';
+import TextInput from '../TextInput';
+import Card from '../Card';
+import { objectToArray } from '~/utils/common';
 
 export default function Interviewers(props: any /* TODO */) {
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectionsArray, setSelectionsArray] = useState<any[]>(
     objectToArray(props.selections),
   );
@@ -22,7 +22,7 @@ export default function Interviewers(props: any /* TODO */) {
   }, [props.selections]);
 
   const updateSelections = (interviewers: any) => {
-    setSearchTerm("");
+    setSearchTerm('');
     props.updateSelections(interviewers);
   };
 

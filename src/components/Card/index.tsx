@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { twMerge } from "tailwind-merge";
+import { ReactNode } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 export default function Card(props: {
   children: ReactNode;
@@ -9,7 +9,7 @@ export default function Card(props: {
   return (
     <div
       className={twMerge(
-        "shadow-yale rounded-lg bg-white p-5",
+        'rounded-lg bg-white p-5 shadow-yale',
         props.className,
       )}
     >

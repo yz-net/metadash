@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import BirthAndRecordingYear from "~/components/BirthAndRecordingYears";
-import BirthPlaces from "~/components/BirthPlaces";
-import Gender from "~/components/Gender";
-import Interviewers from "~/components/Interviewers";
-import IntroProse from "~/components/IntroProse";
-import Languages from "~/components/Languages";
-import Programs from "~/components/Programs";
-import Results from "~/components/Results";
-import SiteBanner from "~/components/SiteBanner";
-import TagFilter from "~/components/TagFilter";
-import { objectToArray } from "~/utils/common";
+import BirthAndRecordingYear from '~/components/BirthAndRecordingYears';
+import BirthPlaces from '~/components/BirthPlaces';
+import Gender from '~/components/Gender';
+import Interviewers from '~/components/Interviewers';
+import IntroProse from '~/components/IntroProse';
+import Languages from '~/components/Languages';
+import Programs from '~/components/Programs';
+import Results from '~/components/Results';
+import SiteBanner from '~/components/SiteBanner';
+import TagFilter from '~/components/TagFilter';
+import { objectToArray } from '~/utils/common';
 
-import * as dataSource from "~/data";
+import * as dataSource from '~/data';
 
 const BIRTH_MIN = 1890;
 const BIRTH_MAX = 1945;
@@ -22,7 +22,7 @@ const RECORDING_MIN = 1970;
 const RECORDING_MAX = 2020;
 
 const DEFAULT_FILTERS = {
-  gender: ["men", "women", "multiple"],
+  gender: ['men', 'women', 'multiple'],
   birthYear: [],
   birthCountry: [],
   language: [],
@@ -90,7 +90,7 @@ export default function HomePage() {
         </div>
         <Gender
           className="Gender module-box"
-          updateSelections={updateFilterFactory("gender")}
+          updateSelections={updateFilterFactory('gender')}
           men={data.summaryData.gender.men.count}
           women={data.summaryData.gender.women.count}
           multiple={data.summaryData.gender.multiple.count}
@@ -104,7 +104,7 @@ export default function HomePage() {
           BIRTH_MAX={BIRTH_MAX}
           RECORDING_MIN={RECORDING_MIN}
           RECORDING_MAX={RECORDING_MAX}
-          updateSelections={updateFilterFactory("dateRanges")}
+          updateSelections={updateFilterFactory('dateRanges')}
           selections={filters.dateRanges}
           subsetMode={fullData.resources.length > data.resources.length}
           data={Object.keys(data.summaryData.birthYears)
@@ -117,7 +117,7 @@ export default function HomePage() {
                 id: Number(a.id),
                 label: Number(a.label),
                 count: Number(a.count),
-                barClass: "pointer-events-none fill-[#ca6251]",
+                barClass: 'pointer-events-none fill-[#ca6251]',
               };
             })
             .concat(
@@ -133,7 +133,7 @@ export default function HomePage() {
                     id: Number(a.id),
                     label: Number(a.label),
                     count: Number(a.count),
-                    barClass: "pointer-events-none fill-[#ca6251]",
+                    barClass: 'pointer-events-none fill-[#ca6251]',
                   };
                 }),
             )}
@@ -141,7 +141,7 @@ export default function HomePage() {
 
         <BirthPlaces
           className="BirthPlaces"
-          updateSelections={updateFilterFactory("birthplaces")}
+          updateSelections={updateFilterFactory('birthplaces')}
           // @ts-ignore
           selections={filters.birthplaces}
           birthPlaces={data.summaryData.birthPlaces}
@@ -151,7 +151,7 @@ export default function HomePage() {
 
         <Programs
           className="Programs module-box"
-          updateSelections={updateFilterFactory("programs")}
+          updateSelections={updateFilterFactory('programs')}
           selections={filters.programs}
           allItems={fullData.summaryData.programs}
           programs={data.summaryData.programs}
@@ -161,7 +161,7 @@ export default function HomePage() {
 
         <Languages
           className="Languages module-box"
-          updateSelections={updateFilterFactory("language")}
+          updateSelections={updateFilterFactory('language')}
           selections={filters.language}
           items={objectToArray(data.summaryData.languages)}
           itemDict={data.summaryData.languages}
@@ -172,12 +172,12 @@ export default function HomePage() {
           className="Interviewers module-box"
           interviewers={data.summaryData.interviewers}
           allInterviewers={fullData.summaryData.interviewers}
-          updateSelections={updateFilterFactory("interviewers")}
+          updateSelections={updateFilterFactory('interviewers')}
           selections={filters.interviewers}
           selectionsDict={objectToArray(filters.interviewers)}
           filterItems={(t: string) => {
             const results = dataSource.interviewers.search(
-              (t ?? "").split(" "),
+              (t ?? '').split(' '),
             );
             const retDict = {};
             const retArr = results
@@ -202,7 +202,7 @@ export default function HomePage() {
       <section className="mt-8">
         <TagFilter
           title="Subjects"
-          updateSelections={updateFilterFactory("subjects")}
+          updateSelections={updateFilterFactory('subjects')}
           selections={filters.subjects}
           allItems={data.summaryData.subjects}
           filterItems={dataSource.subjects.search}

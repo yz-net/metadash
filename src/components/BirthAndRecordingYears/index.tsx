@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { twMerge } from "tailwind-merge";
+import { useEffect, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 // @ts-ignore
-import RangeSlider from "react-range-slider-input";
+import RangeSlider from 'react-range-slider-input';
 
-import Histogram from "../Viz/Histogram";
-import Card from "../Card";
+import Histogram from '../Viz/Histogram';
+import Card from '../Card';
 
-import "react-range-slider-input/dist/style.css";
-import "./styles.scss";
+import 'react-range-slider-input/dist/style.css';
+import './styles.scss';
 
 export default function BirthAndRecordingYear(props: any) {
   const [birthYear, setBirthYear] = useState<[number, number]>([
@@ -32,60 +32,60 @@ export default function BirthAndRecordingYear(props: any) {
 
   useEffect(() => {
     const birthThumbs = document
-      .getElementsByClassName("range-slider-birth")[0]
-      ?.getElementsByClassName("range-slider__thumb");
+      .getElementsByClassName('range-slider-birth')[0]
+      ?.getElementsByClassName('range-slider__thumb');
     if (!birthThumbs) {
       return;
     }
 
     const recordingThumbs = document
-      .getElementsByClassName("range-slider-recording")[0]
-      ?.getElementsByClassName("range-slider__thumb");
+      .getElementsByClassName('range-slider-recording')[0]
+      ?.getElementsByClassName('range-slider__thumb');
     if (!recordingThumbs) {
       return;
     }
 
     const onMouseOverBirth = (event: any) => {
       setBirthHover((prev) => [
-        event.target.hasAttribute("data-lower") ? true : prev[0],
-        event.target.hasAttribute("data-upper") ? true : prev[1],
+        event.target.hasAttribute('data-lower') ? true : prev[0],
+        event.target.hasAttribute('data-upper') ? true : prev[1],
       ]);
     };
     const onMouseOutBirth = (event: any) => {
       setBirthHover((prev) => [
-        event.target.hasAttribute("data-lower") ? false : prev[0],
-        event.target.hasAttribute("data-upper") ? false : prev[1],
+        event.target.hasAttribute('data-lower') ? false : prev[0],
+        event.target.hasAttribute('data-upper') ? false : prev[1],
       ]);
     };
     for (const thumb of birthThumbs) {
-      thumb.addEventListener("mouseover", onMouseOverBirth);
-      thumb.addEventListener("mouseout", onMouseOutBirth);
+      thumb.addEventListener('mouseover', onMouseOverBirth);
+      thumb.addEventListener('mouseout', onMouseOutBirth);
     }
 
     const onMouseOverRecording = (event: any) => {
       setRecordingHover((prev) => [
-        event.target.hasAttribute("data-lower") ? true : prev[0],
-        event.target.hasAttribute("data-upper") ? true : prev[1],
+        event.target.hasAttribute('data-lower') ? true : prev[0],
+        event.target.hasAttribute('data-upper') ? true : prev[1],
       ]);
     };
     const onMouseOutRecording = (event: any) => {
       setRecordingHover((prev) => [
-        event.target.hasAttribute("data-lower") ? false : prev[0],
-        event.target.hasAttribute("data-upper") ? false : prev[1],
+        event.target.hasAttribute('data-lower') ? false : prev[0],
+        event.target.hasAttribute('data-upper') ? false : prev[1],
       ]);
     };
     for (const thumb of recordingThumbs) {
-      thumb.addEventListener("mouseover", onMouseOverRecording);
-      thumb.addEventListener("mouseout", onMouseOutRecording);
+      thumb.addEventListener('mouseover', onMouseOverRecording);
+      thumb.addEventListener('mouseout', onMouseOutRecording);
     }
     return () => {
       for (const thumb of birthThumbs) {
-        thumb.removeEventListener("mouseover", onMouseOverBirth);
-        thumb.removeEventListener("mouseout", onMouseOutBirth);
+        thumb.removeEventListener('mouseover', onMouseOverBirth);
+        thumb.removeEventListener('mouseout', onMouseOutBirth);
       }
       for (const thumb of recordingThumbs) {
-        thumb.removeEventListener("mouseover", onMouseOverRecording);
-        thumb.removeEventListener("mouseout", onMouseOutRecording);
+        thumb.removeEventListener('mouseover', onMouseOverRecording);
+        thumb.removeEventListener('mouseout', onMouseOutRecording);
       }
     };
   }, []);
@@ -103,7 +103,7 @@ export default function BirthAndRecordingYear(props: any) {
       bottom: 20,
     },
   };
-  const modeClass = props.subsetMode ? "subset-mode" : "full-mode";
+  const modeClass = props.subsetMode ? 'subset-mode' : 'full-mode';
 
   return (
     <Card className={twMerge(props.className, modeClass)} title="Dates">
@@ -129,16 +129,16 @@ export default function BirthAndRecordingYear(props: any) {
             <div className="flex justify-between pt-2">
               <span
                 className={twMerge(
-                  "text-xs",
-                  birthHover[0] ? "text-[#ca6251]" : "",
+                  'text-xs',
+                  birthHover[0] ? 'text-[#ca6251]' : '',
                 )}
               >
                 {birthYear[0]}
               </span>
               <span
                 className={twMerge(
-                  "text-xs",
-                  birthHover[1] ? "text-[#ca6251]" : "",
+                  'text-xs',
+                  birthHover[1] ? 'text-[#ca6251]' : '',
                 )}
               >
                 {birthYear[1]}
@@ -163,8 +163,8 @@ export default function BirthAndRecordingYear(props: any) {
             <div className="flex justify-between pt-2">
               <span
                 className={twMerge(
-                  "text-xs",
-                  recordingHover[0] ? "text-[#ca6251]" : "",
+                  'text-xs',
+                  recordingHover[0] ? 'text-[#ca6251]' : '',
                 )}
               >
                 {recordingYear[0]}
@@ -172,8 +172,8 @@ export default function BirthAndRecordingYear(props: any) {
 
               <span
                 className={twMerge(
-                  "text-xs",
-                  recordingHover[1] ? "text-[#ca6251]" : "",
+                  'text-xs',
+                  recordingHover[1] ? 'text-[#ca6251]' : '',
                 )}
               >
                 {recordingYear[1]}

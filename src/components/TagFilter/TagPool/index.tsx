@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useRef, useEffect } from "react";
-import "./main.scss";
+import { useState, useRef, useEffect } from 'react';
+import './main.scss';
 
 export default function TagPool(props: any) {
   const [options, setOptions] = useState({
@@ -15,9 +15,9 @@ export default function TagPool(props: any) {
     if (!poolRef.current) {
       return;
     }
-    poolRef.current.addEventListener("scroll", trackScrolling);
+    poolRef.current.addEventListener('scroll', trackScrolling);
 
-    return () => poolRef.current?.removeEventListener("scroll", trackScrolling);
+    return () => poolRef.current?.removeEventListener('scroll', trackScrolling);
   }, [poolRef.current]);
 
   const trackScrolling = () => {

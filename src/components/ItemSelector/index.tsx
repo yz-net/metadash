@@ -1,6 +1,6 @@
-import { twMerge } from "tailwind-merge";
-import DropdownArrow from "~/assets/dropdown-arrow.svg";
-import XField from "~/assets/x-field.svg";
+import { twMerge } from 'tailwind-merge';
+import DropdownArrow from '~/assets/dropdown-arrow.svg';
+import XField from '~/assets/x-field.svg';
 
 interface Program {
   id: string;
@@ -19,7 +19,7 @@ export default function ItemSelector({
   items,
   selections,
   updateSelections,
-  placeholder = "All items",
+  placeholder = 'All items',
   className,
 }: ItemSelectorProps) {
   const handleSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -39,14 +39,14 @@ export default function ItemSelector({
   return (
     <div
       className={twMerge(
-        "flex h-9 items-stretch border border-border bg-surface-secondary font-yalenewroman text-primary",
+        'flex h-9 items-stretch border border-border bg-surface-secondary font-yalenewroman text-primary',
         className,
       )}
     >
       <div className="relative flex-1">
         <select
           className="h-full w-full appearance-none bg-transparent px-2 pr-8"
-          value={selectedItem?.id ?? "all"}
+          value={selectedItem?.id ?? 'all'}
           onChange={handleSelection}
         >
           <option value="all">{placeholder}</option>

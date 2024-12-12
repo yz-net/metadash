@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { FiX } from "react-icons/fi";
-import { twMerge } from "tailwind-merge";
+import { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { FiX } from 'react-icons/fi';
+import { twMerge } from 'tailwind-merge';
 
 export default function CountListWithBars(props: any) {
   const [options, setOptions] = useState({
@@ -22,9 +22,9 @@ export default function CountListWithBars(props: any) {
     if (!poolRef.current) {
       return;
     }
-    poolRef.current.addEventListener("scroll", trackScrolling);
+    poolRef.current.addEventListener('scroll', trackScrolling);
 
-    return () => poolRef.current?.removeEventListener("scroll", trackScrolling);
+    return () => poolRef.current?.removeEventListener('scroll', trackScrolling);
   }, [poolRef.current]);
 
   const trackScrolling = () => {
@@ -52,7 +52,7 @@ export default function CountListWithBars(props: any) {
   return (
     <div
       ref={poolRef}
-      className="max-h-full overflow-auto font-sans text-xs font-semibold text-[#6e6e6e] "
+      className="max-h-full overflow-auto font-sans text-xs font-semibold text-[#6e6e6e]"
     >
       {items
         .sort((a: any, b: any) => (a.count < b.count ? 1 : -1))
@@ -65,14 +65,14 @@ export default function CountListWithBars(props: any) {
           let itemCount,
             barWidth,
             selected = false,
-            className = "group items-center flex leading-6 mb-0";
+            className = 'group items-center flex leading-6 mb-0';
 
           if (item.id in props.itemDict) {
             itemCount = props.itemDict[item.id].count.toLocaleString();
             barWidth = (props.itemDict[item.id].count * 100) / total;
           } else {
             barWidth = 0;
-            itemCount = "--";
+            itemCount = '--';
           }
 
           if (
@@ -81,20 +81,20 @@ export default function CountListWithBars(props: any) {
               : Object.keys(props.selections).some((s: any) => s === item.id)
           ) {
             selected = true;
-            className += " text-[#222]";
+            className += ' text-[#222]';
           }
 
           return (
             <button
               key={i}
-              className={twMerge("w-full py-0.5 hover:bg-[#eff7fa]", className)}
+              className={twMerge('w-full py-0.5 hover:bg-[#eff7fa]', className)}
               onClick={() => props.handleItemClick(item)}
               type="button"
             >
               <div
                 className={twMerge(
-                  "ml-2.5 rounded-full bg-[#8ec8cc]",
-                  selected ? "opacity-100" : "opacity-0",
+                  'ml-2.5 rounded-full bg-[#8ec8cc]',
+                  selected ? 'opacity-100' : 'opacity-0',
                 )}
               >
                 <FiX className="stroke-white" />
@@ -105,16 +105,16 @@ export default function CountListWithBars(props: any) {
               {props.showBars && (
                 <div className="relative h-3 flex-[4_4] flex-shrink-0 bg-[#d9e9f2]">
                   <motion.div
-                    initial={{ width: "0%" }}
+                    initial={{ width: '0%' }}
                     animate={{ width: `${barWidth}%` }}
-                    exit={{ width: "0%" }}
+                    exit={{ width: '0%' }}
                     className="absolute inset-0 z-10 h-full bg-[#0d99aa] transition-[colors,width] group-hover:!w-full group-hover:bg-[#ca6251]"
                   />
                 </div>
               )}
               <div
                 className={twMerge(
-                  "flex-[4_4] px-2.5 text-left group-hover:text-black",
+                  'flex-[4_4] px-2.5 text-left group-hover:text-black',
                   props.itemCountClassName,
                 )}
               >

@@ -1,24 +1,24 @@
 export default function IntroProse(props: any) {
   const genderString = () => {
     if (!props.filters?.gender) {
-      return "";
+      return '';
     }
     if (props.filters.gender.length < 1) {
-      return "men and women";
+      return 'men and women';
     }
-    const men = props.filters.gender.indexOf("men") >= 0,
-      women = props.filters.gender.indexOf("women") >= 0,
-      multiple = props.filters.gender.indexOf("multiple") >= 0;
+    const men = props.filters.gender.indexOf('men') >= 0,
+      women = props.filters.gender.indexOf('women') >= 0,
+      multiple = props.filters.gender.indexOf('multiple') >= 0;
 
-    let term = "people";
+    let term = 'people';
     if (men && women) {
-      term = "women and men";
+      term = 'women and men';
     } else if (men) {
-      term = "men";
+      term = 'men';
     } else if (women) {
-      term = "women";
+      term = 'women';
     } else if (multiple) {
-      term = "women and men testifying together";
+      term = 'women and men testifying together';
     }
 
     return (
@@ -43,7 +43,7 @@ export default function IntroProse(props: any) {
 
     return (
       <span>
-        between <span className="text-[#ca6251]">{arr.join(" and ")}</span>
+        between <span className="text-[#ca6251]">{arr.join(' and ')}</span>
       </span>
     );
   };
@@ -56,10 +56,10 @@ export default function IntroProse(props: any) {
     const languageCount = Object.keys(props.summaryData.languages).length;
     return (
       <span>
-        across{" "}
+        across{' '}
         <span className="text-[#ca6251]">
-          {languageCount.toLocaleString()}{" "}
-          {languageCount > 1 ? "languages" : "language"}
+          {languageCount.toLocaleString()}{' '}
+          {languageCount > 1 ? 'languages' : 'language'}
         </span>
       </span>
     );
@@ -69,10 +69,10 @@ export default function IntroProse(props: any) {
     const affiliateCount = Object.keys(props.summaryData.programs).length;
     return (
       <span>
-        by{" "}
+        by{' '}
         <span className="text-[#ca6251]">
-          {affiliateCount.toLocaleString()}{" "}
-          {affiliateCount > 1 ? "affilate programs" : "affiliate program"}
+          {affiliateCount.toLocaleString()}{' '}
+          {affiliateCount > 1 ? 'affilate programs' : 'affiliate program'}
         </span>
       </span>
     );
@@ -85,12 +85,12 @@ export default function IntroProse(props: any) {
         {(props.items?.length ?? 0).toLocaleString()} testimonies
       </span>
       &nbsp;{genderString()}
-      &nbsp;born{" "}
+      &nbsp;born{' '}
       {yearRangeString(
         props.filters.dateRanges.birth || [props.BIRTH_MIN, props.BIRTH_MAX],
       )}
       &nbsp;{birthplaceString()}
-      &nbsp;who were interviewed{" "}
+      &nbsp;who were interviewed{' '}
       {yearRangeString(
         props.filters.dateRanges.recording || [
           props.RECORDING_MIN,

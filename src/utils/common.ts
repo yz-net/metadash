@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 export function normalizeString(term: string) {
-  return (term ?? "").toString().trim().toLowerCase();
+  return (term ?? '').toString().trim().toLowerCase();
 }
 
 // replace the keys in a dictionary with something else

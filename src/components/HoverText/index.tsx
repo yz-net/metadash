@@ -1,4 +1,4 @@
-import { FiX } from "react-icons/fi";
+import { FiX } from 'react-icons/fi';
 
 export default function HoverText(props: any) {
   let ret = null;
@@ -9,12 +9,12 @@ export default function HoverText(props: any) {
         <div className="flex items-center justify-center rounded-full bg-[#8ec8cc] p-0.5 opacity-0">
           <FiX className="stroke-white" size={12} />
         </div>
-        <div>{props.hoverText || " "}</div>
+        <div>{props.hoverText || ' '}</div>
       </div>
     );
   } else {
     const htext =
-      props.hoverText?.trim().length > 0 ? props.hoverText : props.label || " ";
+      props.hoverText?.trim().length > 0 ? props.hoverText : props.label || ' ';
     ret = (
       <button
         className="group flex h-6 w-full items-center justify-center gap-2"

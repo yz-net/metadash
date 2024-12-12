@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
+import { useEffect, useRef, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-import { objectToArray } from "~/utils/common";
-import Cluster from "../Viz/Cluster";
-import HoverText from "../HoverText";
-import Card from "../Card";
-import TextInput from "../TextInput";
+import { objectToArray } from '~/utils/common';
+import Cluster from '../Viz/Cluster';
+import HoverText from '../HoverText';
+import Card from '../Card';
+import TextInput from '../TextInput';
 
 export default function BirthPlaces(props: any) {
-  const [hoverText, setHoverText] = useState("");
-  const [suggestionValue, setSuggestionValue] = useState<string>("");
+  const [hoverText, setHoverText] = useState('');
+  const [suggestionValue, setSuggestionValue] = useState<string>('');
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [suggestions, setSuggestions] = useState<any[]>([]);
 
@@ -48,22 +48,22 @@ export default function BirthPlaces(props: any) {
         setShowSuggestions(false);
       }
     };
-    window.addEventListener("pointerdown", handleClick);
-    return () => window.removeEventListener("pointerdown", handleClick);
+    window.addEventListener('pointerdown', handleClick);
+    return () => window.removeEventListener('pointerdown', handleClick);
   }, []);
 
   const cleanPlaceName = (item: any) => {
     if (!item) {
-      return "";
+      return '';
     }
-    const city = item.label.split("|")[0].split(",")[0],
+    const city = item.label.split('|')[0].split(',')[0],
       country = item.country;
 
     if (city === country) {
       return country;
     }
     if (city && country) {
-      return city + ", " + country;
+      return city + ', ' + country;
     } else if (city) {
       return city;
     } else if (country) {
@@ -77,7 +77,7 @@ export default function BirthPlaces(props: any) {
     const clusterData = objectToArray(props.allBirthPlaces)
       .filter(
         (place) =>
-          place.label.split("|").filter((x: any) => x && x.length > 0)
+          place.label.split('|').filter((x: any) => x && x.length > 0)
             .length === 2,
       )
       .map((item) => {
@@ -90,7 +90,7 @@ export default function BirthPlaces(props: any) {
       });
 
     clusterData.forEach((element) => {
-      const country = element.label.split("|")[1];
+      const country = element.label.split('|')[1];
       if (addedCountries.indexOf(country) >= 0) {
         return;
       }
@@ -100,7 +100,7 @@ export default function BirthPlaces(props: any) {
       clusterData.push(newItem);
     });
 
-    clusterData.push({ label: "country|", id: "country|" });
+    clusterData.push({ label: 'country|', id: 'country|' });
 
     return clusterData;
   };
@@ -114,12 +114,12 @@ export default function BirthPlaces(props: any) {
   };
 
   const onMouseOut = () => {
-    setHoverText(" ");
+    setHoverText(' ');
   };
 
   return (
     <Card
-      className={twMerge("flex flex-col", props.className)}
+      className={twMerge('flex flex-col', props.className)}
       title="Birth places"
     >
       <Cluster
@@ -138,7 +138,7 @@ export default function BirthPlaces(props: any) {
         hoverText={hoverText}
         label={
           !props.selections || props.selections.length < 1
-            ? ""
+            ? ''
             : cleanPlaceName(props.selections[0])
         }
       />
@@ -150,7 +150,7 @@ export default function BirthPlaces(props: any) {
           onClick={() => setShowSuggestions((prev) => !prev)}
         >
           <TextInput
-            placeholder={"Type a place name"}
+            placeholder={'Type a place name'}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setSuggestionValue(e.target.value)
             }
@@ -170,10 +170,10 @@ export default function BirthPlaces(props: any) {
                   onClick={() => {
                     props.updateSelections([s]);
                     setShowSuggestions(false);
-                    setSuggestionValue("");
+                    setSuggestionValue('');
                   }}
                 >
-                  {s.label ?? "-"}
+                  {s.label ?? '-'}
                 </button>
               </li>
             ))}

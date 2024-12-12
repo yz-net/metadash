@@ -1,12 +1,12 @@
 // @ts-nocheck
 
-import createReferenceInterface from "./createReferenceInterface";
+import createReferenceInterface from './createReferenceInterface';
 
-import interviewersData from "./json/Interviewers.json" assert { type: "json" };
+import interviewersData from './json/Interviewers.json' assert { type: 'json' };
 
 const data = interviewersData.map((i) => {
   if (i.display_names.length > 1) {
-    throw new Error("Interviewer with multiple names");
+    throw new Error('Interviewer with multiple names');
   }
   return {
     id: i.uri,
@@ -14,4 +14,4 @@ const data = interviewersData.map((i) => {
   };
 });
 
-export default createReferenceInterface(data, "interviewers");
+export default createReferenceInterface(data, 'interviewers');

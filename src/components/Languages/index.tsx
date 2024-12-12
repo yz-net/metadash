@@ -1,7 +1,7 @@
-import React from "react";
-import { arrayToObject } from "~/utils/common";
-import CountListWithBars from "../CountListWithBars";
-import Card from "../Card";
+import React from 'react';
+import { arrayToObject } from '~/utils/common';
+import CountListWithBars from '../CountListWithBars';
+import Card from '../Card';
 
 export default function Languages(props: any) {
   const listProps = {

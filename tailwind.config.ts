@@ -1,67 +1,67 @@
-import { type Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
+import { type Config } from 'tailwindcss';
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
 export default {
-  content: ["./src/**/*.tsx"],
+  content: ['./src/**/*.tsx'],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
-        yalenewroman: ["yalenewroman"],
-        proximanova: ["proximanova"],
+        sans: ['var(--font-geist-sans)', ...fontFamily.sans],
+        yalenewroman: ['yalenewroman'],
+        proximanova: ['proximanova'],
       },
       boxShadow: {
-        yale: "1px 1px 6px rgba(0,0,0,.16)",
+        yale: '1px 1px 6px rgba(0,0,0,.16)',
       },
       colors: {
         // Core colors that maintain brand identity
         yale: {
-          blue: "#00356b",
-          black: "#222222",
+          blue: '#00356b',
+          black: '#222222',
         },
 
         // Primary color roles
         primary: {
-          DEFAULT: "#222222", // Main text color (previously yaleblack)
-          muted: "#4a4a4a", // Secondary text (previously darkgray)
-          subtle: "#6e6e6e", // Tertiary text (previously textgray)
-          ghost: "#aaaaaa", // Muted text (previously reallylightgray)
+          DEFAULT: '#222222', // Main text color (previously yaleblack)
+          muted: '#4a4a4a', // Secondary text (previously darkgray)
+          subtle: '#6e6e6e', // Tertiary text (previously textgray)
+          ghost: '#aaaaaa', // Muted text (previously reallylightgray)
         },
 
         // Surface and background colors
         surface: {
-          DEFAULT: "#ffffff", // Main background
-          secondary: "#f5f5f5", // Light background (previously backgroundgray)
-          paper: "#f0eee6", // Paper-like background (previously headingsbackground)
-          pale: "#eff7fa", // Very light background (previously lightmist)
-          warm: "#fef4d4", // Warm background (previously parchment)
+          DEFAULT: '#ffffff', // Main background
+          secondary: '#f5f5f5', // Light background (previously backgroundgray)
+          paper: '#f0eee6', // Paper-like background (previously headingsbackground)
+          pale: '#eff7fa', // Very light background (previously lightmist)
+          warm: '#fef4d4', // Warm background (previously parchment)
         },
 
         // Border colors
         border: {
-          DEFAULT: "#d3d3d3", // Default border (previously inputborder)
-          strong: "#bebebe", // Stronger border (previously resultsborder)
-          light: "#dddddd", // Light border (previously lightgray)
+          DEFAULT: '#d3d3d3', // Default border (previously inputborder)
+          strong: '#bebebe', // Stronger border (previously resultsborder)
+          light: '#dddddd', // Light border (previously lightgray)
         },
 
         // Accent colors for special UI elements
         accent: {
           blue: {
-            DEFAULT: "#286dc0", // previously medblue
-            light: "#63aaff", // previously liteblue
-            pale: "#d9e9f2", // previously sky
+            DEFAULT: '#286dc0', // previously medblue
+            light: '#63aaff', // previously liteblue
+            pale: '#d9e9f2', // previously sky
           },
           teal: {
-            DEFAULT: "#0d99aa",
-            light: "#8ec8cc",
-            pale: "#d9e6e7",
+            DEFAULT: '#0d99aa',
+            light: '#8ec8cc',
+            pale: '#d9e6e7',
           },
           warm: {
-            red: "#ca6251",
-            orange: "#f48734",
+            red: '#ca6251',
+            orange: '#f48734',
             yellow: {
-              DEFAULT: "#f9be00",
-              light: "#fce188",
+              DEFAULT: '#f9be00',
+              light: '#fce188',
             },
           },
         },

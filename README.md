@@ -26,6 +26,7 @@ This project is serverless, so all of the data is loaded into the browser. The
 data API is sequestered in the src/Data module, so that at some point it could
 be replaced with a server.
 
-# 2024 rebuild 
+# 2024 rebuild
+
 The project was rebuilt on [Next.js](https://nextjs.org) with typescript and
 [Tailwind CSS](https://tailwindcss.com), based on [T3](https://create.t3.gg/)

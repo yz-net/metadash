@@ -1,6 +1,6 @@
 //@ts-nocheck
 
-import { PureComponent, createRef } from "react";
+import { PureComponent, createRef } from 'react';
 
 export default class D3Component extends PureComponent {
   constructor(props) {

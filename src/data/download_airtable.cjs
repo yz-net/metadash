@@ -1,20 +1,20 @@
 //@ts-nocheck
 
-require("dotenv").config();
-const path = require("path");
+require('dotenv').config();
+const path = require('path');
 
 if (process.env.AIRTABLE_TOKEN === undefined) {
-  console.error("Please set the AIRTABLE_TOKEN environment variable");
+  console.error('Please set the AIRTABLE_TOKEN environment variable');
   process.exit(1);
 }
 
-const Airtable = require("airtable");
-const fs = require("fs-extra");
+const Airtable = require('airtable');
+const fs = require('fs-extra');
 
 Airtable.configure({
   apiKey: process.env.AIRTABLE_TOKEN,
 });
-const base = Airtable.base("appR5gUvSEznOM3Qn");
+const base = Airtable.base('appR5gUvSEznOM3Qn');
 
 async function downloadTable(tableName) {
   const records = await base(tableName).select().all();
@@ -23,9 +23,9 @@ async function downloadTable(tableName) {
 }
 
 const fieldMappings = {
-  subject_refs: "Subjects",
-  interviewers: "Interviewers",
-  programs: "Programs",
+  subject_refs: 'Subjects',
+  interviewers: 'Interviewers',
+  programs: 'Programs',
   has(obj) {
     return Object.keys(this).some(
       (key) => Object.keys(obj).indexOf(key) !== -1,
@@ -41,7 +41,7 @@ async function downloadAllTables() {
   /***************************************************************************************
    * WE CREATE THE TABLENAMES ARRAY TO HOLD THE NAMES OF THE TABLES WE WANT TO DOWNLOAD. *
    ***************************************************************************************/
-  const tableNames = ["Index", "Subjects", "Programs", "Interviewers"];
+  const tableNames = ['Index', 'Subjects', 'Programs', 'Interviewers'];
   /*********************************************************************************************
    * WE CREATE AN EMPTY TABLES OBJECT TO STORE THE TABLE OBJECTS WE’LL GET FROM DOWNLOADTABLE. *
    *********************************************************************************************/
@@ -50,13 +50,13 @@ async function downloadAllTables() {
   /****************************************************************************************************
    * WE LOOP THROUGH THE TABLENAMES ARRAY, DOWNLOADING EACH TABLE AND ADDING IT TO THE TABLES OBJECT. *
    ****************************************************************************************************/
-  console.log("starting to download tables");
+  console.log('starting to download tables');
   for (const tableName of tableNames) {
-    console.log("Downloading table: " + tableName);
+    console.log('Downloading table: ' + tableName);
     tables[tableName] = await downloadTable(tableName);
   }
 
-  console.log("finished downloading tables");
+  console.log('finished downloading tables');
   /***************************************************************************
    * WE LOOP THROUGH THE TABLES OBJECT AND UPDATE THE RECORDS IN EACH TABLE. *
    ***************************************************************************/
@@ -91,7 +91,7 @@ async function downloadAllTables() {
      * SPECIAL TREATMENT FOR INDEX *
      *******************************/
     // if table is index
-    if (tableName === "Index") {
+    if (tableName === 'Index') {
       // loop through records
       table.jsonRecords = table.jsonRecords.map((record) => {
         record.recording_dates = record.recording_dates || [];

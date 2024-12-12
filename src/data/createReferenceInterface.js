@@ -5,8 +5,8 @@
  *      chiefly, the "subjects" and "interviewers"
  */
 
-import { normalizeString } from "~/utils/common";
-import * as resources from "./resources";
+import { normalizeString } from '~/utils/common';
+import * as resources from './resources';
 
 export default function createReferenceInterface(data, indexField) {
   /**
@@ -27,8 +27,8 @@ export default function createReferenceInterface(data, indexField) {
     return function (item) {
       for (let term of terms) {
         if (
-          normalizeString(item?.label ?? "").indexOf(
-            normalizeString(term ?? ""),
+          normalizeString(item?.label ?? '').indexOf(
+            normalizeString(term ?? ''),
           ) < 0
         ) {
           return false;
