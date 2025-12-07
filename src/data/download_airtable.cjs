@@ -1,3 +1,4 @@
+/* eslint-disable */
 //@ts-nocheck
 
 require('dotenv').config();

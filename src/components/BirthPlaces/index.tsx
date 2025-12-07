@@ -91,6 +91,7 @@ export default function BirthPlaces(props: any) {
 
     clusterData.forEach((element) => {
       const country = element.label.split('|')[1];
+      /* eslint-disable-next-line */
       if (addedCountries.indexOf(country) >= 0) {
         return;
       }
