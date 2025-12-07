@@ -5,6 +5,7 @@ const config = {
     project: true,
   },
   ignorePatterns: ['*.js'],
+  // @ts-ignore
   plugins: ['@typescript-eslint'],
   extends: [
     'next/core-web-vitals',
